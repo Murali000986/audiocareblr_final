@@ -133,13 +133,18 @@ function ProductDetailPage() {
                 <button onClick={() => setQty(qty + 1)} className="w-10 h-11 hover:bg-accent">+</button>
               </div>
               <button
+                onClick={addToCart}
                 disabled={!p.inStock}
                 className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold shadow-card hover:shadow-glow disabled:opacity-50"
               >
                 <ShoppingCart className="w-4 h-4" /> Add to Cart
               </button>
-              <button className="inline-flex items-center justify-center w-11 h-11 rounded-xl border-2 border-border hover:border-primary hover:text-primary">
-                <Heart className="w-5 h-5" />
+              <button
+                onClick={toggleWish}
+                aria-label="Wishlist"
+                className={`inline-flex items-center justify-center w-11 h-11 rounded-xl border-2 border-border hover:border-primary hover:text-primary ${wished ? "border-primary text-primary" : ""}`}
+              >
+                <Heart className={`w-5 h-5 ${wished ? "fill-primary" : ""}`} />
               </button>
               <a
                 href="https://wa.me/919876543210"
