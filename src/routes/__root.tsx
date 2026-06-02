@@ -12,9 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { CartProvider } from "@/contexts/CartContext";
-import { WishlistProvider } from "@/contexts/WishlistContext";
-import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -82,13 +79,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { name: "description", content: "AudioCare is a premium e-commerce and speaker repair service website." },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:description", content: "AudioCare is a premium e-commerce and speaker repair service website." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "twitter:description", content: "AudioCare is a premium e-commerce and speaker repair service website." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d9e8abef-9c12-4bfd-89b4-5ab918546910/id-preview-2a891a81--c9d883df-b99f-4f64-ab51-ae6e5bc10318.lovable.app-1780376349729.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d9e8abef-9c12-4bfd-89b4-5ab918546910/id-preview-2a891a81--c9d883df-b99f-4f64-ab51-ae6e5bc10318.lovable.app-1780376349729.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -123,12 +124,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <CartProvider>
-          <WishlistProvider>
-            <Outlet />
-            <Toaster richColors position="top-right" />
-          </WishlistProvider>
-        </CartProvider>
+        <Outlet />
       </ThemeProvider>
     </QueryClientProvider>
   );
