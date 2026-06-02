@@ -52,8 +52,14 @@ export const Route = createFileRoute("/shop/$productId")({
 function ProductDetailPage() {
   const { product: p } = Route.useLoaderData();
   const [qty, setQty] = useState(1);
+  const cart = useCart();
+  const wish = useWishlist();
+  const wished = wish.has(p.id);
   const discount = p.mrp ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
   const related = products.filter((x) => x.category === p.category && x.id !== p.id).slice(0, 3);
+
+  const addToCart = () => { cart.add(p.id, qty); toast.success(`${qty} × ${p.name} added to cart`); };
+  const toggleWish = () => { wish.toggle(p.id); toast.success(wished ? "Removed from wishlist" : "Added to wishlist"); };
 
   return (
     <div className="min-h-screen bg-background">
