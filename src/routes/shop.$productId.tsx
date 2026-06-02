@@ -5,6 +5,9 @@ import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/data/sampleData";
 import { Star, ShoppingCart, Heart, Truck, ShieldCheck, RotateCcw, ChevronRight, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/shop/$productId")({
   head: ({ params }) => {
