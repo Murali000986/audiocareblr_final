@@ -5,6 +5,9 @@ import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/data/sampleData";
 import { Star, ShoppingCart, Heart, Truck, ShieldCheck, RotateCcw, ChevronRight, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/shop/$productId")({
   head: ({ params }) => {
@@ -49,8 +52,14 @@ export const Route = createFileRoute("/shop/$productId")({
 function ProductDetailPage() {
   const { product: p } = Route.useLoaderData();
   const [qty, setQty] = useState(1);
+  const cart = useCart();
+  const wish = useWishlist();
+  const wished = wish.has(p.id);
   const discount = p.mrp ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
   const related = products.filter((x) => x.category === p.category && x.id !== p.id).slice(0, 3);
+
+  const addToCart = () => { cart.add(p.id, qty); toast.success(`${qty} × ${p.name} added to cart`); };
+  const toggleWish = () => { wish.toggle(p.id); toast.success(wished ? "Removed from wishlist" : "Added to wishlist"); };
 
   return (
     <div className="min-h-screen bg-background">
@@ -124,13 +133,18 @@ function ProductDetailPage() {
                 <button onClick={() => setQty(qty + 1)} className="w-10 h-11 hover:bg-accent">+</button>
               </div>
               <button
+                onClick={addToCart}
                 disabled={!p.inStock}
                 className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold shadow-card hover:shadow-glow disabled:opacity-50"
               >
                 <ShoppingCart className="w-4 h-4" /> Add to Cart
               </button>
-              <button className="inline-flex items-center justify-center w-11 h-11 rounded-xl border-2 border-border hover:border-primary hover:text-primary">
-                <Heart className="w-5 h-5" />
+              <button
+                onClick={toggleWish}
+                aria-label="Wishlist"
+                className={`inline-flex items-center justify-center w-11 h-11 rounded-xl border-2 border-border hover:border-primary hover:text-primary ${wished ? "border-primary text-primary" : ""}`}
+              >
+                <Heart className={`w-5 h-5 ${wished ? "fill-primary" : ""}`} />
               </button>
               <a
                 href="https://wa.me/919876543210"
