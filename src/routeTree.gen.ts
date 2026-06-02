@@ -50,19 +50,19 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopIndexRoute = ShopIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ShopRoute,
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ShopProductIdRoute = ShopProductIdRouteImport.update({
-  id: '/$productId',
-  path: '/$productId',
-  getParentRoute: () => ShopRoute,
+  id: '/shop/$productId',
+  path: '/shop/$productId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ShopCategorySlugRoute = ShopCategorySlugRouteImport.update({
-  id: '/category/$slug',
-  path: '/category/$slug',
-  getParentRoute: () => ShopRoute,
+  id: '/shop/category/$slug',
+  path: '/shop/category/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -142,6 +142,9 @@ export interface RootRouteChildren {
   RepairServiceRoute: typeof RepairServiceRoute
   ReviewsRoute: typeof ReviewsRoute
   SoundExperienceRoute: typeof SoundExperienceRoute
+  ShopProductIdRoute: typeof ShopProductIdRoute
+  ShopIndexRoute: typeof ShopIndexRoute
+  ShopCategorySlugRoute: typeof ShopCategorySlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -190,24 +193,24 @@ declare module '@tanstack/react-router' {
     }
     '/shop/': {
       id: '/shop/'
-      path: '/'
+      path: '/shop'
       fullPath: '/shop/'
       preLoaderRoute: typeof ShopIndexRouteImport
-      parentRoute: typeof ShopRoute
+      parentRoute: typeof rootRouteImport
     }
     '/shop/$productId': {
       id: '/shop/$productId'
-      path: '/$productId'
+      path: '/shop/$productId'
       fullPath: '/shop/$productId'
       preLoaderRoute: typeof ShopProductIdRouteImport
-      parentRoute: typeof ShopRoute
+      parentRoute: typeof rootRouteImport
     }
     '/shop/category/$slug': {
       id: '/shop/category/$slug'
-      path: '/category/$slug'
+      path: '/shop/category/$slug'
       fullPath: '/shop/category/$slug'
       preLoaderRoute: typeof ShopCategorySlugRouteImport
-      parentRoute: typeof ShopRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -219,17 +222,10 @@ const rootRouteChildren: RootRouteChildren = {
   RepairServiceRoute: RepairServiceRoute,
   ReviewsRoute: ReviewsRoute,
   SoundExperienceRoute: SoundExperienceRoute,
+  ShopProductIdRoute: ShopProductIdRoute,
+  ShopIndexRoute: ShopIndexRoute,
+  ShopCategorySlugRoute: ShopCategorySlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
