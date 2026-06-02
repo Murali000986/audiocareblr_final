@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SoundExperienceRouteImport } from './routes/sound-experience'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as RepairServiceRouteImport } from './routes/repair-service'
+import { Route as OurWorkRouteImport } from './routes/our-work'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SoundExperienceRoute = SoundExperienceRouteImport.update({
+  id: '/sound-experience',
+  path: '/sound-experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RepairServiceRoute = RepairServiceRouteImport.update({
+  id: '/repair-service',
+  path: '/repair-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurWorkRoute = OurWorkRouteImport.update({
+  id: '/our-work',
+  path: '/our-work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/our-work': typeof OurWorkRoute
+  '/repair-service': typeof RepairServiceRoute
+  '/reviews': typeof ReviewsRoute
+  '/shop': typeof ShopRoute
+  '/sound-experience': typeof SoundExperienceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/our-work': typeof OurWorkRoute
+  '/repair-service': typeof RepairServiceRoute
+  '/reviews': typeof ReviewsRoute
+  '/shop': typeof ShopRoute
+  '/sound-experience': typeof SoundExperienceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/our-work': typeof OurWorkRoute
+  '/repair-service': typeof RepairServiceRoute
+  '/reviews': typeof ReviewsRoute
+  '/shop': typeof ShopRoute
+  '/sound-experience': typeof SoundExperienceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/our-work'
+    | '/repair-service'
+    | '/reviews'
+    | '/shop'
+    | '/sound-experience'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contact'
+    | '/our-work'
+    | '/repair-service'
+    | '/reviews'
+    | '/shop'
+    | '/sound-experience'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/our-work'
+    | '/repair-service'
+    | '/reviews'
+    | '/shop'
+    | '/sound-experience'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  OurWorkRoute: typeof OurWorkRoute
+  RepairServiceRoute: typeof RepairServiceRoute
+  ReviewsRoute: typeof ReviewsRoute
+  ShopRoute: typeof ShopRoute
+  SoundExperienceRoute: typeof SoundExperienceRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sound-experience': {
+      id: '/sound-experience'
+      path: '/sound-experience'
+      fullPath: '/sound-experience'
+      preLoaderRoute: typeof SoundExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repair-service': {
+      id: '/repair-service'
+      path: '/repair-service'
+      fullPath: '/repair-service'
+      preLoaderRoute: typeof RepairServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-work': {
+      id: '/our-work'
+      path: '/our-work'
+      fullPath: '/our-work'
+      preLoaderRoute: typeof OurWorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +177,23 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  OurWorkRoute: OurWorkRoute,
+  RepairServiceRoute: RepairServiceRoute,
+  ReviewsRoute: ReviewsRoute,
+  ShopRoute: ShopRoute,
+  SoundExperienceRoute: SoundExperienceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
