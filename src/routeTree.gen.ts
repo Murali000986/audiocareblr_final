@@ -9,16 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as SoundExperienceRouteImport } from './routes/sound-experience'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as RepairServiceRouteImport } from './routes/repair-service'
 import { Route as OurWorkRouteImport } from './routes/our-work'
+import { Route as OrderSuccessRouteImport } from './routes/order-success'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as CartRouteImport } from './routes/cart'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
 import { Route as ShopProductIdRouteImport } from './routes/shop.$productId'
 import { Route as ShopCategorySlugRouteImport } from './routes/shop.category.$slug'
 
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SoundExperienceRoute = SoundExperienceRouteImport.update({
   id: '/sound-experience',
   path: '/sound-experience',
@@ -39,9 +48,24 @@ const OurWorkRoute = OurWorkRouteImport.update({
   path: '/our-work',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrderSuccessRoute = OrderSuccessRouteImport.update({
+  id: '/order-success',
+  path: '/order-success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -60,29 +84,37 @@ const ShopProductIdRoute = ShopProductIdRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopCategorySlugRoute = ShopCategorySlugRouteImport.update({
-  id: '/shop/category/$slug',
-  path: '/shop/category/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/category/$slug',
+  path: '/category/$slug',
+  getParentRoute: () => ShopRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/order-success': typeof OrderSuccessRoute
   '/our-work': typeof OurWorkRoute
   '/repair-service': typeof RepairServiceRoute
   '/reviews': typeof ReviewsRoute
   '/sound-experience': typeof SoundExperienceRoute
+  '/wishlist': typeof WishlistRoute
   '/shop/$productId': typeof ShopProductIdRoute
   '/shop/': typeof ShopIndexRoute
   '/shop/category/$slug': typeof ShopCategorySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/order-success': typeof OrderSuccessRoute
   '/our-work': typeof OurWorkRoute
   '/repair-service': typeof RepairServiceRoute
   '/reviews': typeof ReviewsRoute
   '/sound-experience': typeof SoundExperienceRoute
+  '/wishlist': typeof WishlistRoute
   '/shop/$productId': typeof ShopProductIdRoute
   '/shop': typeof ShopIndexRoute
   '/shop/category/$slug': typeof ShopCategorySlugRoute
@@ -90,11 +122,15 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/order-success': typeof OrderSuccessRoute
   '/our-work': typeof OurWorkRoute
   '/repair-service': typeof RepairServiceRoute
   '/reviews': typeof ReviewsRoute
   '/sound-experience': typeof SoundExperienceRoute
+  '/wishlist': typeof WishlistRoute
   '/shop/$productId': typeof ShopProductIdRoute
   '/shop/': typeof ShopIndexRoute
   '/shop/category/$slug': typeof ShopCategorySlugRoute
@@ -103,33 +139,45 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cart'
+    | '/checkout'
     | '/contact'
+    | '/order-success'
     | '/our-work'
     | '/repair-service'
     | '/reviews'
     | '/sound-experience'
+    | '/wishlist'
     | '/shop/$productId'
     | '/shop/'
     | '/shop/category/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cart'
+    | '/checkout'
     | '/contact'
+    | '/order-success'
     | '/our-work'
     | '/repair-service'
     | '/reviews'
     | '/sound-experience'
+    | '/wishlist'
     | '/shop/$productId'
     | '/shop'
     | '/shop/category/$slug'
   id:
     | '__root__'
     | '/'
+    | '/cart'
+    | '/checkout'
     | '/contact'
+    | '/order-success'
     | '/our-work'
     | '/repair-service'
     | '/reviews'
     | '/sound-experience'
+    | '/wishlist'
     | '/shop/$productId'
     | '/shop/'
     | '/shop/category/$slug'
@@ -137,18 +185,28 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
+  OrderSuccessRoute: typeof OrderSuccessRoute
   OurWorkRoute: typeof OurWorkRoute
   RepairServiceRoute: typeof RepairServiceRoute
   ReviewsRoute: typeof ReviewsRoute
   SoundExperienceRoute: typeof SoundExperienceRoute
+  WishlistRoute: typeof WishlistRoute
   ShopProductIdRoute: typeof ShopProductIdRoute
   ShopIndexRoute: typeof ShopIndexRoute
-  ShopCategorySlugRoute: typeof ShopCategorySlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sound-experience': {
       id: '/sound-experience'
       path: '/sound-experience'
@@ -177,11 +235,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OurWorkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/order-success': {
+      id: '/order-success'
+      path: '/order-success'
+      fullPath: '/order-success'
+      preLoaderRoute: typeof OrderSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -207,25 +286,38 @@ declare module '@tanstack/react-router' {
     }
     '/shop/category/$slug': {
       id: '/shop/category/$slug'
-      path: '/shop/category/$slug'
+      path: '/category/$slug'
       fullPath: '/shop/category/$slug'
       preLoaderRoute: typeof ShopCategorySlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ShopRoute
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
+  OrderSuccessRoute: OrderSuccessRoute,
   OurWorkRoute: OurWorkRoute,
   RepairServiceRoute: RepairServiceRoute,
   ReviewsRoute: ReviewsRoute,
   SoundExperienceRoute: SoundExperienceRoute,
+  WishlistRoute: WishlistRoute,
   ShopProductIdRoute: ShopProductIdRoute,
   ShopIndexRoute: ShopIndexRoute,
-  ShopCategorySlugRoute: ShopCategorySlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

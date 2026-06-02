@@ -6,6 +6,7 @@ import { Link } from "@tanstack/react-router";
 import { categories } from "@/data/sampleData";
 
 export const Route = createFileRoute("/shop/")({
+  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s.q === "string" ? s.q : "" }),
   head: () => ({
     meta: [
       { title: "Shop Premium Speakers & Audio — AudioCare" },
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/shop/")({
 });
 
 function ShopPage() {
+  const { q } = Route.useSearch();
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -29,8 +31,6 @@ function ShopPage() {
           <p className="text-muted-foreground mt-2 max-w-xl">
             Browse premium audio products from the world's best brands — curated by AudioCare.
           </p>
-
-          {/* Category pills */}
           <div className="mt-5 flex flex-wrap gap-2">
             {categories.map((c) => (
               <Link
@@ -44,8 +44,7 @@ function ShopPage() {
             ))}
           </div>
         </header>
-
-        <ShopBrowser />
+        <ShopBrowser key={q} initialQuery={q} />
       </main>
       <Footer />
     </div>

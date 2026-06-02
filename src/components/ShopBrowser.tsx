@@ -3,10 +3,10 @@ import { products, categories, brands, type Product } from "@/data/sampleData";
 import { ProductCard } from "./ProductCard";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 
-type Props = { initialCategory?: string };
+type Props = { initialCategory?: string; initialQuery?: string };
 
-export function ShopBrowser({ initialCategory = "all" }: Props) {
-  const [q, setQ] = useState("");
+export function ShopBrowser({ initialCategory = "all", initialQuery = "" }: Props) {
+  const [q, setQ] = useState(initialQuery);
   const [cat, setCat] = useState<string>(initialCategory);
   const [selBrands, setSelBrands] = useState<string[]>([]);
   const [maxPrice, setMaxPrice] = useState(100000);
