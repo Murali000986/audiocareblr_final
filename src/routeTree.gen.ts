@@ -10,21 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SoundExperienceRouteImport } from './routes/sound-experience'
-import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as RepairServiceRouteImport } from './routes/repair-service'
 import { Route as OurWorkRouteImport } from './routes/our-work'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShopIndexRouteImport } from './routes/shop.index'
+import { Route as ShopProductIdRouteImport } from './routes/shop.$productId'
+import { Route as ShopCategorySlugRouteImport } from './routes/shop.category.$slug'
 
 const SoundExperienceRoute = SoundExperienceRouteImport.update({
   id: '/sound-experience',
   path: '/sound-experience',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ShopRoute = ShopRouteImport.update({
-  id: '/shop',
-  path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReviewsRoute = ReviewsRouteImport.update({
@@ -52,6 +49,21 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopIndexRoute = ShopIndexRouteImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopProductIdRoute = ShopProductIdRouteImport.update({
+  id: '/shop/$productId',
+  path: '/shop/$productId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopCategorySlugRoute = ShopCategorySlugRouteImport.update({
+  id: '/shop/category/$slug',
+  path: '/shop/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,8 +71,10 @@ export interface FileRoutesByFullPath {
   '/our-work': typeof OurWorkRoute
   '/repair-service': typeof RepairServiceRoute
   '/reviews': typeof ReviewsRoute
-  '/shop': typeof ShopRoute
   '/sound-experience': typeof SoundExperienceRoute
+  '/shop/$productId': typeof ShopProductIdRoute
+  '/shop/': typeof ShopIndexRoute
+  '/shop/category/$slug': typeof ShopCategorySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,8 +82,10 @@ export interface FileRoutesByTo {
   '/our-work': typeof OurWorkRoute
   '/repair-service': typeof RepairServiceRoute
   '/reviews': typeof ReviewsRoute
-  '/shop': typeof ShopRoute
   '/sound-experience': typeof SoundExperienceRoute
+  '/shop/$productId': typeof ShopProductIdRoute
+  '/shop': typeof ShopIndexRoute
+  '/shop/category/$slug': typeof ShopCategorySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -78,8 +94,10 @@ export interface FileRoutesById {
   '/our-work': typeof OurWorkRoute
   '/repair-service': typeof RepairServiceRoute
   '/reviews': typeof ReviewsRoute
-  '/shop': typeof ShopRoute
   '/sound-experience': typeof SoundExperienceRoute
+  '/shop/$productId': typeof ShopProductIdRoute
+  '/shop/': typeof ShopIndexRoute
+  '/shop/category/$slug': typeof ShopCategorySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -89,8 +107,10 @@ export interface FileRouteTypes {
     | '/our-work'
     | '/repair-service'
     | '/reviews'
-    | '/shop'
     | '/sound-experience'
+    | '/shop/$productId'
+    | '/shop/'
+    | '/shop/category/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,8 +118,10 @@ export interface FileRouteTypes {
     | '/our-work'
     | '/repair-service'
     | '/reviews'
-    | '/shop'
     | '/sound-experience'
+    | '/shop/$productId'
+    | '/shop'
+    | '/shop/category/$slug'
   id:
     | '__root__'
     | '/'
@@ -107,8 +129,10 @@ export interface FileRouteTypes {
     | '/our-work'
     | '/repair-service'
     | '/reviews'
-    | '/shop'
     | '/sound-experience'
+    | '/shop/$productId'
+    | '/shop/'
+    | '/shop/category/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,8 +141,10 @@ export interface RootRouteChildren {
   OurWorkRoute: typeof OurWorkRoute
   RepairServiceRoute: typeof RepairServiceRoute
   ReviewsRoute: typeof ReviewsRoute
-  ShopRoute: typeof ShopRoute
   SoundExperienceRoute: typeof SoundExperienceRoute
+  ShopProductIdRoute: typeof ShopProductIdRoute
+  ShopIndexRoute: typeof ShopIndexRoute
+  ShopCategorySlugRoute: typeof ShopCategorySlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -128,13 +154,6 @@ declare module '@tanstack/react-router' {
       path: '/sound-experience'
       fullPath: '/sound-experience'
       preLoaderRoute: typeof SoundExperienceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shop': {
-      id: '/shop'
-      path: '/shop'
-      fullPath: '/shop'
-      preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reviews': {
@@ -172,6 +191,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shop/': {
+      id: '/shop/'
+      path: '/shop'
+      fullPath: '/shop/'
+      preLoaderRoute: typeof ShopIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop/$productId': {
+      id: '/shop/$productId'
+      path: '/shop/$productId'
+      fullPath: '/shop/$productId'
+      preLoaderRoute: typeof ShopProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop/category/$slug': {
+      id: '/shop/category/$slug'
+      path: '/shop/category/$slug'
+      fullPath: '/shop/category/$slug'
+      preLoaderRoute: typeof ShopCategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -181,8 +221,10 @@ const rootRouteChildren: RootRouteChildren = {
   OurWorkRoute: OurWorkRoute,
   RepairServiceRoute: RepairServiceRoute,
   ReviewsRoute: ReviewsRoute,
-  ShopRoute: ShopRoute,
   SoundExperienceRoute: SoundExperienceRoute,
+  ShopProductIdRoute: ShopProductIdRoute,
+  ShopIndexRoute: ShopIndexRoute,
+  ShopCategorySlugRoute: ShopCategorySlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

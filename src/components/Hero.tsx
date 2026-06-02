@@ -1,5 +1,5 @@
 import { ShoppingCart, Wrench, ShieldCheck, Settings2, Truck, Play, Pause } from "lucide-react";
-import heroSpeaker from "@/assets/hero-speaker.png";
+import speakerVideo from "@/assets/speaker.webm.asset.json";
 import { Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 
@@ -94,11 +94,15 @@ export function Hero() {
             </>
           )}
 
-          <img
-            src={heroSpeaker}
-            alt="AudioCare premium speaker"
-            className={`relative z-10 max-w-full h-auto drop-shadow-2xl animate-float ${playing ? "animate-cone" : ""}`}
-            style={{ filter: "drop-shadow(0 30px 60px rgba(255,106,0,0.35))" }}
+          <video
+            src={speakerVideo.url}
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-label="AudioCare premium speaker"
+            className={`relative z-10 max-w-full h-auto animate-float ${playing ? "animate-cone" : ""}`}
+            style={{ filter: "drop-shadow(0 30px 60px rgba(255,106,0,0.45))" }}
           />
 
           {/* Tap to experience widget */}
