@@ -27,16 +27,11 @@ export function Navbar() {
             <li key={l.to}>
               <Link
                 to={l.to}
-                className="text-muted-foreground hover:text-foreground transition-colors relative"
-                activeProps={{ className: "text-foreground" }}
+                className="text-muted-foreground hover:text-foreground transition-colors relative py-1"
+                activeProps={{ className: "text-foreground after:absolute after:-bottom-[20px] after:left-0 after:right-0 after:h-[2px] after:bg-primary after:rounded-full" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
-                {({ isActive }) => (
-                  <>
-                    {l.label}
-                    {isActive && <span className="absolute -bottom-[22px] left-0 right-0 h-[2px] bg-primary rounded-full" />}
-                  </>
-                )}
+                {l.label}
               </Link>
             </li>
           ))}
