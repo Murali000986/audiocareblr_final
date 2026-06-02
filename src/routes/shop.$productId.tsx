@@ -108,7 +108,7 @@ function ProductDetailPage() {
             <p className="mt-6 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
 
             <ul className="mt-5 space-y-2">
-              {p.highlights.map((h) => (
+              {p.highlights.map((h: string) => (
                 <li key={h} className="flex items-start gap-2 text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                   {h}
