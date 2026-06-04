@@ -6,7 +6,7 @@ import { Link } from "@tanstack/react-router";
 import { categories } from "@/data/sampleData";
 
 export const Route = createFileRoute("/shop/")({
-  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s.q === "string" ? s.q : "" }),
+  validateSearch: (s: Record<string, unknown>): { q?: string } => ({ q: typeof s.q === "string" ? s.q : undefined }),
   head: () => ({
     meta: [
       { title: "Shop Premium Speakers & Audio — AudioCare" },

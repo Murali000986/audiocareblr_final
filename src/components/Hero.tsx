@@ -1,133 +1,155 @@
-import { ShoppingCart, Wrench, ShieldCheck, Settings2, Truck, Play, Pause } from "lucide-react";
-import speakerVideo from "@/assets/speaker.webm.asset.json";
 import { Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef, useState, useEffect } from "react";
+
+const slides = [
+  {
+    id: 1,
+    tag: "Premium Installation",
+    title: "HOME THEATER THAT BLOWS YOUR MIND",
+    subtitle: "We design, supply & install complete home theater systems — surround sound, projectors, and acoustic treatment. Cinema-grade experience at home.",
+    image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=1920&auto=format&fit=crop",
+    cta: "Explore Home Theater",
+    ctaLink: "/shop/category/home-theatre",
+    accent: "#e84e1b",
+  },
+  {
+    id: 2,
+    tag: "Expert Repair Service",
+    title: "WE REPAIR ALL AUDIO EQUIPMENT",
+    subtitle: "Speaker cones, amplifiers, soundbars, subwoofers — our certified technicians fix it all. Free pickup & delivery at your doorstep.",
+    image: "https://images.unsplash.com/photo-1599669454699-248893623440?q=80&w=1920&auto=format&fit=crop",
+    cta: "Book a Repair",
+    ctaLink: "/repair-service",
+    accent: "#1f5c2e",
+  },
+  {
+    id: 3,
+    tag: "Premium Sound Systems",
+    title: "SURROUND SOUND FOR EVERY SPACE",
+    subtitle: "From compact soundbars to multi-room audio setups — premium JBL, Sony, Bose & more. Experience music the way it was meant to be heard.",
+    image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=1920&auto=format&fit=crop",
+    cta: "Shop Sound Systems",
+    ctaLink: "/shop",
+    accent: "#1a3c6e",
+  },
+  {
+    id: 4,
+    tag: "Theater & Auditorium",
+    title: "PROFESSIONAL THEATER AUDIO SOLUTIONS",
+    subtitle: "Complete audio-visual solutions for theaters, auditoriums, conference halls and events. Clarity that carries every word, every note.",
+    image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920&auto=format&fit=crop",
+    cta: "Get a Quote",
+    ctaLink: "/contact",
+    accent: "#5b21b6",
+  },
+];
 
 export function Hero() {
-  const [playing, setPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const [current, setCurrent] = useState(0);
 
-  const togglePlay = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/10/25/audio_8b1e1bd2e6.mp3");
-      audioRef.current.loop = true;
-      audioRef.current.volume = 0.5;
-    }
-    if (playing) {
-      audioRef.current.pause();
-      setPlaying(false);
-    } else {
-      audioRef.current.play().catch(() => {});
-      setPlaying(true);
-    }
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <section className="relative overflow-hidden">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "var(--gradient-hero-light)" }}
-      />
-      <div className="dark:block hidden absolute inset-0 pointer-events-none" style={{ background: "var(--gradient-hero-dark)" }} />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-16 lg:pt-20 lg:pb-24 grid lg:grid-cols-2 gap-10 items-center relative">
-        <div className="animate-fade-up">
-          <h1 className="font-display font-extrabold tracking-tight text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
-            Feel Every <span className="text-gradient-orange">Beat.</span>
-          </h1>
-          <p className="mt-5 text-lg sm:text-xl text-muted-foreground max-w-lg">
-            Buy. Repair. Upgrade Your Sound.
-          </p>
-          <p className="mt-3 text-base text-muted-foreground/80 max-w-lg">
-            Premium speakers, sound systems, and expert repair service — all in one place.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              to="/shop"
-              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-card hover:shadow-glow hover:-translate-y-0.5 transition-all"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              Shop Speakers
-            </Link>
-            <Link
-              to="/repair-service"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl border-2 border-border bg-card font-semibold hover:border-primary hover:-translate-y-0.5 transition-all"
-            >
-              <Wrench className="w-5 h-5" />
-              Book a Repair
-            </Link>
-          </div>
-
-          <div className="mt-10 grid sm:grid-cols-3 gap-4 max-w-2xl">
-            {[
-              { icon: ShieldCheck, title: "100% Genuine", sub: "Trusted Brands. Original Quality." },
-              { icon: Settings2, title: "Expert Technicians", sub: "Skilled. Certified. Reliable." },
-              { icon: Truck, title: "Fast & Reliable", sub: "Quick Repairs. On Time." },
-            ].map((t) => (
-              <div key={t.title} className="flex items-start gap-3">
-                <div className="shrink-0 w-10 h-10 rounded-xl bg-accent text-primary flex items-center justify-center">
-                  <t.icon className="w-5 h-5" />
+    <section className="w-full relative overflow-hidden bg-black">
+      <Carousel
+        plugins={[plugin.current]}
+        className="w-full"
+        opts={{ loop: true }}
+        setApi={(api) => {
+          if (!api) return;
+          api.on("select", () => setCurrent(api.selectedScrollSnap()));
+        }}
+      >
+        <CarouselContent className="-ml-0">
+          {slides.map((slide) => (
+            <CarouselItem key={slide.id} className="pl-0 min-w-0 basis-full">
+              <div className="relative w-full h-[560px] lg:h-[680px] flex items-center">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Dark gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
-                <div>
-                  <div className="font-semibold text-sm">{t.title}</div>
-                  <div className="text-xs text-muted-foreground">{t.sub}</div>
+
+                {/* Content */}
+                <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 w-full">
+                  <div className="max-w-2xl">
+                    {/* Tag */}
+                    <div
+                      className="inline-block text-white text-xs font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-sm mb-5"
+                      style={{ backgroundColor: slide.accent }}
+                    >
+                      {slide.tag}
+                    </div>
+                    {/* Title */}
+                    <h1 className="font-display font-extrabold tracking-tight text-white text-4xl sm:text-5xl lg:text-6xl uppercase leading-[1.05]">
+                      {slide.title}
+                    </h1>
+                    {/* Subtitle */}
+                    <p className="mt-5 text-base sm:text-lg text-white/85 max-w-xl font-normal leading-relaxed">
+                      {slide.subtitle}
+                    </p>
+                    {/* CTA */}
+                    <div className="mt-8 flex flex-wrap gap-3">
+                      <Link
+                        to={slide.ctaLink as any}
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold uppercase tracking-wider transition-all hover:brightness-110 hover:-translate-y-0.5"
+                        style={{ backgroundColor: slide.accent }}
+                      >
+                        {slide.cta} <ArrowRight className="w-5 h-5" />
+                      </Link>
+                      <Link
+                        to="/shop"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/60 text-white font-bold uppercase tracking-wider hover:bg-white/10 transition-all"
+                      >
+                        View All Products
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Slide counter */}
+                <div className="absolute bottom-8 left-6 sm:left-10 z-20 flex items-center gap-3">
+                  {slides.map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-[3px] rounded-full transition-all duration-500"
+                      style={{
+                        width: i === current ? "40px" : "16px",
+                        backgroundColor: i === current ? slide.accent : "rgba(255,255,255,0.4)",
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
 
-        <div className="relative flex items-center justify-center min-h-[400px] lg:min-h-[520px]">
-          {/* Sound waves */}
-          {playing && (
-            <>
-              <div className="absolute top-1/2 left-0 w-1/2 h-32 -translate-y-1/2 pointer-events-none">
-                <div className="absolute inset-0 border-r-4 border-primary/60 rounded-r-full animate-wave" style={{ animationDelay: "0s" }} />
-                <div className="absolute inset-0 border-r-4 border-primary/40 rounded-r-full animate-wave" style={{ animationDelay: "0.4s" }} />
-                <div className="absolute inset-0 border-r-4 border-primary/30 rounded-r-full animate-wave" style={{ animationDelay: "0.8s" }} />
-              </div>
-              <div className="absolute top-1/2 right-0 w-1/2 h-32 -translate-y-1/2 pointer-events-none">
-                <div className="absolute inset-0 border-l-4 border-primary/60 rounded-l-full animate-wave" style={{ animationDelay: "0s" }} />
-                <div className="absolute inset-0 border-l-4 border-primary/40 rounded-l-full animate-wave" style={{ animationDelay: "0.4s" }} />
-                <div className="absolute inset-0 border-l-4 border-primary/30 rounded-l-full animate-wave" style={{ animationDelay: "0.8s" }} />
-              </div>
-            </>
-          )}
-
-          <video
-            src={speakerVideo.url}
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="AudioCare premium speaker"
-            className={`relative z-10 max-w-full h-auto animate-float ${playing ? "animate-cone" : ""}`}
-            style={{ filter: "drop-shadow(0 30px 60px rgba(255,106,0,0.45))" }}
-          />
-
-          {/* Tap to experience widget */}
-          <button
-            onClick={togglePlay}
-            className="absolute bottom-2 right-2 lg:bottom-6 lg:right-0 z-20 flex items-center gap-3 bg-card border border-border rounded-2xl px-4 py-3 shadow-card hover:shadow-glow transition-all"
-          >
-            <div className="flex items-end gap-[3px] h-6 w-16">
-              {[0.4, 0.7, 0.5, 0.9, 0.6, 0.8, 0.4, 0.7, 0.5, 0.9, 0.6, 0.4].map((s, i) => (
-                <span
-                  key={i}
-                  className={`flex-1 bg-primary rounded-sm ${playing ? "animate-eq" : ""}`}
-                  style={{ height: `${s * 100}%`, animationDelay: `${i * 0.07}s` }}
-                />
-              ))}
-            </div>
-            <div className="text-left">
-              <div className="text-xs font-semibold">Tap to Experience Sound</div>
-            </div>
-            <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0">
-              {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-            </div>
-          </button>
-        </div>
-      </div>
+        {/* Navigation arrows */}
+        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 h-12 w-12 border-none bg-white/10 hover:bg-white/25 text-white backdrop-blur-sm rounded-none" />
+        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 h-12 w-12 border-none bg-white/10 hover:bg-white/25 text-white backdrop-blur-sm rounded-none" />
+      </Carousel>
     </section>
   );
 }

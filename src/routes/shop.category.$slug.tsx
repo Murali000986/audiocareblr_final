@@ -44,7 +44,7 @@ export const Route = createFileRoute("/shop/category/$slug")({
 });
 
 function CategoryPage() {
-  const { category } = Route.useLoaderData();
+  const { category } = Route.useLoaderData() as any;
   const { slug } = Route.useParams();
 
   return (

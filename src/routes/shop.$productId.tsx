@@ -2,16 +2,19 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/data/sampleData";
 import { Star, ShoppingCart, Heart, Truck, ShieldCheck, RotateCcw, ChevronRight, MessageCircle } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { useWishlist } from "@/contexts/WishlistContext";
+import { useProductsCache } from "@/contexts/ProductsCacheContext";
+import { supabase } from "@/lib/supabase";
+import { mapSupabaseProduct } from "@/lib/productMapper";
 import { toast } from "sonner";
+import { products as fallbackProducts } from "@/data/sampleData";
 
 export const Route = createFileRoute("/shop/$productId")({
-  head: ({ params }) => {
-    const p = products.find((x) => x.id === params.productId);
+  head: ({ loaderData }) => {
+    const p = (loaderData as any)?.product;
     return {
       meta: [
         { title: `${p?.name ?? "Product"} — AudioCare` },
@@ -22,10 +25,22 @@ export const Route = createFileRoute("/shop/$productId")({
       ],
     };
   },
-  loader: ({ params }) => {
-    const product = products.find((p) => p.id === params.productId);
-    if (!product) throw notFound();
-    return { product };
+  loader: async ({ params }) => {
+    // Try fetching from Supabase first
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("id", params.productId)
+      .single();
+    
+    if (!error && data) {
+      return { product: mapSupabaseProduct(data as Record<string, unknown>) };
+    }
+    
+    // Fallback to sample data if Supabase is down or not seeded yet
+    const fallback = fallbackProducts.find((p) => p.id === params.productId);
+    if (!fallback) throw notFound();
+    return { product: fallback };
   },
   notFoundComponent: () => (
     <div className="min-h-screen bg-background">
@@ -50,13 +65,18 @@ export const Route = createFileRoute("/shop/$productId")({
 });
 
 function ProductDetailPage() {
-  const { product: p } = Route.useLoaderData();
+  const { product: p } = Route.useLoaderData() as any;
   const [qty, setQty] = useState(1);
   const cart = useCart();
   const wish = useWishlist();
+  const { products } = useProductsCache();
+  
   const wished = wish.has(p.id);
   const discount = p.mrp ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
-  const related = products.filter((x) => x.category === p.category && x.id !== p.id).slice(0, 3);
+  
+  const related = useMemo(() => {
+    return products.filter((x) => x.category === p.category && x.id !== p.id).slice(0, 3);
+  }, [products, p.category, p.id]);
 
   const addToCart = () => { cart.add(p.id, qty); toast.success(`${qty} × ${p.name} added to cart`); };
   const toggleWish = () => { wish.toggle(p.id); toast.success(wished ? "Removed from wishlist" : "Added to wishlist"); };

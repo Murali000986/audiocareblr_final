@@ -1,46 +1,53 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { useCart } from "@/contexts/CartContext";
-import { useState } from "react";
-import { z } from "zod";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
-import { ShoppingBag, CreditCard, Truck, ShieldCheck, MessageCircle } from "lucide-react";
-
-const schema = z.object({
-  name: z.string().trim().min(2, "Name is required").max(80),
-  phone: z.string().trim().regex(/^\+?[0-9 -]{10,15}$/, "Enter a valid phone"),
-  email: z.string().trim().email("Enter a valid email").max(120),
-  address: z.string().trim().min(8, "Address is required").max(300),
-  city: z.string().trim().min(2).max(60),
-  pincode: z.string().trim().regex(/^[0-9]{6}$/, "Enter a valid 6-digit PIN"),
-  notes: z.string().trim().max(300).optional().or(z.literal("")),
-  payment: z.enum(["cod", "upi", "card"]),
-});
+import { MapPin, CreditCard, CheckCircle, ChevronRight, Truck, ShieldCheck, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/checkout")({
-  head: () => ({ meta: [{ title: "Checkout — AudioCare" }, { name: "description", content: "Complete your order securely." }] }),
+  head: () => ({ meta: [{ title: "Checkout — AudioCare" }] }),
   component: CheckoutPage,
 });
 
-function CheckoutPage() {
-  const { detailed, subtotal, clear, count } = useCart();
-  const shipping = subtotal > 999 ? 0 : 99;
-  const total = subtotal + shipping;
-  const navigate = useNavigate();
-  const [form, setForm] = useState({ name: "", phone: "", email: "", address: "", city: "", pincode: "", notes: "", payment: "cod" as const });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitting, setSubmitting] = useState(false);
+type Step = "address" | "payment" | "confirm";
 
-  if (count === 0) {
+const STEPS: { id: Step; label: string; icon: any }[] = [
+  { id: "address", label: "Address",  icon: MapPin },
+  { id: "payment", label: "Payment",  icon: CreditCard },
+  { id: "confirm", label: "Confirm",  icon: CheckCircle },
+];
+
+function CheckoutPage() {
+  const { detailed, subtotal, clear } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [step, setStep] = useState<Step>("address");
+  const [placing, setPlacing] = useState(false);
+
+  const [addr, setAddr] = useState({
+    name: user?.user_metadata?.full_name ?? "",
+    phone: "",
+    line1: "",
+    city: "",
+    state: "",
+    pincode: "",
+  });
+  const [payMode, setPayMode] = useState<"cod" | "upi" | "card">("cod");
+  const shipping = subtotal > 999 || subtotal === 0 ? 0 : 99;
+  const total = subtotal + shipping;
+
+  if (detailed.length === 0) {
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
-        <main className="max-w-3xl mx-auto px-4 py-20 text-center">
-          <ShoppingBag className="w-12 h-12 text-muted-foreground/40 mx-auto" />
-          <h1 className="font-display text-3xl font-bold mt-4">Your cart is empty</h1>
-          <Link to="/shop" className="inline-block mt-6 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold">
-            Browse Shop
+        <main className="max-w-7xl mx-auto px-4 py-20 text-center">
+          <h1 className="font-display text-3xl font-bold mb-4">Your cart is empty</h1>
+          <Link to="/shop" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-bold hover:shadow-glow transition-all">
+            Shop Now
           </Link>
         </main>
         <Footer />
@@ -48,159 +55,209 @@ function CheckoutPage() {
     );
   }
 
-  const update = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }));
+  const stepIdx = STEPS.findIndex((s) => s.id === step);
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const r = schema.safeParse(form);
-    if (!r.success) {
-      const errs: Record<string, string> = {};
-      r.error.issues.forEach((i) => { if (i.path[0]) errs[i.path[0] as string] = i.message; });
-      setErrors(errs);
-      toast.error("Please fix the errors in the form");
-      return;
-    }
-    setErrors({});
-    setSubmitting(true);
-    const orderId = "AC" + Date.now().toString().slice(-8);
-    setTimeout(() => {
-      clear();
-      navigate({ to: "/order-success", search: { id: orderId } as any });
-    }, 700);
+  const placeOrder = async () => {
+    setPlacing(true);
+    const orderData = {
+      user_id: user?.id ?? null,
+      status: "confirmed",
+      items: detailed.map((d) => ({ id: d.product.id, name: d.product.name, qty: d.qty, price: d.product.price })),
+      subtotal,
+      shipping,
+      total,
+      address: addr,
+    };
+    const { error } = await supabase.from("orders").insert(orderData);
+    setPlacing(false);
+    if (error) { toast.error("Failed to place order. Please try again."); return; }
+    clear();
+    navigate({ to: "/order-success" });
   };
-
-  const waMsg = encodeURIComponent(
-    `Hi AudioCare, I'd like to order:\n${detailed.map((d) => `• ${d.qty} × ${d.product.name} — ₹${d.lineTotal.toLocaleString("en-IN")}`).join("\n")}\nTotal: ₹${total.toLocaleString("en-IN")}`,
-  );
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-        <h1 className="font-display text-4xl font-bold">Secure <span className="text-gradient-orange">Checkout</span></h1>
-        <p className="text-muted-foreground mt-1">Complete your order in a few quick steps.</p>
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+        <h1 className="font-display text-3xl font-bold mb-8">Checkout</h1>
 
-        <form onSubmit={submit} className="mt-8 grid lg:grid-cols-[1fr_400px] gap-8">
-          <div className="space-y-6">
-            {/* Contact */}
-            <section className="rounded-2xl border border-border bg-card p-6">
-              <h2 className="font-display font-bold text-lg mb-4">Contact Details</h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Full Name" name="name" value={form.name} onChange={update} error={errors.name} />
-                <Field label="Phone" name="phone" value={form.phone} onChange={update} error={errors.phone} placeholder="+91 98765 43210" />
-                <div className="sm:col-span-2">
-                  <Field label="Email" name="email" value={form.email} onChange={update} error={errors.email} type="email" />
-                </div>
-              </div>
-            </section>
+        {/* Step indicator */}
+        <div className="flex items-center gap-2 mb-8 overflow-x-auto">
+          {STEPS.map((s, i) => (
+            <div key={s.id} className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => i < stepIdx && setStep(s.id)}
+                disabled={i > stepIdx}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                  s.id === step
+                    ? "bg-primary text-primary-foreground"
+                    : i < stepIdx
+                    ? "bg-primary/20 text-primary cursor-pointer hover:bg-primary/30"
+                    : "bg-section text-muted-foreground cursor-not-allowed"
+                }`}
+              >
+                <s.icon className="w-3.5 h-3.5" /> {s.label}
+              </button>
+              {i < STEPS.length - 1 && <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />}
+            </div>
+          ))}
+        </div>
 
-            {/* Shipping */}
-            <section className="rounded-2xl border border-border bg-card p-6">
-              <h2 className="font-display font-bold text-lg mb-4">Shipping Address</h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="sm:col-span-2">
-                  <Field label="Address" name="address" value={form.address} onChange={update} error={errors.address} placeholder="Flat, Building, Street" />
-                </div>
-                <Field label="City" name="city" value={form.city} onChange={update} error={errors.city} />
-                <Field label="PIN Code" name="pincode" value={form.pincode} onChange={update} error={errors.pincode} placeholder="560034" />
-                <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold mb-1.5">Order Notes (optional)</label>
-                  <textarea
-                    value={form.notes}
-                    onChange={(e) => update("notes", e.target.value)}
-                    rows={3}
-                    maxLength={300}
-                    className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </div>
-              </div>
-            </section>
-
-            {/* Payment */}
-            <section className="rounded-2xl border border-border bg-card p-6">
-              <h2 className="font-display font-bold text-lg mb-4">Payment Method</h2>
-              <div className="grid sm:grid-cols-3 gap-3">
-                {[
-                  { v: "cod", label: "Cash on Delivery", desc: "Pay when delivered" },
-                  { v: "upi", label: "UPI", desc: "GPay, PhonePe, Paytm" },
-                  { v: "card", label: "Credit/Debit Card", desc: "Visa, Master, Rupay" },
-                ].map((p) => (
-                  <label
-                    key={p.v}
-                    className={`cursor-pointer rounded-xl border-2 p-4 transition-colors ${form.payment === p.v ? "border-primary bg-accent/40" : "border-border hover:border-primary/50"}`}
-                  >
-                    <input type="radio" name="payment" value={p.v} checked={form.payment === p.v} onChange={(e) => update("payment", e.target.value)} className="sr-only" />
-                    <div className="font-semibold text-sm flex items-center gap-2">
-                      <CreditCard className="w-4 h-4 text-primary" /> {p.label}
+        <div className="grid lg:grid-cols-[1fr_360px] gap-8">
+          {/* Left: step content */}
+          <div className="border border-border bg-card rounded-2xl p-6 shadow-soft">
+            {/* ADDRESS */}
+            {step === "address" && (
+              <div>
+                <h2 className="font-display font-bold text-xl mb-5">Delivery Address</h2>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {[
+                    { key: "name",    label: "Full Name",       placeholder: "John Doe" },
+                    { key: "phone",   label: "Phone Number",    placeholder: "+91 98765 43210" },
+                    { key: "line1",   label: "Address Line 1",  placeholder: "Flat/Street", colSpan: true },
+                    { key: "city",    label: "City",            placeholder: "Bengaluru" },
+                    { key: "state",   label: "State",           placeholder: "Karnataka" },
+                    { key: "pincode", label: "Pincode",         placeholder: "560001" },
+                  ].map((f) => (
+                    <div key={f.key} className={f.colSpan ? "sm:col-span-2" : ""}>
+                      <label className="block text-xs font-semibold text-muted-foreground mb-1.5">{f.label}</label>
+                      <input
+                        type="text"
+                        value={(addr as any)[f.key]}
+                        onChange={(e) => setAddr((a) => ({ ...a, [f.key]: e.target.value }))}
+                        placeholder={f.placeholder}
+                        className="w-full px-3 py-2.5 rounded-xl border border-border bg-section text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      />
                     </div>
-                    <div className="text-[11px] text-muted-foreground mt-1">{p.desc}</div>
-                  </label>
-                ))}
+                  ))}
+                </div>
+                <button
+                  onClick={() => {
+                    if (!addr.name || !addr.phone || !addr.line1 || !addr.city || !addr.pincode) {
+                      toast.error("Please fill all required fields"); return;
+                    }
+                    setStep("payment");
+                  }}
+                  className="mt-6 w-full sm:w-auto inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:shadow-glow transition-all btn-press"
+                >
+                  Continue to Payment <ChevronRight className="w-4 h-4" />
+                </button>
               </div>
-            </section>
+            )}
+
+            {/* PAYMENT */}
+            {step === "payment" && (
+              <div>
+                <h2 className="font-display font-bold text-xl mb-5">Payment Method</h2>
+                <div className="space-y-3">
+                  {[
+                    { id: "cod",  label: "Cash on Delivery", sub: "Pay when delivered" },
+                    { id: "upi",  label: "UPI",              sub: "GPay, PhonePe, Paytm" },
+                    { id: "card", label: "Card",             sub: "Credit / Debit card" },
+                  ].map((p) => (
+                    <label
+                      key={p.id}
+                      className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                        payMode === p.id ? "border-primary bg-accent/20" : "border-border hover:border-primary/40"
+                      }`}
+                    >
+                      <input type="radio" value={p.id} checked={payMode === p.id} onChange={() => setPayMode(p.id as any)} className="sr-only" />
+                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${payMode === p.id ? "border-primary" : "border-muted-foreground"}`}>
+                        {payMode === p.id && <div className="w-2 h-2 rounded-full bg-primary" />}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-sm">{p.label}</p>
+                        <p className="text-xs text-muted-foreground">{p.sub}</p>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+                <div className="mt-6 flex gap-3">
+                  <button onClick={() => setStep("address")} className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-border text-sm font-semibold hover:bg-section transition-all">
+                    <ArrowLeft className="w-4 h-4" /> Back
+                  </button>
+                  <button
+                    onClick={() => setStep("confirm")}
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:shadow-glow transition-all btn-press"
+                  >
+                    Review Order <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* CONFIRM */}
+            {step === "confirm" && (
+              <div>
+                <h2 className="font-display font-bold text-xl mb-5">Review & Place Order</h2>
+                {/* Address summary */}
+                <div className="rounded-xl border border-border p-4 mb-4 text-sm">
+                  <p className="font-semibold mb-1 flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> Delivery to</p>
+                  <p className="text-muted-foreground">{addr.name} · {addr.phone}</p>
+                  <p className="text-muted-foreground">{addr.line1}, {addr.city}, {addr.state} — {addr.pincode}</p>
+                </div>
+                {/* Items */}
+                <div className="space-y-2 mb-4">
+                  {detailed.map((d) => (
+                    <div key={d.product.id} className="flex items-center gap-3 text-sm">
+                      <div className="w-12 h-12 rounded-lg bg-section flex items-center justify-center shrink-0">
+                        <img src={d.product.img} alt={d.product.name} className="max-h-full object-contain" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold truncate">{d.product.name}</p>
+                        <p className="text-xs text-muted-foreground">Qty: {d.qty}</p>
+                      </div>
+                      <p className="font-bold shrink-0">₹{(Number(d.lineTotal) || 0).toLocaleString("en-IN")}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-3">
+                  <button onClick={() => setStep("payment")} className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-border text-sm font-semibold hover:bg-section transition-all">
+                    <ArrowLeft className="w-4 h-4" /> Back
+                  </button>
+                  <button
+                    onClick={placeOrder}
+                    disabled={placing}
+                    className="flex-1 inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:shadow-glow transition-all disabled:opacity-60 btn-press"
+                  >
+                    {placing ? <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <CheckCircle className="w-4 h-4" />}
+                    {placing ? "Placing Order…" : "Place Order"}
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Summary */}
-          <aside className="rounded-2xl border border-border bg-card p-6 h-fit sticky top-24 shadow-soft">
-            <h3 className="font-display font-bold text-lg">Order Summary</h3>
-            <ul className="mt-4 space-y-3 max-h-64 overflow-y-auto">
+          {/* Right: order summary */}
+          <aside className="border border-border bg-card rounded-2xl p-5 h-fit sticky top-24 shadow-soft">
+            <h3 className="font-display font-bold text-base mb-4">Order Summary</h3>
+            <div className="space-y-3 mb-4">
               {detailed.map((d) => (
-                <li key={d.product.id} className="flex gap-3 text-sm">
-                  <div className="w-12 h-12 rounded-lg bg-section flex items-center justify-center shrink-0">
-                    <img src={d.product.img} alt="" className="max-h-full object-contain" />
+                <div key={d.product.id} className="flex items-center gap-2 text-sm">
+                  <div className="w-10 h-10 rounded-lg bg-section flex items-center justify-center shrink-0">
+                    <img src={d.product.img} alt={d.product.name} className="max-h-full object-contain" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium truncate">{d.product.name}</div>
-                    <div className="text-xs text-muted-foreground">Qty {d.qty}</div>
-                  </div>
-                  <div className="font-semibold whitespace-nowrap">₹{d.lineTotal.toLocaleString("en-IN")}</div>
-                </li>
+                  <p className="flex-1 text-xs font-medium line-clamp-1">{d.product.name} ×{d.qty}</p>
+                  <p className="font-bold text-xs shrink-0">₹{(Number(d.lineTotal) || 0).toLocaleString("en-IN")}</p>
+                </div>
               ))}
-            </ul>
-            <dl className="mt-4 pt-4 border-t border-border space-y-2 text-sm">
-              <div className="flex justify-between"><dt className="text-muted-foreground">Subtotal</dt><dd>₹{subtotal.toLocaleString("en-IN")}</dd></div>
-              <div className="flex justify-between"><dt className="text-muted-foreground">Shipping</dt><dd>{shipping === 0 ? "FREE" : `₹${shipping}`}</dd></div>
-              <div className="flex justify-between font-display font-bold text-lg pt-2 border-t border-border"><dt>Total</dt><dd>₹{total.toLocaleString("en-IN")}</dd></div>
-            </dl>
-            <button
-              type="submit"
-              disabled={submitting}
-              className="mt-5 w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold shadow-card hover:shadow-glow disabled:opacity-50"
-            >
-              {submitting ? "Placing order…" : `Place Order — ₹${total.toLocaleString("en-IN")}`}
-            </button>
-            <a
-              href={`https://wa.me/919876543210?text=${waMsg}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[#25D366] text-white font-semibold text-sm"
-            >
-              <MessageCircle className="w-4 h-4" /> Order on WhatsApp
-            </a>
-            <div className="mt-5 grid grid-cols-2 gap-2 text-[11px] text-muted-foreground">
-              <span className="flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-primary" /> Fast delivery</span>
-              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-primary" /> Genuine products</span>
+            </div>
+            <div className="border-t border-border pt-3 space-y-1.5 text-sm">
+              <div className="flex justify-between text-muted-foreground"><span>Subtotal</span><span>₹{(Number(subtotal) || 0).toLocaleString("en-IN")}</span></div>
+              <div className="flex justify-between text-muted-foreground"><span>Shipping</span><span>{shipping === 0 ? "FREE" : `₹${shipping}`}</span></div>
+              <div className="flex justify-between font-display font-bold text-base pt-2 border-t border-border"><span>Total</span><span>₹{(Number(total) || 0).toLocaleString("en-IN")}</span></div>
+            </div>
+            <div className="mt-4 space-y-2">
+              {[{ icon: Truck, t: "Free delivery above ₹999" }, { icon: ShieldCheck, t: "Secure & encrypted checkout" }].map((b) => (
+                <div key={b.t} className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <b.icon className="w-3.5 h-3.5 text-primary shrink-0" /> {b.t}
+                </div>
+              ))}
             </div>
           </aside>
-        </form>
+        </div>
       </main>
       <Footer />
-    </div>
-  );
-}
-
-function Field({ label, name, value, onChange, error, type = "text", placeholder }: { label: string; name: any; value: string; onChange: (k: any, v: string) => void; error?: string; type?: string; placeholder?: string }) {
-  return (
-    <div>
-      <label className="block text-xs font-semibold mb-1.5">{label}</label>
-      <input
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={(e) => onChange(name, e.target.value)}
-        className={`w-full px-3 py-2.5 rounded-lg border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary ${error ? "border-destructive" : "border-border"}`}
-      />
-      {error && <p className="text-xs text-destructive mt-1">{error}</p>}
     </div>
   );
 }

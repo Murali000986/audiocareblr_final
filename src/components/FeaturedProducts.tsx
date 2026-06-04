@@ -1,10 +1,13 @@
-import { products } from "@/data/sampleData";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { ProductCard } from "./ProductCard";
+import { useProductsCache } from "@/contexts/ProductsCacheContext";
+import { SkeletonCard } from "./SkeletonCard";
 
 export function FeaturedProducts() {
+  const { products, loading } = useProductsCache();
   const featured = products.slice(0, 6);
+  
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
       <div className="grid lg:grid-cols-[260px_1fr] gap-6 items-start">
@@ -15,7 +18,10 @@ export function FeaturedProducts() {
           </Link>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {featured.map((p) => <ProductCard key={p.id} p={p} />)}
+          {loading 
+            ? [...Array(6)].map((_, i) => <SkeletonCard key={i} />) 
+            : featured.map((p) => <ProductCard key={p.id} p={p} />)
+          }
         </div>
       </div>
     </section>

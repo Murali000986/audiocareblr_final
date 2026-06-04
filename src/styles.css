@@ -141,4 +141,35 @@
     100% { opacity: 1; transform: translateY(0); }
   }
   .animate-fade-up { animation: fade-up 0.7s ease-out both; }
+
+  /* Glassmorphism */
+  .glass {
+    background: color-mix(in oklch, var(--background) 75%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .glass-light {
+    background: color-mix(in oklch, var(--card) 60%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Press effect */
+  .btn-press { transition: transform 0.1s ease, box-shadow 0.2s ease; }
+  .btn-press:active { transform: scale(0.97); }
+
+  /* Glow shadow */
+  .shadow-glow { box-shadow: 0 0 30px -8px var(--primary); }
+  .hover\:shadow-glow:hover { box-shadow: 0 0 30px -8px var(--primary); }
+
+  /* Shimmer skeleton */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .shimmer {
+    background: linear-gradient(90deg, var(--muted) 25%, var(--section) 50%, var(--muted) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
 }

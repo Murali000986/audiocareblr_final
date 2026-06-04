@@ -44,7 +44,7 @@ function CartPage() {
                           <h3 className="font-semibold text-base hover:text-primary truncate">{d.product.name}</h3>
                         </Link>
                         <p className="text-xs text-muted-foreground">{d.product.brand} · {d.product.categoryLabel}</p>
-                        <p className="font-display font-bold text-lg mt-2">₹{d.product.price.toLocaleString("en-IN")}</p>
+                        <p className="font-display font-bold text-lg mt-2">₹{(Number(d.product.price) || 0).toLocaleString("en-IN")}</p>
                       </div>
                       <button onClick={() => remove(d.product.id)} className="p-2 hover:text-destructive">
                         <Trash2 className="w-4 h-4" />
@@ -62,7 +62,7 @@ function CartPage() {
                       </div>
                       <div className="text-right">
                         <div className="text-xs text-muted-foreground">Subtotal</div>
-                        <div className="font-display font-bold">₹{d.lineTotal.toLocaleString("en-IN")}</div>
+                        <div className="font-display font-bold">₹{(Number(d.lineTotal) || 0).toLocaleString("en-IN")}</div>
                       </div>
                     </div>
                   </div>
@@ -76,11 +76,11 @@ function CartPage() {
             <aside className="rounded-2xl border border-border bg-card p-6 h-fit sticky top-24 shadow-soft">
               <h3 className="font-display font-bold text-lg">Order Summary</h3>
               <dl className="mt-4 space-y-2 text-sm">
-                <div className="flex justify-between"><dt className="text-muted-foreground">Subtotal</dt><dd>₹{subtotal.toLocaleString("en-IN")}</dd></div>
+                <div className="flex justify-between"><dt className="text-muted-foreground">Subtotal</dt><dd>₹{(Number(subtotal) || 0).toLocaleString("en-IN")}</dd></div>
                 <div className="flex justify-between"><dt className="text-muted-foreground">Shipping</dt><dd>{shipping === 0 ? "FREE" : `₹${shipping}`}</dd></div>
                 {shipping === 0 && subtotal > 0 && <p className="text-[11px] text-primary">🎉 Free delivery unlocked</p>}
                 <div className="border-t border-border pt-3 flex justify-between font-display font-bold text-lg">
-                  <dt>Total</dt><dd>₹{total.toLocaleString("en-IN")}</dd>
+                  <dt>Total</dt><dd>₹{(Number(total) || 0).toLocaleString("en-IN")}</dd>
                 </div>
               </dl>
               <Link to="/checkout" className="mt-5 flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold shadow-card hover:shadow-glow">
