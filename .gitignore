@@ -33,3 +33,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary project directories and caches
+kinetic_temp/
+wavemaker_temp/
+.lovable/
+.vercel/
