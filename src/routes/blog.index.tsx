@@ -7,8 +7,12 @@ import { Calendar, Tag, ArrowRight, BookOpen } from "lucide-react";
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Blog — AudioCare" },
-      { name: "description", content: "Tips, guides, and news about audio equipment, speakers, home theater, and repair from AudioCare experts." },
+      { title: "Audio Tips & Expert Guides — AudioCare Bengaluru Blog" },
+      { name: "description", content: "Expert tips, guides and news on speaker repair, home theatre setup, soundbar reviews, and audio equipment from AudioCare Bengaluru — serving Bangalore since 2007." },
+      { name: "keywords", content: "audio blog bengaluru, speaker tips bangalore, home theatre guide bengaluru, audio repair tips bangalore, audiocare blog" },
+      { property: "og:title", content: "Audio Tips & Expert Guides — AudioCare Bengaluru Blog" },
+      { property: "og:description", content: "Expert audio tips, home theatre setup guides and speaker repair advice from Bengaluru's top audio service center." },
+      { property: "og:url", content: "https://www.audiocareblr.com/blog" },
     ],
   }),
   loader: async () => {

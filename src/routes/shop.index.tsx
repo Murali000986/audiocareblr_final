@@ -9,10 +9,12 @@ export const Route = createFileRoute("/shop/")({
   validateSearch: (s: Record<string, unknown>): { q?: string } => ({ q: typeof s.q === "string" ? s.q : undefined }),
   head: () => ({
     meta: [
-      { title: "Shop Premium Speakers & Audio — AudioCare" },
-      { name: "description", content: "Shop premium Bluetooth speakers, soundbars, party speakers, home theatre & accessories from JBL, Sony, Bose, boAt and more." },
-      { property: "og:title", content: "Shop Premium Speakers & Audio — AudioCare" },
-      { property: "og:description", content: "Browse our complete catalog of premium speakers and audio products." },
+      { title: "Buy Speakers, Soundbars & Home Theatre in Bengaluru — AudioCare" },
+      { name: "description", content: "Shop premium JBL, Sony, Bose, Yamaha speakers, soundbars, home theatre systems and audio accessories in Bengaluru. Best prices, expert advice, and professional service in Bangalore." },
+      { name: "keywords", content: "buy speakers bengaluru, JBL speakers bangalore, soundbar bengaluru, home theatre price bangalore, buy audio equipment bangalore, sony speakers bengaluru, audio shop bangalore, best audio store near me" },
+      { property: "og:title", content: "Buy Speakers & Home Theatre in Bengaluru — AudioCare" },
+      { property: "og:description", content: "Premium JBL, Sony, Bose speakers & home theatre systems in Bengaluru. Expert advice, best prices, and reliable audio solutions in Bangalore." },
+      { property: "og:url", content: "https://www.audiocareblr.com/shop" },
     ],
   }),
   component: ShopPage,

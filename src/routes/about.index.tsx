@@ -4,14 +4,17 @@ import { Calendar, MapPin, Phone, Award, Users, Star, ArrowRight, CheckCircle2, 
 export const Route = createFileRoute("/about/")({
   head: () => ({
     meta: [
-      { title: "About AudioCare | 18+ Years of Audio Excellence in Bengaluru" },
-      { name: "description", content: "AudioCare has been Bengaluru's most trusted audio solutions provider since 2007. Home & commercial audio sales, installation, repair & AMC." },
-      { property: "og:title", content: "About AudioCare | 18+ Years of Audio Excellence" },
-      { name: "keywords", content: "AudioCare Bengaluru, home theater installation, audio repair, JBL dealer Bangalore" },
+      { title: "About AudioCare — 18+ Years of Audio Expertise in Bengaluru" },
+      { name: "description", content: "Meet the team behind Bengaluru's most trusted audio service center. Prakash, our founder, has been serving JBL, Harman Kardon & Infinity customers since 2007. Home theatre, AMC, and sound system experts in Bangalore." },
+      { name: "keywords", content: "audiocare bengaluru, audio service center bangalore, home theatre expert bengaluru, JBL dealer bangalore, speaker service bangalore, prakash audiocare, audio AMC bengaluru" },
+      { property: "og:title", content: "About AudioCare Bengaluru — 18+ Years of Audio Excellence" },
+      { property: "og:description", content: "Bengaluru's trusted audio expert since 2007. Prakash & team serve JBL, Harman, Infinity brands across Bangalore." },
+      { property: "og:url", content: "https://www.audiocareblr.com/about" },
     ],
   }),
   component: AboutIndex,
 });
+
 
 const milestones = [
   { year: "2007", title: "Career Begins — Sahil International", desc: "Prakash joined JBL, Infinity & Harman Kardon (Sahil International) as a certified service vendor, beginning his journey across Bangalore, Chennai, Kerala and Hyderabad." },

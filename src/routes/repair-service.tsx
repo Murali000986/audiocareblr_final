@@ -20,15 +20,83 @@ const schema = z.object({
   date:    z.string().min(1, "Pick a date"),
 });
 
+const repairServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Audio Equipment Repair",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AudioCare",
+    "url": "https://www.audiocareblr.com"
+  },
+  "areaServed": { "@type": "City", "name": "Bengaluru" },
+  "description": "Expert repair service for speakers, amplifiers, soundbars, and home theatre systems in Bengaluru. Free doorstep pickup and delivery.",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "INR" }
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Speaker Repair Bengaluru", "description": "Expert speaker repair for all brands — JBL, Sony, Bose, Polk Audio and more." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Amplifier Repair Bengaluru", "description": "Amplifier servicing and repair with genuine parts and 3-month warranty." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home Theatre Repair Bangalore", "description": "Full home theatre system troubleshooting, repair and calibration." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Soundbar Repair Bangalore", "description": "Soundbar repair for all brands with free pickup across Bengaluru." } }
+    ]
+  }
+};
+
+const repairFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does speaker repair take in Bengaluru?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most repairs are completed within 48 hours. Complex repairs may take 3-5 business days. We will keep you updated via SMS and WhatsApp." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer free pickup for speaker repair in Bangalore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes! AudioCare offers free doorstep pickup and delivery across all areas of Bengaluru including Koramangala, Indiranagar, Whitefield, Marathahalli and more." }
+    },
+    {
+      "@type": "Question",
+      "name": "What brands do you repair?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We repair all major audio brands including JBL, Sony, Bose, Harman Kardon, Infinity, Polk Audio, Yamaha, Denon, Pioneer, KEF, and many more." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a warranty on repairs?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, all repairs at AudioCare come with a 3-month warranty on parts and labor." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I book a repair?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Simply fill out the form on this page with your device details and preferred pickup date. Our team will call you within 2 hours to confirm." }
+    }
+  ]
+};
+
 export const Route = createFileRoute("/repair-service")({
   head: () => ({
     meta: [
-      { title: "Book a Speaker Repair — AudioCare" },
-      { name: "description", content: "Expert speaker, amplifier and soundbar repair. Free pickup & delivery in Bengaluru. Book online in 60 seconds." },
+      { title: "Speaker & Amplifier Repair in Bengaluru — Free Pickup | AudioCare" },
+      { name: "description", content: "Book expert speaker, amplifier & soundbar repair in Bengaluru. Free doorstep pickup across Bangalore. JBL, Sony, Bose, Harman repairs. 3-month warranty. 48-hr turnaround." },
+      { name: "keywords", content: "speaker repair bengaluru, speaker repair bangalore, amplifier repair bengaluru, soundbar repair bangalore, JBL repair bengaluru, sony speaker repair bangalore, home theatre repair bangalore, free pickup speaker repair bangalore" },
+      { property: "og:title", content: "Speaker & Amplifier Repair in Bengaluru — Free Pickup | AudioCare" },
+      { property: "og:description", content: "Expert audio equipment repair in Bengaluru. Free doorstep pickup. JBL, Sony, Bose & all brands. 3-month warranty." },
+      { property: "og:url", content: "https://www.audiocareblr.com/repair-service" },
+    ],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(repairServiceSchema) },
+      { type: "application/ld+json", children: JSON.stringify(repairFaqSchema) },
     ],
   }),
   component: RepairPage,
 });
+
 
 function RepairPage() {
   const { user } = useAuth();

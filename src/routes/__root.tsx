@@ -61,17 +61,89 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.audiocareblr.com/#business",
+  "name": "AudioCare",
+  "alternateName": "AudioCare Bengaluru",
+  "url": "https://www.audiocareblr.com",
+  "logo": "https://www.audiocareblr.com/favicon.svg",
+  "image": "https://www.audiocareblr.com/favicon.svg",
+  "description": "AudioCare is Bengaluru's trusted audio service center offering speaker repair, amplifier service, home theatre installation, and professional sound system setup since 2007.",
+  "telephone": "+91-YOUR-PHONE",
+  "email": "murali701081@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "YOUR STREET ADDRESS",
+    "addressLocality": "Bengaluru",
+    "addressRegion": "Karnataka",
+    "postalCode": "560000",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "12.9716",
+    "longitude": "77.5946"
+  },
+  "areaServed": [
+    "Bengaluru", "Bangalore", "Whitefield", "Koramangala", "Indiranagar",
+    "Marathahalli", "Electronic City", "HSR Layout", "Jayanagar", "BTM Layout",
+    "Hebbal", "Yelahanka", "Bannerghatta Road", "Sarjapur Road"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  ],
+  "priceRange": "₹₹",
+  "currenciesAccepted": "INR",
+  "paymentAccepted": "Cash, UPI, Credit Card, Debit Card",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Audio Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Speaker Repair" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Amplifier Repair" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home Theatre Installation" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sound System Setup" } }
+    ]
+  },
+  "sameAs": [
+    "https://www.audiocareblr.com"
+  ]
+};
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AudioCare — Premium Speakers & Expert Repair" },
-      { name: "description", content: "AudioCare — Buy premium speakers, soundbars & home theatre systems, and book expert repair service in Bengaluru." },
+      { title: "AudioCare Bengaluru — Speaker Repair, Home Theatre & Sound Systems" },
+      { name: "description", content: "AudioCare — Bengaluru's trusted audio expert since 2007. Speaker & amplifier repair, home theatre installation, sound system setup. Free doorstep pickup across Bangalore." },
+      { name: "keywords", content: "speaker repair bangalore, amplifier repair bengaluru, home theatre installation bangalore, audio repair bengaluru, JBL repair bangalore, sound system setup bengaluru, audiocare blr" },
+      { name: "author", content: "AudioCare Bengaluru" },
+      { name: "robots", content: "index, follow" },
+      { name: "theme-color", content: "#f97316" },
+      // Open Graph
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "AudioCare — Feel Every Beat" },
-      { property: "og:description", content: "Premium audio gear and expert repair service in Bengaluru." },
+      { property: "og:site_name", content: "AudioCare Bengaluru" },
+      { property: "og:title", content: "AudioCare Bengaluru — Feel Every Beat" },
+      { property: "og:description", content: "Bengaluru's trusted audio experts since 2007. Speaker repair, home theatre installation & premium sound systems." },
+      { property: "og:url", content: "https://www.audiocareblr.com" },
+      { property: "og:locale", content: "en_IN" },
+      // Twitter
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "AudioCare Bengaluru — Speaker Repair & Home Theatre" },
+      { name: "twitter:description", content: "Bengaluru's trusted audio experts since 2007." },
+      // Geo tags for local SEO
+      { name: "geo.region", content: "IN-KA" },
+      { name: "geo.placename", content: "Bengaluru" },
+      { name: "geo.position", content: "12.9716;77.5946" },
+      { name: "ICBM", content: "12.9716, 77.5946" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
@@ -81,6 +153,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap",
+      },
+      { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(localBusinessSchema),
       },
     ],
   }),

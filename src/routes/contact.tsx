@@ -17,9 +17,12 @@ const schema = z.object({
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact AudioCare — Speaker Repair & Sales" },
-      { name: "description", content: "Get in touch with AudioCare in Bengaluru — call, WhatsApp, email or visit our store in Koramangala." },
-      { property: "og:title", content: "Contact AudioCare — Speaker Repair & Sales" },
+      { title: "Contact AudioCare Bengaluru — Book Repair, Get a Quote or Visit Us" },
+      { name: "description", content: "Contact AudioCare in Bengaluru. Call, WhatsApp, or email us for speaker repair, home theatre installation quotes, or to visit our store. Serving all of Bangalore." },
+      { name: "keywords", content: "contact audiocare bengaluru, speaker repair contact bangalore, audio service phone number bengaluru, audiocare blr phone, home theatre quote bangalore" },
+      { property: "og:title", content: "Contact AudioCare Bengaluru — Book a Repair or Get a Quote" },
+      { property: "og:description", content: "Reach AudioCare Bengaluru by call, WhatsApp or email. Free pickup available across all Bangalore areas." },
+      { property: "og:url", content: "https://www.audiocareblr.com/contact" },
     ],
   }),
   component: ContactPage,

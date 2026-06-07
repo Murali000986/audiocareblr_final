@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block private/transactional pages from being indexed
+Disallow: /admin
+Disallow: /account
+Disallow: /cart
+Disallow: /checkout
+Disallow: /order-success
+
+# Sitemap location
+Sitemap: https://www.audiocareblr.com/sitemap.xml
