@@ -161,7 +161,7 @@ function RepairPage() {
                 Book a <span className="text-gradient-orange">Repair</span>
               </h1>
               <p className="text-muted-foreground mt-3 max-w-xl text-lg">
-                Expert technicians · Genuine parts · Free pickup & delivery across Bengaluru.
+                Specialized in Bose speaker repair, Sony soundbar repair, and amplifier repair in Bangalore. Expert technicians, genuine parts, and free pickup across Bengaluru.
               </p>
             </AnimatedSection>
 

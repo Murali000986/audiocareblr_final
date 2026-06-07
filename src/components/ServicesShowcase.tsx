@@ -6,7 +6,7 @@ const services = [
     id: 1,
     title: "Home Theater",
     description:
-      "Transform any room into a private cinema. We supply and install complete home theater systems with Dolby Atmos surround sound, 4K projectors, acoustic panels, and smart controls.",
+      "Transform any room into a private cinema with professional home theater installation in Bangalore. We supply and install complete home theater systems with Dolby Atmos surround sound, projectors, and smart controls.",
     image:
       "https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=900&auto=format&fit=crop",
     link: "/shop/category/home-theatre",
@@ -42,7 +42,7 @@ const services = [
     id: 4,
     title: "Audio Repair Service",
     description:
-      "Expert repair for all audio equipment — speakers, amplifiers, subwoofers, soundbars, receivers. Certified technicians, genuine parts, and free pickup & delivery.",
+      "Expert audio equipment repair in Bengaluru — speakers, amplifiers, subwoofers, and soundbars. Certified technicians, genuine parts, and free pickup & delivery for speaker repair in Bangalore.",
     image:
       "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=900&auto=format&fit=crop",
     link: "/repair-service",
