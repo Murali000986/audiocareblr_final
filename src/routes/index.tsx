@@ -17,15 +17,15 @@ import { Footer } from "@/components/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AudioCare Bengaluru — Speaker Repair, Home Theatre Installation & Sound Systems" },
-      { name: "description", content: "AudioCare is Bengaluru's #1 audio service center since 2007. Expert speaker & amplifier repair, home theatre installation, AMC contracts. Free doorstep pickup across Bangalore." },
+      { title: "AudioCare Bengaluru | Speaker Repair, Soundbar Repair & Home Theater Installation" },
+      { name: "description", content: "AudioCare Bengaluru offers speaker repair, soundbar repair, amplifier service, subwoofer repair and home theater installation with free pickup and delivery across Bangalore." },
       { name: "keywords", content: "speaker repair bengaluru, amplifier repair bangalore, home theatre installation bangalore, JBL repair bengaluru, sony speaker repair bangalore, sound system setup bangalore, audio care blr, speaker service bengaluru" },
-      { property: "og:title", content: "AudioCare Bengaluru — Everything Audio, Under One Roof" },
-      { property: "og:description", content: "Bengaluru's trusted audio experts since 2007. Speaker repair, home theatre installation & premium sound systems. Free doorstep pickup." },
+      { property: "og:title", content: "AudioCare Bengaluru | Speaker Repair, Soundbar Repair & Home Theater Installation" },
+      { property: "og:description", content: "AudioCare Bengaluru offers speaker repair, soundbar repair, amplifier service, subwoofer repair and home theater installation with free pickup and delivery across Bangalore." },
       { property: "og:url", content: "https://www.audiocareblr.com/" },
       { property: "og:type", content: "website" },
-      { name: "twitter:title", content: "AudioCare Bengaluru — Speaker Repair & Home Theatre" },
-      { name: "twitter:description", content: "Bengaluru's #1 audio service center. Speaker repair, amplifier service, home theatre setup. Free pickup!" },
+      { name: "twitter:title", content: "AudioCare Bengaluru | Speaker Repair & Home Theater" },
+      { name: "twitter:description", content: "AudioCare Bengaluru offers speaker repair, soundbar repair, amplifier service and home theater installation with free pickup across Bangalore." },
     ],
   }),
   component: Index,
