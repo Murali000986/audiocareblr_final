@@ -15,12 +15,12 @@ import bannerNew from "../audio_care_cen/ChatGPT Image Jun 7, 2026, 09_18_24 PM 
 const slides = [
   {
     id: 1,
-    tag: "Premium Installation",
-    title: "HOME THEATER THAT BLOWS YOUR MIND",
-    subtitle: "Premium home theater installation in Bangalore. We design, supply & install complete surround sound systems and acoustic treatments. Cinema-grade experience at home.",
-    image: bannerOld,
-    cta: "Explore Home Theater",
-    ctaLink: "/shop/category/home-theatre",
+    tag: "Musical Heritage",
+    title: "CELEBRATING LEGENDARY VOICES",
+    subtitle: "Experience the timeless melodies of the greatest artists. We bring classic voices to life with premium audio equipment, meticulous restoration, and unmatched sound clarity.",
+    image: bannerNew,
+    cta: "Explore Our Services",
+    ctaLink: "/repair-service",
     accent: "#e84e1b",
   },
   {
@@ -35,10 +35,10 @@ const slides = [
   },
   {
     id: 3,
-    tag: "Premium Sound Systems",
-    title: "SURROUND SOUND FOR EVERY SPACE",
-    subtitle: "From compact soundbars to multi-room audio setups — premium JBL, Sony, Bose & more. Experience music the way it was meant to be heard.",
-    image: bannerNew,
+    tag: "Audio Care Excellence",
+    title: "YOUR TRUSTED AUDIO EXPERTS",
+    subtitle: "For decades, Audio Care has been the most trusted destination for audiophiles in Bangalore. From vintage restorations to modern installations, we are passionate about perfect sound.",
+    image: bannerOld,
     cta: "Shop Sound Systems",
     ctaLink: "/shop",
     accent: "#1a3c6e",
