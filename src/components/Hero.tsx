@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef, useState, useEffect } from "react";
+import bannerOld from "../audio_care_cen/audio_care_banner_1897x835.jpg";
+import bannerNew from "../audio_care_cen/ChatGPT Image Jun 7, 2026, 09_18_24 PM - Copy.png";
 
 const slides = [
   {
@@ -16,7 +18,7 @@ const slides = [
     tag: "Premium Installation",
     title: "HOME THEATER THAT BLOWS YOUR MIND",
     subtitle: "Premium home theater installation in Bangalore. We design, supply & install complete surround sound systems and acoustic treatments. Cinema-grade experience at home.",
-    image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=1920&auto=format&fit=crop",
+    image: bannerOld,
     cta: "Explore Home Theater",
     ctaLink: "/shop/category/home-theatre",
     accent: "#e84e1b",
@@ -36,7 +38,7 @@ const slides = [
     tag: "Premium Sound Systems",
     title: "SURROUND SOUND FOR EVERY SPACE",
     subtitle: "From compact soundbars to multi-room audio setups — premium JBL, Sony, Bose & more. Experience music the way it was meant to be heard.",
-    image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=1920&auto=format&fit=crop",
+    image: bannerNew,
     cta: "Shop Sound Systems",
     ctaLink: "/shop",
     accent: "#1a3c6e",
