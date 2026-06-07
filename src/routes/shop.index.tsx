@@ -26,10 +26,10 @@ function ShopPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         <header className="mb-8">
           <h1 className="font-display text-4xl lg:text-5xl font-bold">
-            Shop <span className="text-gradient-orange">Speakers</span>
+            Our <span className="text-gradient-orange">Products</span>
           </h1>
           <p className="text-muted-foreground mt-2 max-w-xl">
-            Browse premium audio products from the world's best brands — curated by AudioCare.
+            Explore our range of premium audio products — enquire on WhatsApp for pricing and availability.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             {categories.map((c) => (

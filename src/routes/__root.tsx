@@ -15,8 +15,6 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProductsCacheProvider } from "@/contexts/ProductsCacheContext";
-import { CartProvider } from "@/contexts/CartContext";
-import { WishlistProvider } from "@/contexts/WishlistContext";
 
 function NotFoundComponent() {
   return (
@@ -76,12 +74,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap",
       },
     ],
   }),
@@ -125,22 +124,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* ThemeProvider must be the outermost context so all components can access theme */}
       <ThemeProvider>
         <AuthProvider>
           <ProductsCacheProvider>
-            <CartProvider>
-              <WishlistProvider>
-                <div key={location.pathname} className="animate-fade-up">
-                  <Outlet />
-                </div>
-                <Toaster position="bottom-right" richColors />
-              </WishlistProvider>
-            </CartProvider>
+            <div key={location.pathname} className="animate-fade-up">
+              <Outlet />
+            </div>
+            <Toaster position="bottom-right" richColors />
           </ProductsCacheProvider>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
-
   );
 }
+

@@ -17,5 +17,8 @@ export function mapSupabaseProduct(row: Record<string, unknown>): Product {
     description: (row.description as string) ?? "",
     highlights: Array.isArray(row.highlights) ? (row.highlights as string[]) : [],
     inStock: (row.in_stock as boolean) ?? true,
-  };
+    // Extra admin fields (typed as `any` on Product via cast)
+    is_best_seller: (row.is_best_seller as boolean) ?? false,
+    cost_price: row.cost_price != null ? Number(row.cost_price) : null,
+  } as Product & { is_best_seller: boolean; cost_price: number | null };
 }

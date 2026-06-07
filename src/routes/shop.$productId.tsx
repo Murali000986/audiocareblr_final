@@ -2,15 +2,14 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
-import { Star, ShoppingCart, Heart, Truck, ShieldCheck, RotateCcw, ChevronRight, MessageCircle } from "lucide-react";
-import { useState, useMemo } from "react";
-import { useCart } from "@/contexts/CartContext";
-import { useWishlist } from "@/contexts/WishlistContext";
+import { Star, Phone, MessageCircle, ChevronRight, ShieldCheck, Wrench, ThumbsUp } from "lucide-react";
+import { useMemo } from "react";
 import { useProductsCache } from "@/contexts/ProductsCacheContext";
 import { supabase } from "@/lib/supabase";
 import { mapSupabaseProduct } from "@/lib/productMapper";
-import { toast } from "sonner";
 import { products as fallbackProducts } from "@/data/sampleData";
+
+const WHATSAPP_NUMBER = "919876543210"; // Update to your real WhatsApp number
 
 export const Route = createFileRoute("/shop/$productId")({
   head: ({ loaderData }) => {
@@ -18,7 +17,7 @@ export const Route = createFileRoute("/shop/$productId")({
     return {
       meta: [
         { title: `${p?.name ?? "Product"} — AudioCare` },
-        { name: "description", content: p?.description ?? "Shop premium speakers at AudioCare." },
+        { name: "description", content: p?.description ?? "Explore premium audio products at AudioCare." },
         { property: "og:title", content: `${p?.name ?? "Product"} — AudioCare` },
         { property: "og:description", content: p?.description ?? "" },
         ...(p?.img ? [{ property: "og:image", content: p.img }] : []),
@@ -26,18 +25,16 @@ export const Route = createFileRoute("/shop/$productId")({
     };
   },
   loader: async ({ params }) => {
-    // Try fetching from Supabase first
     const { data, error } = await supabase
       .from("products")
       .select("*")
       .eq("id", params.productId)
       .single();
-    
+
     if (!error && data) {
       return { product: mapSupabaseProduct(data as Record<string, unknown>) };
     }
-    
-    // Fallback to sample data if Supabase is down or not seeded yet
+
     const fallback = fallbackProducts.find((p) => p.id === params.productId);
     if (!fallback) throw notFound();
     return { product: fallback };
@@ -49,7 +46,7 @@ export const Route = createFileRoute("/shop/$productId")({
         <h1 className="font-display text-4xl font-bold">Product Not Found</h1>
         <p className="text-muted-foreground mt-2">The product you're looking for doesn't exist.</p>
         <Link to="/shop" className="inline-block mt-6 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold">
-          Back to Shop
+          Back to Products
         </Link>
       </main>
       <Footer />
@@ -66,20 +63,18 @@ export const Route = createFileRoute("/shop/$productId")({
 
 function ProductDetailPage() {
   const { product: p } = Route.useLoaderData() as any;
-  const [qty, setQty] = useState(1);
-  const cart = useCart();
-  const wish = useWishlist();
   const { products } = useProductsCache();
-  
-  const wished = wish.has(p.id);
+
   const discount = p.mrp ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
-  
+
   const related = useMemo(() => {
     return products.filter((x) => x.category === p.category && x.id !== p.id).slice(0, 3);
   }, [products, p.category, p.id]);
 
-  const addToCart = () => { cart.add(p.id, qty); toast.success(`${qty} × ${p.name} added to cart`); };
-  const toggleWish = () => { wish.toggle(p.id); toast.success(wished ? "Removed from wishlist" : "Added to wishlist"); };
+  const whatsappMsg = encodeURIComponent(
+    `Hi AudioCare! I'm interested in *${p.name}* (₹${p.price.toLocaleString("en-IN")}). Can you share more details?`
+  );
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`;
 
   return (
     <div className="min-h-screen bg-background">
@@ -89,11 +84,7 @@ function ProductDetailPage() {
         <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6">
           <Link to="/" className="hover:text-primary">Home</Link>
           <ChevronRight className="w-3 h-3" />
-          <Link to="/shop" className="hover:text-primary">Shop</Link>
-          <ChevronRight className="w-3 h-3" />
-          <Link to="/shop/category/$slug" params={{ slug: p.category }} className="hover:text-primary">
-            {p.categoryLabel}
-          </Link>
+          <Link to="/shop" className="hover:text-primary">Products</Link>
           <ChevronRight className="w-3 h-3" />
           <span className="text-foreground font-medium">{p.name}</span>
         </nav>
@@ -132,54 +123,51 @@ function ProductDetailPage() {
                 </>
               )}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Inclusive of all taxes</p>
+            <p className="text-xs text-muted-foreground mt-1">Price shown is indicative — contact us for best deal</p>
 
             <p className="mt-6 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
 
-            <ul className="mt-5 space-y-2">
-              {p.highlights.map((h: string) => (
-                <li key={h} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                  {h}
-                </li>
-              ))}
-            </ul>
+            {p.highlights?.length > 0 && (
+              <ul className="mt-5 space-y-2">
+                {p.highlights.map((h: string) => (
+                  <li key={h} className="flex items-start gap-2 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            )}
 
-            {/* Qty + CTAs */}
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <div className="flex items-center border-2 border-border rounded-xl">
-                <button onClick={() => setQty(Math.max(1, qty - 1))} className="w-10 h-11 hover:bg-accent">−</button>
-                <span className="w-10 text-center font-semibold">{qty}</span>
-                <button onClick={() => setQty(qty + 1)} className="w-10 h-11 hover:bg-accent">+</button>
-              </div>
-              <button
-                onClick={addToCart}
-                disabled={!p.inStock}
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold shadow-card hover:shadow-glow disabled:opacity-50"
-              >
-                <ShoppingCart className="w-4 h-4" /> Add to Cart
-              </button>
-              <button
-                onClick={toggleWish}
-                aria-label="Wishlist"
-                className={`inline-flex items-center justify-center w-11 h-11 rounded-xl border-2 border-border hover:border-primary hover:text-primary ${wished ? "border-primary text-primary" : ""}`}
-              >
-                <Heart className={`w-5 h-5 ${wished ? "fill-primary" : ""}`} />
-              </button>
+            {/* CTA Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <a
-                href="https://wa.me/919876543210"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#25D366] text-white font-semibold"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-[#25D366] text-white font-bold text-base shadow-lg hover:opacity-90 transition-opacity"
               >
-                <MessageCircle className="w-4 h-4" /> Enquire
+                <MessageCircle className="w-5 h-5" />
+                Enquire on WhatsApp
+              </a>
+              <a
+                href="tel:+919876543210"
+                className="flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl border-2 border-primary text-primary font-bold text-base hover:bg-primary hover:text-primary-foreground transition-all"
+              >
+                <Phone className="w-5 h-5" />
+                Call Us
               </a>
             </div>
+
+            <p className="text-center text-xs text-muted-foreground mt-3">
+              💬 Chat with us on WhatsApp for the best price & availability
+            </p>
 
             {/* Trust badges */}
             <div className="mt-8 grid grid-cols-3 gap-3">
               {[
-                { icon: Truck, t: "Free Delivery", s: "Above ₹999" },
-                { icon: ShieldCheck, t: "1 Yr Warranty", s: "Genuine product" },
-                { icon: RotateCcw, t: "7-Day Return", s: "Easy refund" },
+                { icon: ShieldCheck, t: "Genuine Product", s: "100% authentic" },
+                { icon: Wrench, t: "Expert Support", s: "Repair & service" },
+                { icon: ThumbsUp, t: "Best Price", s: "Ask us for deals" },
               ].map((b) => (
                 <div key={b.t} className="rounded-xl border border-border p-3 text-center">
                   <b.icon className="w-5 h-5 text-primary mx-auto" />
@@ -191,7 +179,7 @@ function ProductDetailPage() {
           </div>
         </div>
 
-        {/* Related */}
+        {/* Related Products */}
         {related.length > 0 && (
           <section className="mt-16">
             <h2 className="font-display text-2xl font-bold mb-5">You may also like</h2>

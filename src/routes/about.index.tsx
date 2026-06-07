@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Calendar, MapPin, Phone, Award, Users, Wrench, Building2, Star, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Calendar, MapPin, Phone, Award, Users, Star, ArrowRight, CheckCircle2, Briefcase, Shield, Globe } from "lucide-react";
 
 export const Route = createFileRoute("/about/")({
   head: () => ({
@@ -14,12 +14,20 @@ export const Route = createFileRoute("/about/")({
 });
 
 const milestones = [
-  { year: "2007", title: "Founded in Bengaluru", desc: "Started operations from KHB Colony, 17th E Main Road." },
-  { year: "2010", title: "Commercial Audio Expansion", desc: "Began offering large-scale commercial audio solutions for events & institutions." },
-  { year: "2014", title: "AMC Services Launched", desc: "Introduced Annual Maintenance Contracts for premium clients." },
-  { year: "2018", title: "Wonderla Partnership", desc: "Secured AMC contract with Wonderla Bengaluru — a landmark achievement." },
-  { year: "2020", title: "PROFX Vendor Empanelment", desc: "Became a Pan India Service Vendor for PROFX." },
-  { year: "2025", title: "18+ Years & Counting", desc: "Serving thousands of satisfied customers across Bengaluru." },
+  { year: "2007", title: "Career Begins — Sahil International", desc: "Prakash joined JBL, Infinity & Harman Kardon (Sahil International) as a certified service vendor, beginning his journey across Bangalore, Chennai, Kerala and Hyderabad." },
+  { year: "2010", title: "Multi-City Service Operations", desc: "Expanded service coverage across South India — handling premium audio brands in commercial, residential and institutional projects." },
+  { year: "2014", title: "Wonderla Bangalore — AMC", desc: "Secured the Annual Maintenance Contract for Wonderla Bangalore, one of India's largest amusement parks — a milestone in professional audio service." },
+  { year: "2015", title: "Bangalore Club — Audio AMC", desc: "Became the trusted audio AMC partner for Bangalore Club, one of the city's most prestigious social institutions." },
+  { year: "2017", title: "PROFX — Pan India Service Vendor", desc: "Empanelled as a Pan India Service Vendor for PROFX, handling audio service projects across the entire country." },
+  { year: "2017", title: "AudioCare Founded", desc: "After 13 years of building expertise with the world's leading audio brands, Prakash founded AudioCare — Bengaluru's most trusted audio solutions company." },
+  { year: "2025", title: "18+ Years & Counting", desc: "Serving thousands of happy customers across Bengaluru with sales, installation, repair and AMC services." },
+];
+
+const founderCredentials = [
+  { icon: Briefcase, label: "13 Years", sub: "as JBL / Harman service vendor" },
+  { icon: Globe,     label: "5 Cities",  sub: "Bangalore · Chennai · Kerala · Hyderabad · Pan India" },
+  { icon: Shield,    label: "AMC Expert", sub: "Wonderla · Bangalore Club · PROFX" },
+  { icon: Award,     label: "Est. 2007",  sub: "18+ years of hands-on audio expertise" },
 ];
 
 const stats = [
@@ -98,9 +106,71 @@ function AboutIndex() {
           <p className="text-white/90 text-2xl md:text-3xl font-display font-bold italic leading-snug">
             "We don't just sell audio — we engineer experiences that stay with you for a lifetime."
           </p>
-          <p className="mt-5 text-white/60 font-medium">— AudioCare, Since 2007</p>
+          <p className="mt-5 text-white/60 font-medium">— Prakash, Founder · AudioCare, Since 2007</p>
         </div>
       </section>
+
+      {/* ─── MEET THE FOUNDER ─── */}
+      <section className="grid md:grid-cols-2 gap-12 items-center">
+
+        {/* Left — Premium Audio Image */}
+        <div className="relative h-[480px] rounded-3xl overflow-hidden shadow-2xl">
+          <img 
+            src="https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=1000&auto=format&fit=crop" 
+            alt="Premium Audio Equipment" 
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          
+          {/* Floating experience badge */}
+          <div className="absolute bottom-6 right-6 bg-primary text-primary-foreground rounded-2xl px-6 py-4 shadow-glow backdrop-blur-md bg-primary/90">
+            <p className="font-display font-black text-3xl leading-none">18+</p>
+            <p className="text-xs font-bold opacity-90 mt-1">Years Experience</p>
+          </div>
+          
+          <div className="absolute bottom-6 left-6">
+            <p className="text-white/90 font-bold text-sm uppercase tracking-widest">Est. 2007</p>
+          </div>
+        </div>
+
+        {/* Right — story */}
+        <div>
+          <p className="text-primary font-bold uppercase tracking-widest text-xs mb-3">Meet the Founder</p>
+          <h2 className="text-4xl font-display font-extrabold tracking-tight mb-6 leading-tight">
+            The Man Behind <span className="text-gradient-orange">AudioCare</span>
+          </h2>
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <p>
+              Prakash began his journey in the audio service industry in <strong className="text-foreground">2007</strong>, joining <strong className="text-foreground">Sahil International</strong> as a certified service vendor for industry-leading brands — <strong className="text-foreground">JBL, Infinity, and Harman Kardon</strong>.
+            </p>
+            <p>
+              Over the next 13 years, he built a reputation for excellence across <strong className="text-foreground">Bangalore, Chennai, Kerala, and Hyderabad</strong> — handling everything from large commercial PA systems to precision home audio setups.
+            </p>
+            <p>
+              His expertise earned him prestigious Annual Maintenance Contracts with landmarks like <strong className="text-foreground">Wonderla Bangalore</strong> and the <strong className="text-foreground">Bangalore Club</strong>. He was also empanelled as a <strong className="text-foreground">Pan India Service Vendor for PROFX</strong> — a testament to his pan-India reputation.
+            </p>
+            <p>
+              Armed with this deep experience, Prakash founded <strong className="text-foreground">AudioCare</strong> — bringing world-class audio knowledge directly to customers, with the same professionalism that served India's biggest brands and venues.
+            </p>
+          </div>
+
+          {/* Credential grid */}
+          <div className="grid grid-cols-2 gap-3 mt-8">
+            {founderCredentials.map((c) => (
+              <div key={c.label} className="flex items-center gap-3 p-4 bg-card border border-border rounded-xl">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                  <c.icon className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <p className="font-display font-black text-sm text-foreground">{c.label}</p>
+                  <p className="text-[10px] text-muted-foreground leading-tight">{c.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* OUR VALUES — 4 cards */}
       <section>

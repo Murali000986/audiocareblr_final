@@ -18,14 +18,17 @@ import { Route as OrderSuccessRouteImport } from './routes/order-success'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as AboutIndexRouteImport } from './routes/about.index'
 import { Route as ShopProductIdRouteImport } from './routes/shop.$productId'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AboutServicesRouteImport } from './routes/about.services'
 import { Route as AboutClientsRouteImport } from './routes/about.clients'
 import { Route as AboutBrandsRouteImport } from './routes/about.brands'
@@ -76,6 +79,11 @@ const CartRoute = CartRouteImport.update({
   path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -106,6 +114,11 @@ const ShopIndexRoute = ShopIndexRouteImport.update({
   path: '/shop/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
+} as any)
 const AboutIndexRoute = AboutIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -115,6 +128,11 @@ const ShopProductIdRoute = ShopProductIdRouteImport.update({
   id: '/shop/$productId',
   path: '/shop/$productId',
   getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
 } as any)
 const AboutServicesRoute = AboutServicesRouteImport.update({
   id: '/services',
@@ -143,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/blog': typeof BlogRouteWithChildren
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
@@ -155,8 +174,10 @@ export interface FileRoutesByFullPath {
   '/about/brands': typeof AboutBrandsRoute
   '/about/clients': typeof AboutClientsRoute
   '/about/services': typeof AboutServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/shop/$productId': typeof ShopProductIdRoute
   '/about/': typeof AboutIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/shop/': typeof ShopIndexRoute
   '/shop/category/$slug': typeof ShopCategorySlugRoute
 }
@@ -177,8 +198,10 @@ export interface FileRoutesByTo {
   '/about/brands': typeof AboutBrandsRoute
   '/about/clients': typeof AboutClientsRoute
   '/about/services': typeof AboutServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/shop/$productId': typeof ShopProductIdRoute
   '/about': typeof AboutIndexRoute
+  '/blog': typeof BlogIndexRoute
   '/shop': typeof ShopIndexRoute
   '/shop/category/$slug': typeof ShopCategorySlugRoute
 }
@@ -189,6 +212,7 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/blog': typeof BlogRouteWithChildren
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
@@ -201,8 +225,10 @@ export interface FileRoutesById {
   '/about/brands': typeof AboutBrandsRoute
   '/about/clients': typeof AboutClientsRoute
   '/about/services': typeof AboutServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/shop/$productId': typeof ShopProductIdRoute
   '/about/': typeof AboutIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/shop/': typeof ShopIndexRoute
   '/shop/category/$slug': typeof ShopCategorySlugRoute
 }
@@ -214,6 +240,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/admin'
     | '/auth'
+    | '/blog'
     | '/cart'
     | '/checkout'
     | '/contact'
@@ -226,8 +253,10 @@ export interface FileRouteTypes {
     | '/about/brands'
     | '/about/clients'
     | '/about/services'
+    | '/blog/$slug'
     | '/shop/$productId'
     | '/about/'
+    | '/blog/'
     | '/shop/'
     | '/shop/category/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -248,8 +277,10 @@ export interface FileRouteTypes {
     | '/about/brands'
     | '/about/clients'
     | '/about/services'
+    | '/blog/$slug'
     | '/shop/$productId'
     | '/about'
+    | '/blog'
     | '/shop'
     | '/shop/category/$slug'
   id:
@@ -259,6 +290,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/admin'
     | '/auth'
+    | '/blog'
     | '/cart'
     | '/checkout'
     | '/contact'
@@ -271,8 +303,10 @@ export interface FileRouteTypes {
     | '/about/brands'
     | '/about/clients'
     | '/about/services'
+    | '/blog/$slug'
     | '/shop/$productId'
     | '/about/'
+    | '/blog/'
     | '/shop/'
     | '/shop/category/$slug'
   fileRoutesById: FileRoutesById
@@ -283,6 +317,7 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
+  BlogRoute: typeof BlogRouteWithChildren
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
@@ -362,6 +397,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -404,6 +446,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
     '/about/': {
       id: '/about/'
       path: '/'
@@ -417,6 +466,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/shop/$productId'
       preLoaderRoute: typeof ShopProductIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
     }
     '/about/services': {
       id: '/about/services'
@@ -465,12 +521,25 @@ const AboutRouteChildren: AboutRouteChildren = {
 
 const AboutRouteWithChildren = AboutRoute._addFileChildren(AboutRouteChildren)
 
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRouteWithChildren,
   AccountRoute: AccountRoute,
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
+  BlogRoute: BlogRouteWithChildren,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,

@@ -1,17 +1,15 @@
 import { Link, useRouter, useNavigate } from "@tanstack/react-router";
-import { Search, ShoppingCart, Sun, Moon, Menu, Heart, X, User, LogOut, Package, Wrench, Settings, ChevronDown } from "lucide-react";
+import { Search, Sun, Moon, Menu, X, ChevronDown } from "lucide-react";
 import { Logo } from "./Logo";
 import { useTheme } from "./ThemeProvider";
 import { useState, useEffect } from "react";
-import { useCart } from "@/contexts/CartContext";
-import { useWishlist } from "@/contexts/WishlistContext";
 import { useAuth } from "@/contexts/AuthContext";
-import { CartDrawer } from "./CartDrawer";
 
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
-  { to: "/shop", label: "Shop" },
+  { to: "/shop", label: "Products" },
+  { to: "/blog", label: "Blog" },
   { to: "/repair-service", label: "Repair Services" },
   { to: "/our-work", label: "Our Work" },
   { to: "/contact", label: "Contact" },
@@ -20,22 +18,16 @@ const links = [
 export function Navbar() {
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [userOpen, setUserOpen] = useState(false);
   const [q, setQ] = useState("");
-  
-  const { count } = useCart();
-  const wish = useWishlist();
-  const { user, signOut } = useAuth();
-  
+  const { user } = useAuth();
+
   const navigate = useNavigate();
   const router = useRouter();
 
   // Close dropdowns on route change
   useEffect(() => {
     setOpen(false);
-    setUserOpen(false);
     setSearchOpen(false);
   }, [router.state.location.pathname]);
 
@@ -48,14 +40,12 @@ export function Navbar() {
     }
   };
 
-  const avatarLetter = user?.user_metadata?.full_name?.[0]?.toUpperCase() ?? user?.email?.[0]?.toUpperCase() ?? "U";
-
   return (
     <>
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           <Link to="/"><Logo /></Link>
-          
+
           <ul className="hidden lg:flex items-center gap-7 text-sm font-medium">
             {links.map((l) => (
               <li key={l.to}>
@@ -75,79 +65,39 @@ export function Navbar() {
             <button aria-label="Search" onClick={() => setSearchOpen(true)} className="p-2 rounded-full hover:bg-muted transition-colors hidden sm:block">
               <Search className="w-5 h-5 text-foreground" />
             </button>
-            <Link to="/wishlist" aria-label="Wishlist" className="p-2 rounded-full hover:bg-muted transition-colors relative hidden sm:block">
-              <Heart className="w-5 h-5 text-foreground" />
-              {wish.count > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">{wish.count}</span>
-              )}
-            </Link>
-            <button aria-label="Cart" onClick={() => setCartOpen(true)} className="p-2 rounded-full hover:bg-muted transition-colors relative">
-              <ShoppingCart className="w-5 h-5 text-foreground" />
-              {count > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">{count}</span>
-              )}
-            </button>
             <button aria-label="Toggle theme" onClick={toggle} className="p-2 rounded-full hover:bg-muted transition-colors">
               {theme === "dark" ? <Sun className="w-5 h-5 text-foreground" /> : <Moon className="w-5 h-5 text-foreground" />}
             </button>
 
-            {/* Auth Dropdown */}
+            {/* User Auth Link */}
             {user ? (
-              <div className="relative">
-                <button
-                  onClick={() => setUserOpen((p) => !p)}
-                  className="flex items-center gap-1.5 ml-1 px-2 py-1.5 rounded-lg hover:bg-muted transition-all"
-                >
-                  <div className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">
-                    {avatarLetter}
-                  </div>
-                  <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${userOpen ? "rotate-180" : ""}`} />
+              <div className="relative group hidden sm:block">
+                <button className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold ml-1">
+                  {user.email?.charAt(0).toUpperCase() || "U"}
                 </button>
-
-                {userOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-52 bg-card border border-border rounded-xl shadow-card overflow-hidden animate-fade-up">
-                    <div className="px-4 py-3 border-b border-border">
-                      <p className="text-sm font-semibold truncate text-card-foreground">{user.user_metadata?.full_name ?? "My Account"}</p>
-                      <p className="text-xs text-muted-foreground truncate">{user.email}</p>
-                    </div>
-                    {[
-                      { to: "/account",    icon: User,    label: "My Account" },
-                      { to: "/account",    icon: Package, label: "My Orders" },
-                      { to: "/repair-service", icon: Wrench, label: "My Repairs" },
-                    ].map((item) => (
-                      <Link
-                        key={item.label}
-                        to={item.to}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-muted transition-colors text-card-foreground"
-                      >
-                        <item.icon className="w-4 h-4 text-muted-foreground" />
-                        {item.label}
-                      </Link>
-                    ))}
-                    {user.email === "admin@audiocare.in" && (
-                      <Link to="/admin" className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-muted transition-colors text-primary">
-                        <Settings className="w-4 h-4" /> Admin Panel
-                      </Link>
-                    )}
-                    <button
-                      onClick={() => { signOut(); setUserOpen(false); }}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-destructive hover:bg-destructive/10 transition-colors border-t border-border"
-                    >
-                      <LogOut className="w-4 h-4" /> Sign Out
-                    </button>
+                <div className="absolute right-0 top-full mt-2 w-48 bg-card border border-border rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                  <div className="px-4 py-3 border-b border-border">
+                    <p className="text-xs text-muted-foreground truncate">{user.email}</p>
                   </div>
-                )}
+                  <button 
+                    onClick={async () => {
+                      const { supabase } = await import("@/lib/supabase");
+                      await supabase.auth.signOut();
+                      window.location.reload();
+                    }}
+                    className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 transition-colors rounded-b-xl"
+                  >
+                    Sign Out
+                  </button>
+                </div>
               </div>
             ) : (
-              <Link
-                to="/auth"
-                className="hidden sm:inline-flex items-center gap-1.5 ml-1 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-bold transition-all btn-press"
-              >
-                <User className="w-3.5 h-3.5" /> Login
+              <Link to="/auth" className="hidden sm:flex items-center justify-center p-2 ml-1 rounded-full hover:bg-muted transition-colors">
+                <svg className="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
               </Link>
             )}
 
-            <button aria-label="Menu" className="lg:hidden p-2 rounded-full hover:bg-muted" onClick={() => setOpen(!open)}>
+            <button aria-label="Menu" className="lg:hidden p-2 rounded-full hover:bg-muted ml-1" onClick={() => setOpen(!open)}>
               {open ? <X className="w-5 h-5 text-foreground" /> : <Menu className="w-5 h-5 text-foreground" />}
             </button>
           </div>
@@ -161,13 +111,6 @@ export function Navbar() {
                 <Link to={l.to} onClick={() => setOpen(false)} className="block text-sm font-medium text-foreground">{l.label}</Link>
               </li>
             ))}
-            {!user && (
-              <li className="list-none mt-4">
-                <Link to="/auth" onClick={() => setOpen(false)} className="block text-center py-2.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm">
-                  Login / Sign Up
-                </Link>
-              </li>
-            )}
           </div>
         )}
       </header>
@@ -192,8 +135,6 @@ export function Navbar() {
           </form>
         </div>
       )}
-
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </>
   );
 }
