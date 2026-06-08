@@ -91,7 +91,7 @@ function AboutServices() {
           </div>
           {/* Image */}
           <div className="relative h-[350px] rounded-3xl overflow-hidden shadow-xl">
-            <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+            <img src={service.image} alt={service.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <div className="absolute bottom-6 left-6">
               <span className="bg-primary text-primary-foreground font-bold text-xs uppercase tracking-widest px-3 py-1.5 rounded-full">

@@ -116,7 +116,7 @@ function AboutClients() {
         <section key={client.name}>
           {/* Full-width image header for each client */}
           <div className="relative rounded-3xl overflow-hidden h-[300px] md:h-[380px] mb-10">
-            <img src={client.image} alt={client.name} className="w-full h-full object-cover" />
+            <img src={client.image} alt={client.name} className="w-full h-full object-cover" loading="lazy" decoding="async" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
             <div className="absolute bottom-8 left-8 right-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
@@ -178,7 +178,7 @@ function AboutClients() {
             { src: "https://images.unsplash.com/photo-1517282009859-f000ec3b26fe?q=80&w=800&auto=format&fit=crop", alt: "Large venue" },
           ].map((img) => (
             <div key={img.alt} className="aspect-video rounded-xl overflow-hidden bg-muted group">
-              <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
             </div>
           ))}
         </div>

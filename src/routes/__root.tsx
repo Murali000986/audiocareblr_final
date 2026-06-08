@@ -4,10 +4,11 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
@@ -183,9 +184,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // Preload most-used font weight for faster first paint
+      {
+        rel: "preload",
+        href: "https://fonts.gstatic.com/s/manrope/v15/xn7gYHE41ni1AdIRggexSg.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap",
+        // font-display=swap ensures text is visible immediately using fallback font while custom font loads
+        href: "https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Manrope:wght@400;600;700;800&family=Sora:wght@500;600;700;800&display=swap",
       },
       { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
     ],
@@ -230,6 +240,48 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+/** Slim orange top bar that shows while a page is loading — like YouTube/GitHub */
+function NavigationProgress() {
+  const isLoading = useRouterState({ select: (s) => s.status === "pending" });
+  const [width, setWidth] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (isLoading) {
+      setVisible(true);
+      setWidth(15);
+      timerRef.current = setInterval(() => {
+        setWidth((w) => {
+          if (w >= 85) { if (timerRef.current) clearInterval(timerRef.current); return 85; }
+          return w + (90 - w) * 0.08;
+        });
+      }, 100);
+    } else {
+      if (timerRef.current) clearInterval(timerRef.current);
+      setWidth(100);
+      const t = setTimeout(() => { setVisible(false); setWidth(0); }, 300);
+      return () => clearTimeout(t);
+    }
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [isLoading]);
+
+  if (!visible) return null;
+  return (
+    <div
+      style={{
+        position: "fixed", top: 0, left: 0, zIndex: 9999,
+        height: "3px",
+        width: `${width}%`,
+        background: "linear-gradient(90deg, oklch(0.68 0.21 42), oklch(0.76 0.2 52))",
+        transition: width === 100 ? "width 0.2s ease" : "width 0.4s ease",
+        boxShadow: "0 0 12px 2px oklch(0.68 0.21 42 / 0.6)",
+        borderRadius: "0 2px 2px 0",
+      }}
+    />
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useRouter().state.location;
@@ -239,6 +291,7 @@ function RootComponent() {
       <ThemeProvider>
         <AuthProvider>
           <ProductsCacheProvider>
+            <NavigationProgress />
             <div key={location.pathname} className="animate-fade-up">
               <Outlet />
             </div>

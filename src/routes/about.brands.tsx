@@ -92,7 +92,7 @@ function AboutBrands() {
         <section key={brand.name} className={`grid md:grid-cols-2 gap-10 items-stretch ${idx % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}>
           {/* Image */}
           <div className="relative rounded-3xl overflow-hidden min-h-[380px]">
-            <img src={brand.image} alt={brand.name} className="absolute inset-0 w-full h-full object-cover" />
+            <img src={brand.image} alt={brand.name} className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="absolute bottom-8 left-8">
               <div className="text-white font-display font-black text-5xl mb-1">{brand.name}</div>
@@ -150,7 +150,7 @@ function AboutBrands() {
             "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop",
           ].map((src, i) => (
             <div key={i} className="aspect-square rounded-2xl overflow-hidden bg-muted group">
-              <img src={src} alt="Brand product" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={src} alt="Brand product" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
@@ -158,7 +158,7 @@ function AboutBrands() {
 
       {/* CTA */}
       <section className="relative rounded-3xl overflow-hidden h-[260px] flex items-center">
-        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1600&auto=format&fit=crop" alt="Shop brands" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1600&auto=format&fit=crop" alt="Shop brands" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
         <div className="absolute inset-0 bg-black/65" />
         <div className="relative z-10 px-10">
           <h3 className="text-white text-3xl font-display font-extrabold mb-4">Shop Genuine JBL, Infinity & Harman Kardon</h3>

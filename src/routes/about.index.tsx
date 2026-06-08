@@ -122,6 +122,8 @@ function AboutIndex() {
             src="/audiocare_img/store-2.jpeg" 
             alt="Premium Audio Equipment" 
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           
@@ -224,7 +226,7 @@ function AboutIndex() {
             { src: "/audiocare_img/woburn_iii_brown_gallery_assets_mobile_07.avif", alt: "Premium Speaker Setup" },
           ].map((img) => (
             <div key={img.alt} className="aspect-square rounded-xl overflow-hidden bg-muted group">
-              <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
