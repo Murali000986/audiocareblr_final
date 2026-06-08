@@ -242,14 +242,22 @@ function AboutIndex() {
                 <div>
                   <p className="font-bold text-sm text-foreground">Phone</p>
                   <p className="text-muted-foreground">Mobile: 9945966499</p>
-                  <p className="text-muted-foreground">Office: 080-40544499</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center flex-shrink-0"><MapPin className="w-5 h-5" /></div>
                 <div>
-                  <p className="font-bold text-sm text-foreground">Address</p>
-                  <p className="text-muted-foreground">#385, Ground Floor, 17th E Main Road,<br />KHB Colony, Bengaluru</p>
+                  <p className="font-bold text-sm text-foreground">Locations</p>
+                  <div className="space-y-3 mt-1">
+                    <a href="https://maps.app.goo.gl/A5eJPPQdYyxD6g797?g_st" target="_blank" rel="noopener noreferrer" className="block text-muted-foreground hover:text-primary transition-colors">
+                      <span className="font-semibold text-xs uppercase block text-foreground">Koramangala</span>
+                      <span className="text-sm">AUDIOCARE</span>
+                    </a>
+                    <a href="https://maps.app.goo.gl/ZUKo8JVv9Zaa5YCA6?g_st=awb" target="_blank" rel="noopener noreferrer" className="block text-muted-foreground hover:text-primary transition-colors">
+                      <span className="font-semibold text-xs uppercase block text-foreground">Nagarabhavi</span>
+                      <span className="text-sm">AUDIOCARE UNIT2</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

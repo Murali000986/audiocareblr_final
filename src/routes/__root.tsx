@@ -66,21 +66,47 @@ const localBusinessSchema = {
   "@type": "LocalBusiness",
   "@id": "https://www.audiocareblr.com/#business",
   "name": "AudioCare",
-  "alternateName": "AudioCare Bengaluru",
+  "alternateName": ["AudioCare Bengaluru", "AudioCare Koramangala", "AudioCare Nagarabhavi"],
   "url": "https://www.audiocareblr.com",
   "logo": "https://www.audiocareblr.com/favicon.svg",
   "image": "https://www.audiocareblr.com/favicon.svg",
-  "description": "AudioCare is Bengaluru's trusted audio service center offering speaker repair, amplifier service, home theatre installation, and professional sound system setup since 2007.",
-  "telephone": "+91-YOUR-PHONE",
+  "description": "AudioCare is Bengaluru's trusted audio service center offering speaker repair, amplifier service, home theatre installation, and professional sound system setup since 2007. Founded by Prakash, former service vendor for JBL, Infinity and Harman Kardon (Sahil International).",
+  "telephone": "+91-99459-66499",
   "email": "murali701081@gmail.com",
+  "founder": { "@type": "Person", "name": "Prakash", "jobTitle": "Founder & Head Technician" },
+  "foundingDate": "2007",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "YOUR STREET ADDRESS",
+    "streetAddress": "385, 17th F Main Rd, KHB Colony, 5th Block, Koramangala",
     "addressLocality": "Bengaluru",
     "addressRegion": "Karnataka",
-    "postalCode": "560000",
+    "postalCode": "560095",
     "addressCountry": "IN"
   },
+  "location": [
+    {
+      "@type": "Place",
+      "name": "AudioCare Koramangala",
+      "url": "https://maps.app.goo.gl/A5eJPPQdYyxD6g797",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Koramangala, Bengaluru",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+      }
+    },
+    {
+      "@type": "Place",
+      "name": "AudioCare Unit2 Nagarabhavi",
+      "url": "https://maps.app.goo.gl/ZUKo8JVv9Zaa5YCA6",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nagarabhavi, Bengaluru",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+      }
+    }
+  ],
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": "12.9716",
@@ -89,14 +115,15 @@ const localBusinessSchema = {
   "areaServed": [
     "Bengaluru", "Bangalore", "Whitefield", "Koramangala", "Indiranagar",
     "Marathahalli", "Electronic City", "HSR Layout", "Jayanagar", "BTM Layout",
-    "Hebbal", "Yelahanka", "Bannerghatta Road", "Sarjapur Road"
+    "Hebbal", "Yelahanka", "Bannerghatta Road", "Sarjapur Road",
+    "Nagarabhavi", "Rajajinagar", "Malleshwaram", "Basavanagudi"
   ],
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-      "opens": "09:00",
-      "closes": "19:00"
+      "opens": "10:30",
+      "closes": "20:00"
     }
   ],
   "priceRange": "₹₹",
@@ -109,11 +136,17 @@ const localBusinessSchema = {
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Speaker Repair" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Amplifier Repair" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home Theatre Installation" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sound System Setup" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sound System Setup" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Annual Maintenance Contract (AMC)" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Soundbar Repair" } }
     ]
   },
   "sameAs": [
-    "https://www.audiocareblr.com"
+    "https://www.audiocareblr.com",
+    "https://wa.me/919945966499",
+    "https://www.instagram.com/audiocare_blr/",
+    "https://www.justdial.com/Bangalore/Audio-Care-Opposite-Tas-Solution-Koramangala/080PXX80-XX80-140512201519-T5N8_BZDET",
+    "https://www.indiamart.com/company/197264085/"
   ]
 };
 

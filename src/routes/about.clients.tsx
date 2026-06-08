@@ -4,9 +4,17 @@ import { ArrowRight, Quote, MapPin, Award, Handshake, TrendingUp } from "lucide-
 export const Route = createFileRoute("/about/clients")({
   head: () => ({
     meta: [
-      { title: "Major Clients | AudioCare — Wonderla, Bangalore Club & More" },
-      { name: "description", content: "AudioCare proudly serves Wonderla Bangalore, Bangalore Club and PROFX with commercial audio AMC and pan-India service. 18+ years of trusted client relationships." },
-      { name: "keywords", content: "Wonderla audio AMC, Bangalore Club audio, PROFX service vendor, commercial audio Bengaluru" },
+      { title: "Major Clients — Wonderla, Bangalore Club & PROFX | AudioCare Bengaluru" },
+      { name: "description", content: "AudioCare proudly serves Wonderla Bangalore, Bangalore Club and PROFX with commercial audio AMC and pan-India service. Founder Prakash has 18+ years of trusted client relationships since 2007." },
+      { name: "keywords", content: "Wonderla audio AMC bangalore, Bangalore Club audio service, PROFX pan india service vendor, commercial audio AMC Bengaluru, audio maintenance contract bangalore, professional audio service bangalore" },
+      { property: "og:title", content: "Major Clients — Wonderla, Bangalore Club & PROFX | AudioCare Bengaluru" },
+      { property: "og:description", content: "AudioCare manages audio AMC for Wonderla Bangalore, Bangalore Club & serves as PROFX's Pan India vendor. 18+ years of trusted service." },
+      { property: "og:url", content: "https://www.audiocareblr.com/about/clients" },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "AudioCare Bengaluru" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Major Clients — Wonderla, Bangalore Club & PROFX | AudioCare" },
+      { name: "twitter:description", content: "AudioCare provides commercial audio AMC for Wonderla, Bangalore Club & pan-India services for PROFX." },
     ],
   }),
   component: AboutClients,

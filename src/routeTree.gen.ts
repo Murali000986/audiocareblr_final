@@ -29,6 +29,7 @@ import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as AboutIndexRouteImport } from './routes/about.index'
 import { Route as ShopProductIdRouteImport } from './routes/shop.$productId'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AreasAreaRouteImport } from './routes/areas.$area'
 import { Route as AboutServicesRouteImport } from './routes/about.services'
 import { Route as AboutClientsRouteImport } from './routes/about.clients'
 import { Route as AboutBrandsRouteImport } from './routes/about.brands'
@@ -134,6 +135,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const AreasAreaRoute = AreasAreaRouteImport.update({
+  id: '/areas/$area',
+  path: '/areas/$area',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutServicesRoute = AboutServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -174,6 +180,7 @@ export interface FileRoutesByFullPath {
   '/about/brands': typeof AboutBrandsRoute
   '/about/clients': typeof AboutClientsRoute
   '/about/services': typeof AboutServicesRoute
+  '/areas/$area': typeof AreasAreaRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/shop/$productId': typeof ShopProductIdRoute
   '/about/': typeof AboutIndexRoute
@@ -198,6 +205,7 @@ export interface FileRoutesByTo {
   '/about/brands': typeof AboutBrandsRoute
   '/about/clients': typeof AboutClientsRoute
   '/about/services': typeof AboutServicesRoute
+  '/areas/$area': typeof AreasAreaRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/shop/$productId': typeof ShopProductIdRoute
   '/about': typeof AboutIndexRoute
@@ -225,6 +233,7 @@ export interface FileRoutesById {
   '/about/brands': typeof AboutBrandsRoute
   '/about/clients': typeof AboutClientsRoute
   '/about/services': typeof AboutServicesRoute
+  '/areas/$area': typeof AreasAreaRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/shop/$productId': typeof ShopProductIdRoute
   '/about/': typeof AboutIndexRoute
@@ -253,6 +262,7 @@ export interface FileRouteTypes {
     | '/about/brands'
     | '/about/clients'
     | '/about/services'
+    | '/areas/$area'
     | '/blog/$slug'
     | '/shop/$productId'
     | '/about/'
@@ -277,6 +287,7 @@ export interface FileRouteTypes {
     | '/about/brands'
     | '/about/clients'
     | '/about/services'
+    | '/areas/$area'
     | '/blog/$slug'
     | '/shop/$productId'
     | '/about'
@@ -303,6 +314,7 @@ export interface FileRouteTypes {
     | '/about/brands'
     | '/about/clients'
     | '/about/services'
+    | '/areas/$area'
     | '/blog/$slug'
     | '/shop/$productId'
     | '/about/'
@@ -327,6 +339,7 @@ export interface RootRouteChildren {
   ReviewsRoute: typeof ReviewsRoute
   SoundExperienceRoute: typeof SoundExperienceRoute
   WishlistRoute: typeof WishlistRoute
+  AreasAreaRoute: typeof AreasAreaRoute
   ShopProductIdRoute: typeof ShopProductIdRoute
   ShopIndexRoute: typeof ShopIndexRoute
   ShopCategorySlugRoute: typeof ShopCategorySlugRoute
@@ -474,6 +487,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/areas/$area': {
+      id: '/areas/$area'
+      path: '/areas/$area'
+      fullPath: '/areas/$area'
+      preLoaderRoute: typeof AreasAreaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about/services': {
       id: '/about/services'
       path: '/services'
@@ -549,6 +569,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReviewsRoute: ReviewsRoute,
   SoundExperienceRoute: SoundExperienceRoute,
   WishlistRoute: WishlistRoute,
+  AreasAreaRoute: AreasAreaRoute,
   ShopProductIdRoute: ShopProductIdRoute,
   ShopIndexRoute: ShopIndexRoute,
   ShopCategorySlugRoute: ShopCategorySlugRoute,

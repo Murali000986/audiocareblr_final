@@ -4,9 +4,17 @@ import { ArrowRight, CheckCircle2, Star, Shield } from "lucide-react";
 export const Route = createFileRoute("/about/brands")({
   head: () => ({
     meta: [
-      { title: "Brand Partners | AudioCare — JBL, Infinity & Harman Kardon" },
-      { name: "description", content: "AudioCare is an authorized partner for JBL, Infinity, and Harman Kardon (via Sahil International) in Bengaluru. Genuine products, expert advice." },
-      { name: "keywords", content: "JBL dealer Bengaluru, Infinity speakers, Harman Kardon Bangalore, authorized audio dealer" },
+      { title: "JBL, Infinity & Harman Kardon Dealer Bengaluru — AudioCare Brand Partners" },
+      { name: "description", content: "AudioCare is an authorized partner for JBL, Infinity, and Harman Kardon (via Sahil International) in Bengaluru. Genuine products, expert advice, warranty support, and original spare parts in Bangalore." },
+      { name: "keywords", content: "JBL dealer Bengaluru, JBL speakers bangalore, Infinity speakers bangalore, Harman Kardon Bengaluru, authorized audio dealer bangalore, JBL service center bangalore, Sahil International dealer bangalore, buy JBL bangalore" },
+      { property: "og:title", content: "JBL, Infinity & Harman Kardon Dealer Bengaluru — AudioCare" },
+      { property: "og:description", content: "Authorized partner for JBL, Infinity & Harman Kardon in Bengaluru. Genuine products, warranty support, expert advice since 2007." },
+      { property: "og:url", content: "https://www.audiocareblr.com/about/brands" },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "AudioCare Bengaluru" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "JBL, Infinity & Harman Kardon Dealer Bengaluru — AudioCare" },
+      { name: "twitter:description", content: "Authorized JBL, Infinity & Harman Kardon partner in Bengaluru. Genuine products & expert advice." },
     ],
   }),
   component: AboutBrands,

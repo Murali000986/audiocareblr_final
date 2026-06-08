@@ -4,9 +4,17 @@ import { CheckCircle2, ArrowRight, Home, Building, Wrench, Clock, Shield, Zap } 
 export const Route = createFileRoute("/about/services")({
   head: () => ({
     meta: [
-      { title: "Our Services | AudioCare Bengaluru" },
-      { name: "description", content: "AudioCare offers Home Audio, Commercial Audio, Audio Installation, Speaker & Amplifier Repair, and Annual Maintenance Contracts (AMC) in Bengaluru." },
-      { name: "keywords", content: "home theater installation Bengaluru, audio repair, commercial audio, AMC, speaker service" },
+      { title: "Audio Services in Bengaluru — Home Theatre, Repair & AMC | AudioCare" },
+      { name: "description", content: "AudioCare Bengaluru offers Home Audio setup, Commercial Audio systems, Speaker & Amplifier Repair, Home Theatre Installation, and Annual Maintenance Contracts (AMC). Serving Bangalore since 2007." },
+      { name: "keywords", content: "home theater installation Bengaluru, audio repair bangalore, commercial audio Bengaluru, speaker installation bangalore, AMC audio bangalore, amplifier service bengaluru, soundbar repair bangalore, home theatre setup bangalore, PROFX service vendor, audio AMC bangalore" },
+      { property: "og:title", content: "Audio Services in Bengaluru — Home Theatre, Repair & AMC | AudioCare" },
+      { property: "og:description", content: "Home theatre installation, speaker repair, commercial audio & AMC services in Bengaluru since 2007. Expert team, genuine parts, free pickup." },
+      { property: "og:url", content: "https://www.audiocareblr.com/about/services" },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "AudioCare Bengaluru" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Audio Services in Bengaluru — Home Theatre, Repair & AMC | AudioCare" },
+      { name: "twitter:description", content: "Home theatre installation, speaker repair & AMC in Bengaluru. AudioCare since 2007." },
     ],
   }),
   component: AboutServices,

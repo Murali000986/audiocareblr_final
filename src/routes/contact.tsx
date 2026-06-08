@@ -58,7 +58,7 @@ function ContactPage() {
           Get in <span className="text-gradient-orange">Touch</span>
         </h1>
         <p className="text-muted-foreground mt-2 max-w-xl">
-          Have a question, a repair enquiry or a bulk order? We'd love to hear from you.
+          Welcome to AUDIO CARE! Your trusted partner for Professional Audio Service. How can we assist you today? Would you like me to help with creating beautiful audio experience? Hi I'm PRAKASH.
         </p>
 
         <div className="mt-10 grid lg:grid-cols-[1fr_400px] gap-8">
@@ -100,12 +100,12 @@ function ContactPage() {
 
           <aside className="space-y-3">
             {[
-              { Icon: Phone, t: "Call Us", s: "+91 98765 43210", href: "tel:+919876543210" },
-              { Icon: MessageCircle, t: "WhatsApp", s: "Chat 9 AM – 9 PM", href: "https://wa.me/919876543210" },
-              { Icon: Mail, t: "Email", s: "info@audiocare.in", href: "mailto:info@audiocare.in" },
-              { Icon: MapPin, t: "Visit Store", s: "Koramangala, Bengaluru – 560034", href: "#" },
+              { Icon: Phone, t: "Call Us", s: "9945966499", href: "tel:9945966499", target: "_self" },
+              { Icon: MessageCircle, t: "WhatsApp", s: "Mon - Sat, 10:30 AM - 8:00 PM", href: "https://wa.me/919945966499", target: "_blank" },
+              { Icon: MapPin, t: "AUDIOCARE (Koramangala)", s: "Bengaluru", href: "https://maps.app.goo.gl/A5eJPPQdYyxD6g797?g_st", target: "_blank" },
+              { Icon: MapPin, t: "AUDIOCARE UNIT2 (Nagarabhavi)", s: "Bengaluru", href: "https://maps.app.goo.gl/ZUKo8JVv9Zaa5YCA6?g_st=awb", target: "_blank" },
             ].map((c) => (
-              <a key={c.t} href={c.href} className="flex items-start gap-3 p-4 rounded-2xl border border-border bg-card hover:border-primary transition-colors">
+              <a key={c.t} href={c.href} target={c.target} rel={c.target === "_blank" ? "noopener noreferrer" : undefined} className="flex items-start gap-3 p-4 rounded-2xl border border-border bg-card hover:border-primary transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-accent text-primary flex items-center justify-center shrink-0">
                   <c.Icon className="w-5 h-5" />
                 </div>

@@ -54,12 +54,6 @@ function AboutLayout() {
               >
                 <Phone className="w-4 h-4" /> 9945966499
               </a>
-              <a
-                href="tel:08040544499"
-                className="inline-flex items-center gap-2 border border-white/30 text-white hover:bg-white/10 font-medium px-6 py-3 rounded-xl transition-colors text-sm"
-              >
-                Office: 080-40544499
-              </a>
             </div>
           </div>
         </div>
@@ -108,8 +102,8 @@ function AboutLayout() {
                     <p className="text-muted-foreground">2007 · 18+ Years</p>
                   </div>
                   <div>
-                    <p className="font-bold text-foreground">Location</p>
-                    <p className="text-muted-foreground">#385, 17th E Main Rd, KHB Colony, Bengaluru</p>
+                    <p className="font-bold text-foreground">Locations</p>
+                    <p className="text-muted-foreground">Koramangala & Nagarabhavi, Bengaluru</p>
                   </div>
                   <div>
                     <p className="font-bold text-foreground">Services</p>
