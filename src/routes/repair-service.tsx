@@ -6,7 +6,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/contexts/AuthContext";
-import { Wrench, CheckCircle2, MessageCircle, Truck, ShieldCheck, Clock } from "lucide-react";
+import { Wrench, CheckCircle2, MessageCircle, Truck, ShieldCheck, Clock, Info } from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
 const schema = z.object({
@@ -276,6 +276,26 @@ function RepairPage() {
                   </p>
                 </form>
               )}
+            </div>
+          </AnimatedSection>
+        </section>
+        {/* Terms & Conditions */}
+        <section className="max-w-2xl mx-auto px-4 sm:px-6 pb-16">
+          <AnimatedSection direction="up" delay={300}>
+            <div className="bg-muted/50 border border-border rounded-2xl p-6 sm:p-8">
+              <div className="flex items-center gap-2 mb-4">
+                <Info className="w-5 h-5 text-muted-foreground" />
+                <h3 className="font-bold text-sm uppercase tracking-wider text-muted-foreground">Terms & Conditions</h3>
+              </div>
+              <ul className="space-y-3 text-xs sm:text-sm text-muted-foreground list-disc pl-5">
+                <li><strong>Estimation Time:</strong> Product service estimation is provided within 4-5 working days from receipt.</li>
+                <li><strong>Serviceability:</strong> Repair is strictly dependent on the availability of spare components.</li>
+                <li><strong>Duration:</strong> Maximum service duration is 15 working days.</li>
+                <li><strong>Testing Charges:</strong> A general testing charge of ₹350 applies after the quote (depends on product).</li>
+                <li><strong>Storage Policy:</strong> Maximum storage limit is one month. After 45 days, the company will not be responsible for the product (will be treated as e-waste).</li>
+                <li><strong>Vintage Models:</strong> For models 5 years or older, there is a 50:50 chance for repair depending on spare parts availability.</li>
+                <li><strong>Liability:</strong> While servicing, in the rare case the product becomes dead, we are not responsible for the product.</li>
+              </ul>
             </div>
           </AnimatedSection>
         </section>
