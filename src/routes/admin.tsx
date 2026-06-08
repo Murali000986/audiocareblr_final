@@ -143,6 +143,7 @@ function AdminPage() {
 function RepairsView() {
   const [repairs, setRepairs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedRepair, setSelectedRepair] = useState<any | null>(null);
 
   const fetchRepairs = async () => {
     setLoading(true);
@@ -155,44 +156,102 @@ function RepairsView() {
   const updateStatus = async (id: string, status: string) => {
     await supabase.from("repair_bookings").update({ status }).eq("id", id);
     fetchRepairs();
+    if (selectedRepair?.id === id) setSelectedRepair({ ...selectedRepair, status });
   };
 
   const statuses = ["booked", "picked-up", "in-repair", "done", "cancelled"];
 
   return (
-    <div className="glass border border-border rounded-2xl overflow-hidden">
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-border bg-section/50">
-              {["Ref", "Name", "Device", "Status", "Action"].map(h => (
-                <th key={h} className="text-left px-4 py-3 text-xs font-bold text-muted-foreground uppercase">{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {loading
-              ? <tr><td colSpan={5} className="p-8 text-center text-muted-foreground">Loading…</td></tr>
-              : repairs.map(r => (
-                <tr key={r.id} className="border-b border-border hover:bg-section/30">
-                  <td className="px-4 py-3 font-mono text-xs text-primary">#{r.booking_ref}</td>
-                  <td className="px-4 py-3 text-xs">{r.name}</td>
-                  <td className="px-4 py-3 text-xs">{r.brand} {r.device}</td>
-                  <td className="px-4 py-3">
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${r.status === "done" ? "bg-green-500/20 text-green-400" : "bg-purple-500/20 text-purple-400"}`}>
-                      {r.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <select value={r.status} onChange={e => updateStatus(r.id, e.target.value)} className="text-xs px-2 py-1 rounded border border-border bg-section cursor-pointer">
-                      {statuses.map(s => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+    <>
+      <div className="glass border border-border rounded-2xl overflow-hidden relative">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border bg-section/50">
+                {["Ref", "Name", "Device", "Status", "Action"].map(h => (
+                  <th key={h} className="text-left px-4 py-3 text-xs font-bold text-muted-foreground uppercase">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {loading
+                ? <tr><td colSpan={5} className="p-8 text-center text-muted-foreground">Loading…</td></tr>
+                : repairs.map(r => (
+                  <tr key={r.id} className="border-b border-border hover:bg-section/30">
+                    <td 
+                      className="px-4 py-3 font-mono text-xs text-primary cursor-pointer hover:underline"
+                      onClick={() => setSelectedRepair(r)}
+                    >
+                      #{r.booking_ref}
+                    </td>
+                    <td className="px-4 py-3 text-xs">
+                      <div className="font-bold">{r.name}</div>
+                      <div className="text-[10px] text-muted-foreground">{r.phone}</div>
+                    </td>
+                    <td className="px-4 py-3 text-xs">{r.brand} {r.device}</td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${r.status === "done" ? "bg-green-500/20 text-green-400" : "bg-purple-500/20 text-purple-400"}`}>
+                        {r.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <select value={r.status} onChange={e => updateStatus(r.id, e.target.value)} className="text-xs px-2 py-1 rounded border border-border bg-section cursor-pointer">
+                        {statuses.map(s => <option key={s} value={s}>{s}</option>)}
+                      </select>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+
+      {/* Repair Details Modal */}
+      {selectedRepair && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="w-full max-w-lg glass border border-border rounded-3xl p-6 relative animate-fade-up">
+            <button onClick={() => setSelectedRepair(null)} className="absolute top-5 right-5 p-2 rounded-full hover:bg-section transition-colors">
+              <X className="w-5 h-5" />
+            </button>
+            <h3 className="font-display font-black text-xl mb-1">Repair Details</h3>
+            <p className="text-primary font-mono text-sm mb-6">#{selectedRepair.booking_ref}</p>
+            
+            <div className="space-y-4 text-sm">
+              <div className="grid grid-cols-2 gap-4">
+                <div><span className="block text-xs text-muted-foreground mb-1">Customer Name</span> <span className="font-bold">{selectedRepair.name}</span></div>
+                <div><span className="block text-xs text-muted-foreground mb-1">Phone Number</span> <a href={`tel:${selectedRepair.phone}`} className="text-primary hover:underline">{selectedRepair.phone}</a></div>
+                <div><span className="block text-xs text-muted-foreground mb-1">Email Address</span> <a href={`mailto:${selectedRepair.email}`} className="text-primary hover:underline">{selectedRepair.email}</a></div>
+                <div><span className="block text-xs text-muted-foreground mb-1">Preferred Date</span> <span>{selectedRepair.preferred_date || "Not set"}</span></div>
+              </div>
+              
+              <div className="border-t border-border pt-4 mt-4">
+                <span className="block text-xs text-muted-foreground mb-1">Device & Brand</span>
+                <div className="font-bold">{selectedRepair.brand} — {selectedRepair.device}</div>
+              </div>
+              
+              <div>
+                <span className="block text-xs text-muted-foreground mb-1">Reported Issue</span>
+                <div className="bg-section p-3 rounded-xl border border-border text-muted-foreground whitespace-pre-wrap">
+                  {selectedRepair.issue}
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4 border-t border-border pt-4">
+                <div>
+                  <span className="block text-xs text-muted-foreground mb-1">Service Mode</span>
+                  <span className="capitalize font-bold">{selectedRepair.pickup_mode === "pickup" ? "Free Doorstep Pickup" : "Drop at Store"}</span>
+                </div>
+                <div>
+                  <span className="block text-xs text-muted-foreground mb-1">Current Status</span>
+                  <select value={selectedRepair.status} onChange={e => updateStatus(selectedRepair.id, e.target.value)} className="w-full text-xs px-2 py-1.5 rounded border border-border bg-section cursor-pointer">
+                    {statuses.map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
