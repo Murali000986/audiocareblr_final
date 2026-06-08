@@ -10,7 +10,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { useRef, useState, useEffect } from "react";
 import bannerOld from "../audio_care_cen/audio_care_banner_1897x835.jpg";
-import bannerNew from "../audio_care_cen/ChatGPT Image Jun 7, 2026, 09_18_24 PM - Copy.png";
+import bannerNew from "../audio_care_cen/ChatGPT Image Jun 8, 2026, 09_01_40 PM.png";
 
 const slides = [
   {
