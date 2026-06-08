@@ -75,7 +75,7 @@ function AboutIndex() {
         </div>
         <div className="relative h-[460px] rounded-3xl overflow-hidden shadow-xl">
           <img
-            src="https://images.unsplash.com/photo-1577174881658-0f30ed549adc?q=80&w=1000&auto=format&fit=crop"
+            src="/audiocare_img/store-1.jpeg"
             alt="AudioCare workshop team"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -100,7 +100,7 @@ function AboutIndex() {
       {/* FULL-WIDTH IMAGE QUOTE */}
       <section className="relative rounded-3xl overflow-hidden h-[350px] flex items-center">
         <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1600&auto=format&fit=crop"
+          src="/audiocare_img/speaker-1.jpeg"
           alt="Premium audio setup"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -119,7 +119,7 @@ function AboutIndex() {
         {/* Left — Premium Audio Image */}
         <div className="relative h-[480px] rounded-3xl overflow-hidden shadow-2xl">
           <img 
-            src="https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=1000&auto=format&fit=crop" 
+            src="/audiocare_img/store-2.jpeg" 
             alt="Premium Audio Equipment" 
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -216,12 +216,12 @@ function AboutIndex() {
         <h2 className="text-3xl font-display font-extrabold mb-8">Installations & Setups</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {[
-            { src: "https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=800&auto=format&fit=crop", alt: "Home Theater" },
-            { src: "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=800&auto=format&fit=crop", alt: "Professional Speakers" },
-            { src: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800&auto=format&fit=crop", alt: "Theater Auditorium" },
-            { src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop", alt: "Sound System" },
-            { src: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop", alt: "Studio Equipment" },
-            { src: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=800&auto=format&fit=crop", alt: "Headphones" },
+            { src: "/audiocare_img/speaker-2.jpeg", alt: "Home Theater" },
+            { src: "/audiocare_img/speaker-3.jpeg", alt: "Professional Speakers" },
+            { src: "/audiocare_img/speaker-4.jpeg", alt: "Theater Auditorium" },
+            { src: "/audiocare_img/speaker-5.jpeg", alt: "Sound System" },
+            { src: "/audiocare_img/01-acton-iii-black-front-mobile.avif", alt: "Marshall Audio Setup" },
+            { src: "/audiocare_img/woburn_iii_brown_gallery_assets_mobile_07.avif", alt: "Premium Speaker Setup" },
           ].map((img) => (
             <div key={img.alt} className="aspect-square rounded-xl overflow-hidden bg-muted group">
               <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -267,7 +267,7 @@ function AboutIndex() {
           </div>
           <div className="h-[300px] md:h-auto bg-black relative overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1520166970742-99d863ff1c83?q=80&w=800&auto=format&fit=crop"
+              src="/audiocare_img/store-1.jpeg"
               alt="AudioCare store"
               className="w-full h-full object-cover opacity-80"
             />
