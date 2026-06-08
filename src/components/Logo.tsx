@@ -4,7 +4,7 @@ export function Logo() {
       <img 
         src="/audiocare_img/audiocare-logo.png" 
         alt="AudioCare Logo" 
-        className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
+        className="h-[70px] sm:h-20 w-auto object-contain transition-transform group-hover:scale-105"
       />
     </div>
   );
