@@ -10,7 +10,7 @@ export function Logo() {
         style={{ fontFamily: "'Black Ops One', cursive" }}
         className="text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-primary leading-none select-none"
       >
-        life of audio
+        life for audio
       </span>
     </div>
   );
