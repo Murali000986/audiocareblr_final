@@ -5,10 +5,10 @@ export const Route = createFileRoute("/about/clients")({
   head: () => ({
     meta: [
       { title: "Major Clients — Wonderla, Bangalore Club & PROFX | AudioCare Bengaluru" },
-      { name: "description", content: "AudioCare proudly serves Wonderla Bangalore, Bangalore Club and PROFX with commercial audio AMC and pan-India service. Founder Prakash has 18+ years of trusted client relationships since 2007." },
+      { name: "description", content: "AudioCare proudly serves Wonderla Bangalore, Bangalore Club and PROFX with commercial audio AMC and pan-India service. Founder Prakash has 19+ years of trusted client relationships since 2007." },
       { name: "keywords", content: "Wonderla audio AMC bangalore, Bangalore Club audio service, PROFX pan india service vendor, commercial audio AMC Bengaluru, audio maintenance contract bangalore, professional audio service bangalore" },
       { property: "og:title", content: "Major Clients — Wonderla, Bangalore Club & PROFX | AudioCare Bengaluru" },
-      { property: "og:description", content: "AudioCare manages audio AMC for Wonderla Bangalore, Bangalore Club & serves as PROFX's Pan India vendor. 18+ years of trusted service." },
+      { property: "og:description", content: "AudioCare manages audio AMC for Wonderla Bangalore, Bangalore Club & serves as PROFX's Pan India vendor. 19+ years of trusted service." },
       { property: "og:url", content: "https://www.audiocareblr.com/about/clients" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "AudioCare Bengaluru" },
@@ -63,7 +63,7 @@ const clients = [
 ];
 
 const trustStats = [
-  { icon: Award, value: "18+", label: "Years of Trusted Service" },
+  { icon: Award, value: "19+", label: "Years of Trusted Service" },
   { icon: Handshake, value: "50+", label: "Commercial Clients" },
   { icon: TrendingUp, value: "99%", label: "Client Retention Rate" },
   { icon: MapPin, value: "Pan India", label: "Service Reach" },

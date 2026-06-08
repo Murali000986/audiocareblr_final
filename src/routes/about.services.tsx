@@ -55,7 +55,7 @@ const whyChooseUs = [
   { icon: Zap, title: "Fast Turnaround", desc: "Most repairs in 24–48 hours." },
   { icon: Shield, title: "Warranty on Repairs", desc: "Every repair comes with a service warranty." },
   { icon: CheckCircle2, title: "Genuine Parts", desc: "We use only original manufacturer parts." },
-  { icon: Clock, title: "18+ Years Experience", desc: "Trusted by thousands since 2007." },
+  { icon: Clock, title: "19+ Years Experience", desc: "Trusted by thousands since 2007." },
 ];
 
 function AboutServices() {

@@ -4,10 +4,10 @@ import { Calendar, MapPin, Phone, Award, Users, Star, ArrowRight, CheckCircle2, 
 export const Route = createFileRoute("/about/")({
   head: () => ({
     meta: [
-      { title: "About AudioCare — 18+ Years of Audio Expertise in Bengaluru" },
+      { title: "About AudioCare — 19+ Years of Audio Expertise in Bengaluru" },
       { name: "description", content: "Meet the team behind Bengaluru's most trusted audio service center. Prakash, our founder, has been serving JBL, Harman Kardon & Infinity customers since 2007. Home theatre, AMC, and sound system experts in Bangalore." },
       { name: "keywords", content: "audiocare bengaluru, audio service center bangalore, home theatre expert bengaluru, JBL dealer bangalore, speaker service bangalore, prakash audiocare, audio AMC bengaluru" },
-      { property: "og:title", content: "About AudioCare Bengaluru — 18+ Years of Audio Excellence" },
+      { property: "og:title", content: "About AudioCare Bengaluru — 19+ Years of Audio Excellence" },
       { property: "og:description", content: "Bengaluru's trusted audio expert since 2007. Prakash & team serve JBL, Harman, Infinity brands across Bangalore." },
       { property: "og:url", content: "https://www.audiocareblr.com/about" },
     ],
@@ -23,18 +23,18 @@ const milestones = [
   { year: "2015", title: "Bangalore Club — Audio AMC", desc: "Became the trusted audio AMC partner for Bangalore Club, one of the city's most prestigious social institutions." },
   { year: "2017", title: "PROFX — Pan India Service Vendor", desc: "Empanelled as a Pan India Service Vendor for PROFX, handling audio service projects across the entire country." },
   { year: "2017", title: "AudioCare Founded", desc: "After 13 years of building expertise with the world's leading audio brands, Prakash founded AudioCare — Bengaluru's most trusted audio solutions company." },
-  { year: "2025", title: "18+ Years & Counting", desc: "Serving thousands of happy customers across Bengaluru with sales, installation, repair and AMC services." },
+  { year: "2026", title: "19+ Years & Counting", desc: "Serving thousands of happy customers across Bengaluru with sales, installation, repair and AMC services." },
 ];
 
 const founderCredentials = [
   { icon: Briefcase, label: "13 Years", sub: "as JBL / Harman service vendor" },
   { icon: Globe,     label: "5 Cities",  sub: "Bangalore · Chennai · Kerala · Hyderabad · Pan India" },
   { icon: Shield,    label: "AMC Expert", sub: "Wonderla · Bangalore Club · PROFX" },
-  { icon: Award,     label: "Est. 2007",  sub: "18+ years of hands-on audio expertise" },
+  { icon: Award,     label: "Est. 2007",  sub: "19+ years of hands-on audio expertise" },
 ];
 
 const stats = [
-  { icon: Calendar, value: "18+", label: "Years in Business" },
+  { icon: Calendar, value: "19+", label: "Years in Business" },
   { icon: Users, value: "10,000+", label: "Repairs Completed" },
   { icon: Star, value: "4.9★", label: "Average Rating" },
   { icon: Award, value: "50+", label: "Premium Brands" },
@@ -75,13 +75,13 @@ function AboutIndex() {
         </div>
         <div className="relative h-[460px] rounded-3xl overflow-hidden shadow-xl">
           <img
-            src="/audiocare_img/store-1.jpeg"
-            alt="AudioCare workshop team"
+            src="https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?w=800&q=80&fit=crop"
+            alt="AudioCare technician repairing audio equipment"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
             <p className="text-white font-bold text-lg">Our Expert Team</p>
-            <p className="text-white/70 text-sm">Certified technicians with 18+ years combined experience</p>
+            <p className="text-white/70 text-sm">Certified technicians with 19+ years combined experience</p>
           </div>
         </div>
       </section>
@@ -100,8 +100,8 @@ function AboutIndex() {
       {/* FULL-WIDTH IMAGE QUOTE */}
       <section className="relative rounded-3xl overflow-hidden h-[350px] flex items-center">
         <img
-          src="/audiocare_img/speaker-1.jpeg"
-          alt="Premium audio setup"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&fit=crop"
+          alt="Professional audio installation team at work"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/65" />
@@ -119,8 +119,8 @@ function AboutIndex() {
         {/* Left — Premium Audio Image */}
         <div className="relative h-[480px] rounded-3xl overflow-hidden shadow-2xl">
           <img 
-            src="/audiocare_img/store-2.jpeg" 
-            alt="Premium Audio Equipment" 
+            src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80&fit=crop"
+            alt="Prakash AudioCare founder at work" 
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
             decoding="async"
@@ -129,7 +129,7 @@ function AboutIndex() {
           
           {/* Floating experience badge */}
           <div className="absolute bottom-6 right-6 bg-primary text-primary-foreground rounded-2xl px-6 py-4 shadow-glow backdrop-blur-md bg-primary/90">
-            <p className="font-display font-black text-3xl leading-none">18+</p>
+            <p className="font-display font-black text-3xl leading-none">19+</p>
             <p className="text-xs font-bold opacity-90 mt-1">Years Experience</p>
           </div>
           
@@ -218,12 +218,12 @@ function AboutIndex() {
         <h2 className="text-3xl font-display font-extrabold mb-8">Installations & Setups</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {[
-            { src: "/audiocare_img/speaker-2.jpeg", alt: "Home Theater" },
-            { src: "/audiocare_img/speaker-3.jpeg", alt: "Professional Speakers" },
-            { src: "/audiocare_img/speaker-4.jpeg", alt: "Theater Auditorium" },
-            { src: "/audiocare_img/speaker-5.jpeg", alt: "Sound System" },
-            { src: "/audiocare_img/01-acton-iii-black-front-mobile.avif", alt: "Marshall Audio Setup" },
-            { src: "/audiocare_img/woburn_iii_brown_gallery_assets_mobile_07.avif", alt: "Premium Speaker Setup" },
+            { src: "/audiocare_img/store-1.jpeg", alt: "AudioCare Store Koramangala" },
+            { src: "/audiocare_img/store-2.jpeg", alt: "AudioCare Workshop" },
+            { src: "https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?w=600&q=80&fit=crop", alt: "Technician repairing audio equipment" },
+            { src: "https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?w=600&q=80&fit=crop", alt: "Home theater installation" },
+            { src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop", alt: "Professional audio setup" },
+            { src: "https://images.unsplash.com/photo-1562184552-997c461abbe6?w=600&q=80&fit=crop", alt: "Sound system installation" },
           ].map((img) => (
             <div key={img.alt} className="aspect-square rounded-xl overflow-hidden bg-muted group">
               <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
@@ -269,8 +269,8 @@ function AboutIndex() {
           </div>
           <div className="h-[300px] md:h-auto bg-black relative overflow-hidden">
             <img
-              src="/audiocare_img/store-1.jpeg"
-              alt="AudioCare store"
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&fit=crop"
+              alt="AudioCare professional store interior"
               className="w-full h-full object-cover opacity-80"
             />
           </div>

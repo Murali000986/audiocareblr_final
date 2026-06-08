@@ -43,7 +43,7 @@ function AboutLayout() {
               About<br />AudioCare
             </h1>
             <p className="mt-6 text-white/80 text-lg lg:text-xl max-w-xl leading-relaxed drop-shadow-md">
-              18+ years of excellence in Home Audio &amp; Commercial Audio Sales, Service, Installation &amp; AMC.
+              19+ years of excellence in Home Audio &amp; Commercial Audio Sales, Service, Installation &amp; AMC.
             </p>
 
             {/* Quick contact strip */}
@@ -99,7 +99,7 @@ function AboutLayout() {
                 <div className="space-y-3 text-sm">
                   <div>
                     <p className="font-bold text-foreground">Founded</p>
-                    <p className="text-muted-foreground">2007 · 18+ Years</p>
+                    <p className="text-muted-foreground">2007 · 19+ Years</p>
                   </div>
                   <div>
                     <p className="font-bold text-foreground">Locations</p>
