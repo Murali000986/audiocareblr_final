@@ -45,6 +45,22 @@ function ContactPage() {
       return;
     }
     setErrors({});
+    
+    // Send email to admin
+    fetch("https://formsubmit.co/ajax/murali701081@gmail.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        _subject: `New Website Inquiry: ${form.subject}`,
+        Name: form.name,
+        Email: form.email,
+        Phone: form.phone,
+        Subject: form.subject,
+        Message: form.message,
+        _template: "table"
+      })
+    }).catch(console.error);
+
     setSent(true);
     toast.success("Message sent — we'll reply within 24 hours");
     setForm({ name: "", email: "", phone: "", subject: "", message: "" });

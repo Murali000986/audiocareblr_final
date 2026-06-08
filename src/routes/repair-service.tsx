@@ -136,8 +136,39 @@ function RepairPage() {
       booking_ref:  bookingRef,
     });
 
+    if (error) { 
+      setLoading(false);
+      toast.error("Failed to submit. Please try again."); 
+      return; 
+    }
+
+    // Send email notification to Admin
+    try {
+      await fetch("https://formsubmit.co/ajax/murali701081@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _subject: `New Repair Booking: ${form.device} (${bookingRef})`,
+          Name: form.name,
+          Phone: form.phone,
+          Email: form.email,
+          Brand: form.brand,
+          Device: form.device,
+          Issue: form.issue,
+          Pickup_Mode: form.pickup === "pickup" ? "Free Doorstep Pickup" : "Drop at Store",
+          Preferred_Date: form.date,
+          Booking_Reference: bookingRef,
+          _template: "table"
+        })
+      });
+    } catch (e) {
+      console.error("Email notification failed", e);
+    }
+
     setLoading(false);
-    if (error) { toast.error("Failed to submit. Please try again."); return; }
     toast.success("Repair request submitted!");
     setDone(bookingRef);
     setForm(emptyForm);
