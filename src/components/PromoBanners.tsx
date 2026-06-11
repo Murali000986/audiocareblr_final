@@ -9,7 +9,7 @@ export function PromoBanners() {
         {/* Banner 1 — Home Theater */}
         <div className="relative group overflow-hidden bg-black min-h-[420px] lg:min-h-[500px] flex items-end">
           <img
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop"
+            src="/audiocare_img/family_home_theater.png"
             alt="Home Theater Setup"
             className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
           />
@@ -37,7 +37,7 @@ export function PromoBanners() {
         {/* Banner 2 — Sound Systems */}
         <div className="relative group overflow-hidden bg-black min-h-[420px] lg:min-h-[500px] flex items-end">
           <img
-            src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=1200&auto=format&fit=crop"
+            src="/audiocare_img/marshall_speaker.png"
             alt="Premium Sound Systems"
             className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
           />
