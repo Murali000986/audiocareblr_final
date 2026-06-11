@@ -8,7 +8,7 @@ const services = [
     description:
       "Transform any room into a private cinema with professional home theater installation in Bangalore. We supply and install complete home theater systems with Dolby Atmos surround sound, projectors, and smart controls.",
     image:
-      "https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=900&auto=format&fit=crop",
+      "/audiocare_img/services_home_theater.png",
     link: "/shop/category/home-theatre",
     tag: "Design & Install",
     points: ["Dolby Atmos / DTS:X Surround", "4K Projector Setup", "Acoustic Treatment", "Smart Remote Control"],
@@ -20,7 +20,7 @@ const services = [
     description:
       "Professional audio-visual solutions for theaters, auditoriums, schools, and conference halls. Crisp, powerful sound that fills every seat — engineered for large spaces.",
     image:
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=900&auto=format&fit=crop",
+      "/audiocare_img/services_auditorium.png",
     link: "/contact",
     tag: "Professional AV",
     points: ["Large Venue Sound Design", "Line Array Speaker Systems", "AV Integration", "Conference & Boardroom"],
@@ -32,7 +32,7 @@ const services = [
     description:
       "Whether it's a premium soundbar, multi-room audio, or a full hi-fi setup — we carry top brands like JBL, Sony, Bose, and Marshall. Your perfect sound system is here.",
     image:
-      "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=900&auto=format&fit=crop",
+      "/audiocare_img/services_sound_systems.png",
     link: "/shop",
     tag: "Buy & Experience",
     points: ["Premium Brand Selection", "Soundbars & Subwoofers", "Multi-room Audio", "Party Speakers"],
@@ -44,7 +44,7 @@ const services = [
     description:
       "Expert audio equipment repair in Bengaluru — speakers, amplifiers, subwoofers, and soundbars. Certified technicians, genuine parts, and free pickup & delivery for speaker repair in Bangalore.",
     image:
-      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=900&auto=format&fit=crop",
+      "/audiocare_img/services_repair.png",
     link: "/repair-service",
     tag: "Repair & Restore",
     points: ["Speaker Cone Replacement", "Amplifier Repair", "Soundbar Servicing", "Free Doorstep Pickup"],
