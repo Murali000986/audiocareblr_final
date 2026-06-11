@@ -23,28 +23,28 @@ export function ImageGallery() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
           <div className="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group">
             <img 
-              src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=1200&auto=format&fit=crop" 
+              src="/audiocare_img/gallery_home_theater.png" 
               alt="Home Theater" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
             />
           </div>
           <div className="col-span-1 row-span-1 rounded-2xl overflow-hidden relative group">
              <img 
-              src="https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=600&auto=format&fit=crop" 
+              src="/audiocare_img/gallery_speakers.png" 
               alt="Premium Speakers" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
             />
           </div>
           <div className="col-span-1 row-span-2 rounded-2xl overflow-hidden relative group">
             <img 
-              src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=600&auto=format&fit=crop" 
+              src="/audiocare_img/gallery_auditorium.png" 
               alt="Auditorium Audio" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
             />
           </div>
           <div className="col-span-1 row-span-1 rounded-2xl overflow-hidden relative group">
             <img 
-              src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=600&auto=format&fit=crop" 
+              src="/audiocare_img/gallery_soundbar.png" 
               alt="Soundbar Setup" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
             />
