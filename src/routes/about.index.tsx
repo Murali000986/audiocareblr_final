@@ -75,7 +75,7 @@ function AboutIndex() {
         </div>
         <div className="relative h-[460px] rounded-3xl overflow-hidden shadow-xl">
           <img
-            src="https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?w=800&q=80&fit=crop"
+            src="/audiocare_img/about_expert_team.png"
             alt="AudioCare technician repairing audio equipment"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -100,7 +100,7 @@ function AboutIndex() {
       {/* FULL-WIDTH IMAGE QUOTE */}
       <section className="relative rounded-3xl overflow-hidden h-[350px] flex items-center">
         <img
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&fit=crop"
+          src="/audiocare_img/about_quote_banner.png"
           alt="Professional audio installation team at work"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -119,7 +119,7 @@ function AboutIndex() {
         {/* Left — Premium Audio Image */}
         <div className="relative h-[480px] rounded-3xl overflow-hidden shadow-2xl">
           <img 
-            src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80&fit=crop"
+            src="/audiocare_img/gallery_speakers.png"
             alt="Prakash AudioCare founder at work" 
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
@@ -220,10 +220,10 @@ function AboutIndex() {
           {[
             { src: "/audiocare_img/store-1.jpeg", alt: "AudioCare Store Koramangala" },
             { src: "/audiocare_img/store-2.jpeg", alt: "AudioCare Workshop" },
-            { src: "https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?w=600&q=80&fit=crop", alt: "Technician repairing audio equipment" },
-            { src: "https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?w=600&q=80&fit=crop", alt: "Home theater installation" },
-            { src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop", alt: "Professional audio setup" },
-            { src: "https://images.unsplash.com/photo-1562184552-997c461abbe6?w=600&q=80&fit=crop", alt: "Sound system installation" },
+            { src: "/audiocare_img/services_repair.png", alt: "Technician repairing audio equipment" },
+            { src: "/audiocare_img/services_home_theater.png", alt: "Home theater installation" },
+            { src: "/audiocare_img/gallery_home_theater.png", alt: "Professional audio setup" },
+            { src: "/audiocare_img/services_auditorium.png", alt: "Sound system installation" },
           ].map((img) => (
             <div key={img.alt} className="aspect-square rounded-xl overflow-hidden bg-muted group">
               <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
@@ -269,7 +269,7 @@ function AboutIndex() {
           </div>
           <div className="h-[300px] md:h-auto bg-black relative overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&fit=crop"
+              src="/audiocare_img/services_sound_systems.png"
               alt="AudioCare professional store interior"
               className="w-full h-full object-cover opacity-80"
             />
