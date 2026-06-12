@@ -14,6 +14,7 @@ export function BrandCloud() {
     { name: "DENON",         img: "/logos/denon.svg" },
     { name: "Pioneer",       img: "/logos/pioneer.svg" },
     { name: "Marantz",       img: "/logos/marantz.svg" },
+    { name: "Marshall",      img: "/logos/marshall.svg" },
     
     // Text-based for brands without SVGs
     { name: "Optoma",        text: "Optoma",        textStyle: "font-bold text-3xl italic tracking-tight text-red-500" },
@@ -36,7 +37,7 @@ export function BrandCloud() {
           {brands.map((brand) => (
             <div
               key={brand.name}
-              className="grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-default select-none flex items-center justify-center"
+              className="hover:scale-110 transition-all duration-300 cursor-default select-none flex items-center justify-center"
               title={brand.name}
             >
               {brand.img ? (
