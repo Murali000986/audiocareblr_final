@@ -13,11 +13,11 @@ DROP POLICY IF EXISTS "Only admins can modify products" ON public.products;
 CREATE POLICY "Only admins can modify products" ON public.products
   FOR ALL
   USING (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   )
   WITH CHECK (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   );
 
@@ -26,11 +26,11 @@ DROP POLICY IF EXISTS "Only admins can modify testimonials" ON public.testimonia
 CREATE POLICY "Only admins can modify testimonials" ON public.testimonials
   FOR ALL
   USING (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   )
   WITH CHECK (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   );
 
@@ -39,11 +39,11 @@ DROP POLICY IF EXISTS "Only admins can modify portfolio" ON public.portfolio;
 CREATE POLICY "Only admins can modify portfolio" ON public.portfolio
   FOR ALL
   USING (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   )
   WITH CHECK (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   );
 
@@ -52,7 +52,7 @@ DROP POLICY IF EXISTS "Admins can view all bookings" ON public.repair_bookings;
 CREATE POLICY "Admins can view all bookings" ON public.repair_bookings
   FOR ALL
   USING (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   );
 
@@ -61,7 +61,7 @@ DROP POLICY IF EXISTS "Admins can view all orders" ON public.orders;
 CREATE POLICY "Admins can view all orders" ON public.orders
   FOR ALL
   USING (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   );
 
@@ -80,16 +80,16 @@ CREATE TABLE IF NOT EXISTS public.blogs (
 ALTER TABLE public.blogs ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Anyone can view published blogs" ON public.blogs;
 CREATE POLICY "Anyone can view published blogs" ON public.blogs
-  FOR SELECT USING (published = true OR auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com'));
+  FOR SELECT USING (published = true OR auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in'));
 DROP POLICY IF EXISTS "Admins can manage blogs" ON public.blogs;
 CREATE POLICY "Admins can manage blogs" ON public.blogs
   FOR ALL
   USING (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   )
   WITH CHECK (
-    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com')
+    auth.jwt()->>'email' IN ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in')
     OR auth.jwt()->>'email' LIKE '%admin%'
   );
 

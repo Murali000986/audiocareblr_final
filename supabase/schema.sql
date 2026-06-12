@@ -51,7 +51,7 @@ create table if not exists public.products (
 );
 alter table public.products enable row level security;
 create policy "Anyone can view products" on public.products for select using (true);
-create policy "Only admins can modify products" on public.products for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com'));
+create policy "Only admins can modify products" on public.products for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in'));
 
 -- Orders
 create table if not exists public.orders (
@@ -68,7 +68,7 @@ create table if not exists public.orders (
 alter table public.orders enable row level security;
 create policy "Users can view own orders" on public.orders for select using (auth.uid() = user_id);
 create policy "Users can insert own orders" on public.orders for insert with check (auth.uid() = user_id or user_id is null);
-create policy "Admins can view all orders" on public.orders for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com'));
+create policy "Admins can view all orders" on public.orders for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in'));
 
 -- Repair Bookings
 create table if not exists public.repair_bookings (
@@ -89,7 +89,7 @@ create table if not exists public.repair_bookings (
 alter table public.repair_bookings enable row level security;
 create policy "Users can view own bookings" on public.repair_bookings for select using (auth.uid() = user_id);
 create policy "Anyone can insert bookings" on public.repair_bookings for insert with check (true);
-create policy "Admins can view all bookings" on public.repair_bookings for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com'));
+create policy "Admins can view all bookings" on public.repair_bookings for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in'));
 
 -- Reviews
 create table if not exists public.reviews (
@@ -128,7 +128,7 @@ create table if not exists public.testimonials (
 );
 alter table public.testimonials enable row level security;
 create policy "Anyone can view testimonials" on public.testimonials for select using (true);
-create policy "Only admins can modify testimonials" on public.testimonials for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com'));
+create policy "Only admins can modify testimonials" on public.testimonials for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in'));
 
 -- Portfolio (Our Work)
 create table if not exists public.portfolio (
@@ -141,7 +141,7 @@ create table if not exists public.portfolio (
 );
 alter table public.portfolio enable row level security;
 create policy "Anyone can view portfolio" on public.portfolio for select using (true);
-create policy "Only admins can modify portfolio" on public.portfolio for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com'));
+create policy "Only admins can modify portfolio" on public.portfolio for all using (auth.jwt()->>'email' in ('admin@audiocare.in', 'murali701081@gmail.com', 'info@audiocare.in'));
 
 -- Storage (Create a public bucket named 'images' if it doesn't exist)
 insert into storage.buckets (id, name, public) values ('images', 'images', true) on conflict (id) do nothing;
