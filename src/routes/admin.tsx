@@ -27,10 +27,18 @@ function AdminPage() {
     return () => subscription.unsubscribe();
   }, []);
 
+  const ADMIN_EMAILS = ["murali701081@gmail.com", "admin@audiocare.in", "info@audiocare.in"];
+
   const checkAdmin = async () => {
     const { data: { session } } = await supabase.auth.getSession();
     const email = session?.user?.email?.toLowerCase() ?? "";
-    const isAdminEmail = email === "murali701081@gmail.com" || email === "admin@audiocare.in" || email.includes("admin");
+    const isAdminEmail = ADMIN_EMAILS.includes(email) || email.includes("admin");
+    if (session && !isAdminEmail) {
+      // Signed in with Google but not an admin email — sign them out immediately
+      await supabase.auth.signOut();
+      setIsAdmin(false);
+      return;
+    }
     setIsAdmin(isAdminEmail && email.length > 0);
   };
 
