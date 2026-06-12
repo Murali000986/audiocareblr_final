@@ -101,11 +101,11 @@ export function Hero() {
                       {slide.tag}
                     </div>
                     {/* Title */}
-                    <h1 className="font-display font-extrabold tracking-tight text-white text-4xl sm:text-5xl lg:text-6xl uppercase leading-[1.05]">
+                    <h1 className="font-display font-extrabold tracking-tight text-white text-4xl sm:text-5xl lg:text-6xl uppercase leading-[1.05] [text-shadow:_0_4px_12px_rgb(0_0_0_/_0.8)]">
                       {slide.title}
                     </h1>
                     {/* Subtitle */}
-                    <p className="mt-5 text-base sm:text-lg text-white/85 max-w-xl font-normal leading-relaxed">
+                    <p className="mt-5 text-base sm:text-lg text-white/90 max-w-xl font-normal leading-relaxed [text-shadow:_0_2px_8px_rgb(0_0_0_/_0.8)]">
                       {slide.subtitle}
                     </p>
                     {/* CTA */}
