@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 import { Lock, Mail, Loader2, Eye, EyeOff } from "lucide-react";
 
-const ADMIN_EMAILS = ["murali701081@gmail.com", "admin@audiocare.in"];
+const ADMIN_EMAILS = ["murali701081@gmail.com", "admin@audiocare.in", "info@audiocare.in"];
 
 export function AdminLogin({ onLogin }: { onLogin: () => void }) {
   const [email, setEmail] = useState("murali701081@gmail.com");
