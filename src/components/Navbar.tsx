@@ -51,8 +51,8 @@ export function Navbar() {
               <li key={l.to}>
                 <Link
                   to={l.to}
-                  className="text-muted-foreground hover:text-foreground transition-colors relative py-1"
-                  activeProps={{ className: "text-foreground after:absolute after:-bottom-[20px] after:left-0 after:right-0 after:h-[2px] after:bg-primary after:rounded-full" }}
+                  className="text-foreground font-medium hover:text-primary transition-colors relative py-1"
+                  activeProps={{ className: "text-primary font-bold after:absolute after:-bottom-[20px] after:left-0 after:right-0 after:h-[2px] after:bg-primary after:rounded-full" }}
                   activeOptions={{ exact: l.to === "/" }}
                 >
                   {l.label}
