@@ -4,13 +4,13 @@ export function Logo() {
       <img
         src="/audiocare_img/audiocare-logo.png"
         alt="AudioCare Logo"
-        className="h-[58px] sm:h-[68px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+        className="h-[68px] sm:h-[82px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
       />
       <span
         style={{
           fontFamily: "'Black Ops One', cursive",
           color: '#c0392b',
-          fontSize: '8.5px',
+          fontSize: '10px',
           letterSpacing: '0.18em',
           lineHeight: 1,
           display: 'block',
