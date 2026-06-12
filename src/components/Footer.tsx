@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="border-t border-border bg-section mt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid md:grid-cols-2 lg:grid-cols-5 gap-8">
         <div className="lg:col-span-1">
-          <Logo />
+          <Logo large={true} />
           <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
             Your trusted audio partner.<br />Products, repair & expert service.
           </p>
