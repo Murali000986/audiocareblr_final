@@ -119,7 +119,7 @@ function ContactPage() {
               { Icon: Phone, t: "Call Us", s: "9945966499", href: "tel:9945966499", target: "_self" },
               { Icon: MessageCircle, t: "WhatsApp", s: "Mon - Sat, 10:30 AM - 8:00 PM", href: "https://wa.me/919945966499", target: "_blank" },
               { Icon: MapPin, t: "AUDIOCARE (Koramangala)", s: "Bengaluru", href: "https://maps.app.goo.gl/A5eJPPQdYyxD6g797?g_st", target: "_blank" },
-              { Icon: MapPin, t: "AUDIOCARE UNIT2 (Nagarabhavi)", s: "Bengaluru (Service Center near this)", href: "https://maps.app.goo.gl/ZUKo8JVv9Zaa5YCA6?g_st=awb", target: "_blank" },
+              { Icon: MapPin, t: "AUDIOCARE UNIT2 (Nagarabhavi)", s: "Bengaluru (Service Center)", href: "https://maps.app.goo.gl/ZUKo8JVv9Zaa5YCA6?g_st=awb", target: "_blank" },
             ].map((c) => (
               <a key={c.t} href={c.href} target={c.target} rel={c.target === "_blank" ? "noopener noreferrer" : undefined} className="flex items-start gap-3 p-4 rounded-2xl border border-border bg-card hover:border-primary transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-accent text-primary flex items-center justify-center shrink-0">

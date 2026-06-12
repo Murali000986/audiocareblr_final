@@ -85,7 +85,7 @@ export function Footer() {
                 </a>
                 <a href="https://maps.app.goo.gl/ZUKo8JVv9Zaa5YCA6?g_st=awb" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                   <span className="font-semibold block text-foreground">AUDIOCARE UNIT2 (Nagarabhavi)</span>
-                  Bengaluru (Service Center near this)
+                  Bengaluru (Service Center)
                 </a>
               </div>
             </li>
