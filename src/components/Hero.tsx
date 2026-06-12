@@ -88,9 +88,6 @@ export function Hero() {
                     alt={slide.title}
                     className="w-full h-full object-cover"
                   />
-                  {/* Dark gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
 
                 {/* Content */}
