@@ -92,8 +92,17 @@ export function Navbar() {
                 </div>
               </div>
             ) : (
-              <Link to="/auth" className="hidden sm:flex items-center justify-center p-2 ml-1 rounded-full hover:bg-muted transition-colors">
-                <svg className="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+              <Link
+                to="/auth"
+                className="hidden sm:flex items-center gap-2 px-3 py-1.5 ml-1 rounded-full border border-border hover:border-primary hover:bg-primary/5 text-sm font-semibold text-muted-foreground hover:text-foreground transition-all"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#EA4335" d="M12 5c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84C6.71 7.38 9.14 5 12 5z"/>
+                  <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58l3.66 2.84C21.93 18.95 23.49 15.85 23.49 12.27z"/>
+                  <path fill="#FBBC05" d="M5.26 14.29c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09L1.6 7.27C.9 8.73.5 10.32.5 12s.4 3.27 1.1 4.73l3.66-2.44z"/>
+                  <path fill="#34A853" d="M12 23c3.24 0 5.95-1.07 7.93-2.91l-3.66-2.84c-1.06.72-2.43 1.15-4.27 1.15-2.86 0-5.29-1.93-6.16-4.53l-3.66 2.44C3.99 20.53 7.7 23 12 23z"/>
+                </svg>
+                Sign in
               </Link>
             )}
 
