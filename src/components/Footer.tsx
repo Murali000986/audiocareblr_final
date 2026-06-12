@@ -132,10 +132,10 @@ export function Footer() {
       <div className="border-t border-border py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center text-xs text-muted-foreground gap-3">
           <div>
-            Powered by <a href="https://www.bask.xyz/" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary transition-colors">BASK</a>
+            © 2026 AudioCare. All rights reserved.
           </div>
           <div>
-            © 2026 AudioCare. All rights reserved.
+            Powered by <a href="https://www.bask.xyz/" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary transition-colors">BASK</a>
           </div>
         </div>
       </div>
