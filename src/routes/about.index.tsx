@@ -257,7 +257,7 @@ function AboutIndex() {
                     </a>
                     <a href="https://maps.app.goo.gl/ZUKo8JVv9Zaa5YCA6?g_st=awb" target="_blank" rel="noopener noreferrer" className="block text-muted-foreground hover:text-primary transition-colors">
                       <span className="font-semibold text-xs uppercase block text-foreground">Nagarabhavi</span>
-                      <span className="text-sm">AUDIOCARE UNIT2</span>
+                      <span className="text-sm">AUDIOCARE UNIT2<br />Bengaluru (Service Center near this)</span>
                     </a>
                   </div>
                 </div>
