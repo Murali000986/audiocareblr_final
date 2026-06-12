@@ -135,7 +135,7 @@ export function Footer() {
             © 2026 AudioCare. All rights reserved.
           </div>
           <div>
-            Powered by <a href="https://www.bask.xyz/" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary transition-colors">BASK</a>
+            <a href="https://www.bask.xyz/" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary transition-colors hover:underline">Powered by BASK</a>
           </div>
         </div>
       </div>
