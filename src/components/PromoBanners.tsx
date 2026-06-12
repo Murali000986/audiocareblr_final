@@ -44,13 +44,13 @@ export function PromoBanners() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
           <div className="relative z-10 p-8 md:p-12 w-full">
             <span className="inline-block bg-[#1a3c6e] text-white text-xs font-bold uppercase tracking-widest px-3 py-1 mb-4">
-              Sound Systems
+              Portable bluetooth speaker
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white uppercase tracking-tight leading-tight mb-3 font-display">
               HEAR EVERY DETAIL,<br />FEEL EVERY BEAT
             </h2>
             <p className="text-white/80 text-base font-medium mb-7 max-w-sm">
-              JBL, Sony, Bose & Marshall — premium speakers, soundbars, and party systems. Starting at ₹2,999.
+              JBL, Sony, Bose & Marshall — premium speakers, soundbars, and party systems.
             </p>
             <Link
               to="/shop"
