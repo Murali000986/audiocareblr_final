@@ -8,7 +8,7 @@ export function Logo({ large = false, showText = true }: { large?: boolean; show
       />
       {showText && (
         <span
-          className="text-slate-800 dark:text-slate-200 whitespace-nowrap"
+          className="text-blue-700 dark:text-blue-400 whitespace-nowrap"
           style={{
             fontFamily: "'Great Vibes', cursive",
             fontSize: large ? '54px' : '46px',
