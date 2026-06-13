@@ -180,4 +180,84 @@
   .animate-marquee {
     animation: marquee 40s linear infinite;
   }
+
+  /* Marquee reviews (faster) */
+  @keyframes marquee-fast {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee-reviews {
+    animation: marquee-fast 30s linear infinite;
+  }
+  .animate-marquee-reviews-reverse {
+    animation: marquee-fast 30s linear infinite reverse;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.68 0.21 42 / 0.5);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.68 0.21 42);
+  }
+
+  /* Page fade-in */
+  @keyframes page-enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page-enter { animation: page-enter 0.45s ease-out both; }
+
+  /* Slide in from left */
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .animate-slide-left { animation: slide-in-left 0.6s ease-out both; }
+
+  /* Slide in from right */
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .animate-slide-right { animation: slide-in-right 0.6s ease-out both; }
+
+  /* Fade in scale */
+  @keyframes fade-scale {
+    from { opacity: 0; transform: scale(0.93); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .animate-fade-scale { animation: fade-scale 0.5s ease-out both; }
+
+  /* Pulse ring (for WhatsApp button) */
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 oklch(0.68 0.21 42 / 0.5); }
+    70% { box-shadow: 0 0 0 14px oklch(0.68 0.21 42 / 0); }
+    100% { box-shadow: 0 0 0 0 oklch(0.68 0.21 42 / 0); }
+  }
+  .animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+
+  /* Gradient border card */
+  .card-gradient-border {
+    background: linear-gradient(var(--color-card), var(--color-card)) padding-box,
+                linear-gradient(135deg, var(--primary), var(--primary-glow)) border-box;
+    border: 1.5px solid transparent;
+  }
+
+  /* Text shine effect */
+  @keyframes text-shine {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  .text-shine {
+    background: linear-gradient(90deg, oklch(0.68 0.21 42), oklch(0.85 0.18 55), oklch(0.68 0.21 42));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: text-shine 3s linear infinite;
+  }
 }
