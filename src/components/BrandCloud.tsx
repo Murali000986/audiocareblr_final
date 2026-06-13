@@ -1,66 +1,128 @@
+import { Speaker, Radio, Projector } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
 export function BrandCloud() {
-  const brands: Array<{ name: string; img?: string; text?: string; textStyle?: string }> = [
-    { name: "Klipsch",       img: "/logos/klipsch.svg" },
-    { name: "Polk Audio",    img: "/logos/polkaudio.svg" },
-    { name: "FOCAL",         img: "/logos/focal.svg" },
-    { name: "ELAC",          img: "/logos/elac.svg" },
-    { name: "KEF",           img: "/logos/kef.svg" },
-    { name: "JBL",           img: "/logos/jbl.svg" },
-    { name: "SONY",          img: "/logos/sony.svg" },
-    { name: "BenQ",          img: "/logos/benq.svg" },
-    { name: "EPSON",         img: "/logos/epson.svg" },
-    { name: "JVC",           img: "/logos/jvc.svg" },
-    { name: "YAMAHA",        img: "/logos/yamaha.svg" },
-    { name: "DENON",         img: "/logos/denon.svg" },
-    { name: "Pioneer",       img: "/logos/pioneer.svg" },
-    { name: "Marantz",       img: "/logos/marantz.svg" },
-    { name: "Marshall",      img: "/logos/marshall.svg" },
-    
-    // Text-based for brands without SVGs
-    { name: "Optoma",        text: "Optoma",        textStyle: "font-bold text-3xl italic tracking-tight text-red-500" },
-    { name: "REL",           text: "REL",           textStyle: "font-serif font-black text-4xl tracking-widest text-blue-800 uppercase" },
-    { name: "Q Acoustics",   text: "Q Acoustics",   textStyle: "font-display font-bold text-2xl tracking-tight" },
-    { name: "MISSION",       text: "MISSION",       textStyle: "font-bold text-xl tracking-[0.25em] border-2 border-current px-3 py-1 uppercase" },
-    { name: "jamo",          text: "jamo",          textStyle: "font-bold text-3xl tracking-tighter italic lowercase" },
-    { name: "TAGA",          text: "TAGA",          textStyle: "font-serif font-black text-3xl tracking-widest uppercase" },
-    { name: "MONITOR AUDIO", text: "MONITOR AUDIO", textStyle: "font-bold text-2xl tracking-tighter uppercase" },
+  const categories = [
+    {
+      id: "speakers",
+      title: "Speakers & Subwoofers",
+      icon: <Speaker className="w-5 h-5 mr-2 text-primary" />,
+      brands: [
+        { name: "B&W",           text: "B&W",           textStyle: "font-serif font-bold text-3xl uppercase tracking-widest" },
+        { name: "Focal",         img: "/logos/focal.svg" },
+        { name: "Kef",           img: "/logos/kef.svg" },
+        { name: "Monitor Audio", text: "MONITOR AUDIO", textStyle: "font-bold text-2xl tracking-tighter uppercase" },
+        { name: "Klipsch",       img: "/logos/klipsch.svg" },
+        { name: "Polk Audio",    img: "/logos/polkaudio.svg" },
+        { name: "JBL",           img: "/logos/jbl.svg" },
+        { name: "ELAC",          img: "/logos/elac.svg" },
+        { name: "Q Acoustics",   text: "Q Acoustics",   textStyle: "font-display font-bold text-2xl tracking-tight" },
+        { name: "Mission",       text: "MISSION",       textStyle: "font-bold text-xl tracking-[0.25em] border-2 border-current px-3 py-1 uppercase" },
+        { name: "Jamo",          text: "jamo",          textStyle: "font-bold text-3xl tracking-tighter italic lowercase" },
+        { name: "Dali",          text: "DALI",          textStyle: "font-bold text-3xl tracking-widest text-red-600 uppercase" },
+        { name: "Sonos",         text: "SONOS",         textStyle: "font-black text-2xl tracking-widest lowercase" },
+        { name: "B&O",           text: "B&O",           textStyle: "font-light text-3xl tracking-widest uppercase" },
+        { name: "REL",           text: "REL",           textStyle: "font-serif font-black text-4xl tracking-widest text-blue-800 uppercase" },
+        { name: "Wharfedale",    text: "Wharfedale",    textStyle: "font-serif font-bold text-2xl tracking-wide" },
+        { name: "Burmester",     text: "Burmester",     textStyle: "font-serif font-normal text-3xl tracking-wider" },
+        { name: "Tannoy",        text: "TANNOY",        textStyle: "font-bold text-3xl tracking-widest uppercase" },
+      ]
+    },
+    {
+      id: "amplifiers",
+      title: "Amplifiers & Receivers",
+      icon: <Radio className="w-5 h-5 mr-2 text-primary" />,
+      brands: [
+        { name: "Marantz",         img: "/logos/marantz.svg" },
+        { name: "DENON",           img: "/logos/denon.svg" },
+        { name: "NAD",             text: "NAD",             textStyle: "font-black text-3xl tracking-tighter uppercase" },
+        { name: "CAMBRIDGE Audio", text: "CAMBRIDGE AUDIO", textStyle: "font-bold text-xl tracking-widest uppercase" },
+        { name: "Arcam",           text: "ARCAM",           textStyle: "font-bold text-2xl tracking-widest uppercase" },
+        { name: "audiolab",        text: "audiolab",        textStyle: "font-normal text-3xl tracking-tighter lowercase" },
+      ]
+    },
+    {
+      id: "projectors",
+      title: "Projectors & Displays",
+      icon: <Projector className="w-5 h-5 mr-2 text-primary" />,
+      brands: [
+        { name: "Sony",          img: "/logos/sony.svg" },
+        { name: "JVC",           img: "/logos/jvc.svg" },
+        { name: "Optoma",        text: "Optoma",        textStyle: "font-bold text-3xl italic tracking-tight text-red-500" },
+        { name: "Epson",         img: "/logos/epson.svg" },
+        { name: "BenQ",          img: "/logos/benq.svg" },
+      ]
+    }
   ];
 
   return (
-    <section className="py-16 bg-background border-y border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-12 text-center">
-          Trusted By The Best In Audio
-        </p>
-
-        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-10">
-          {brands.map((brand) => (
-            <div
-              key={brand.name}
-              className="hover:scale-110 transition-all duration-300 cursor-default select-none flex items-center justify-center"
-              title={brand.name}
-            >
-              {brand.img ? (
-                <img
-                  src={brand.img}
-                  alt={brand.name}
-                  className="h-10 w-auto max-w-[130px] object-contain dark:brightness-200 dark:contrast-200"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                    const el = e.currentTarget.nextElementSibling as HTMLElement;
-                    if (el) el.style.display = "block";
-                  }}
-                />
-              ) : null}
-              <span
-                style={{ display: brand.img ? "none" : "block" }}
-                className={`text-foreground/70 ${brand.textStyle ?? "font-bold text-xl uppercase tracking-widest"}`}
-              >
-                {brand.text ?? brand.name}
-              </span>
-            </div>
-          ))}
+    <section className="py-20 bg-background border-y border-border overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-20">
+        <div className="text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.3em] text-primary mb-2">
+            Trusted By The Best
+          </p>
+          <h2 className="text-3xl font-serif text-foreground/80">
+            Our Premium Brand Partners
+          </h2>
         </div>
+
+        {categories.map((category) => (
+          <div key={category.id} className="relative w-full">
+            <div className="flex items-center mb-8 border-b border-border/50 pb-4">
+              {category.icon}
+              <h3 className="text-xl font-bold uppercase tracking-wider text-foreground">
+                {category.title}
+              </h3>
+            </div>
+            
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 2000,
+                  stopOnInteraction: false,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4 items-center">
+                {category.brands.map((brand, i) => (
+                  <CarouselItem key={`${brand.name}-${i}`} className="pl-2 md:pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6">
+                    <div className="flex h-[100px] items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                      {brand.img ? (
+                        <img
+                          src={brand.img}
+                          alt={brand.name}
+                          className="h-10 sm:h-12 w-auto max-w-[140px] object-contain dark:brightness-200 dark:contrast-200"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                            const el = e.currentTarget.nextElementSibling as HTMLElement;
+                            if (el) el.style.display = "block";
+                          }}
+                        />
+                      ) : null}
+                      <span
+                        style={{ display: brand.img ? "none" : "block" }}
+                        className={`text-foreground/70 text-center ${brand.textStyle ?? "font-bold text-xl uppercase tracking-widest"}`}
+                      >
+                        {brand.text ?? brand.name}
+                      </span>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+        ))}
       </div>
     </section>
   );
