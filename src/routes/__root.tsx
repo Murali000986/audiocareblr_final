@@ -195,7 +195,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         // font-display=swap ensures text is visible immediately using fallback font while custom font loads
-        href: "https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Manrope:wght@400;600;700;800&family=Sora:wght@500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Great+Vibes&family=Manrope:wght@400;600;700;800&family=Sora:wght@500;600;700;800&display=swap",
       },
       { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
     ],
