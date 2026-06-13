@@ -67,7 +67,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="w-full relative overflow-hidden bg-black">
+    <section className="w-full relative overflow-hidden bg-gray-50">
       <Carousel
         plugins={[plugin.current]}
         className="w-full"
@@ -88,8 +88,8 @@ export function Hero() {
                     alt={slide.title}
                     className="w-full h-full object-cover"
                   />
-                  {/* Left-side dark gradient overlay for text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+                  {/* Left-side light gradient overlay to boost text readability without darkening the image */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/20 to-transparent mix-blend-screen" />
                 </div>
 
                 {/* Content */}
@@ -97,31 +97,36 @@ export function Hero() {
                   <div className="max-w-2xl">
                     {/* Tag */}
                     <div
-                      className="inline-block text-white text-xs font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-sm mb-5"
+                      className="inline-block text-white text-xs font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-sm mb-5 shadow-md"
                       style={{ backgroundColor: slide.accent }}
                     >
                       {slide.tag}
                     </div>
                     {/* Title */}
-                    <h1 className="font-display font-extrabold tracking-tight text-white text-4xl sm:text-5xl lg:text-6xl uppercase leading-[1.05] [text-shadow:_0_4px_12px_rgb(0_0_0_/_0.8)]">
-                      {slide.title}
-                    </h1>
+                    <div>
+                      <h1 
+                        className="font-display font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl uppercase leading-[1.05] inline-block px-4 py-3 backdrop-blur-md rounded-lg shadow-lg"
+                        style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', color: slide.accent }}
+                      >
+                        {slide.title}
+                      </h1>
+                    </div>
                     {/* Subtitle */}
-                    <p className="mt-5 text-base sm:text-lg text-white/90 max-w-xl font-normal leading-relaxed [text-shadow:_0_2px_8px_rgb(0_0_0_/_0.8)]">
+                    <p className="mt-5 text-base sm:text-lg text-gray-800 bg-white/90 backdrop-blur-md p-5 rounded-xl shadow-lg max-w-xl font-medium leading-relaxed">
                       {slide.subtitle}
                     </p>
                     {/* CTA */}
                     <div className="mt-8 flex flex-wrap gap-3">
                       <Link
                         to={slide.ctaLink as any}
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold uppercase tracking-wider transition-all hover:brightness-110 hover:-translate-y-0.5"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold uppercase tracking-wider transition-all hover:brightness-110 hover:-translate-y-0.5 rounded-md shadow-md"
                         style={{ backgroundColor: slide.accent }}
                       >
                         {slide.cta} <ArrowRight className="w-5 h-5" />
                       </Link>
                       <Link
                         to="/shop"
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/60 text-white font-bold uppercase tracking-wider hover:bg-white/10 transition-all"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-900 text-gray-900 font-bold uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-all bg-white/60 backdrop-blur-sm rounded-md shadow-md"
                       >
                         View All Products
                       </Link>
@@ -130,14 +135,14 @@ export function Hero() {
                 </div>
 
                 {/* Slide counter */}
-                <div className="absolute bottom-8 left-6 sm:left-10 z-20 flex items-center gap-3">
+                <div className="absolute bottom-8 left-6 sm:left-10 z-20 flex items-center gap-3 bg-white/40 backdrop-blur-md px-4 py-3 rounded-full shadow-md">
                   {slides.map((_, i) => (
                     <div
                       key={i}
-                      className="h-[3px] rounded-full transition-all duration-500"
+                      className="h-[4px] rounded-full transition-all duration-500"
                       style={{
                         width: i === current ? "40px" : "16px",
-                        backgroundColor: i === current ? slide.accent : "rgba(255,255,255,0.4)",
+                        backgroundColor: i === current ? slide.accent : "rgba(0,0,0,0.3)",
                       }}
                     />
                   ))}
@@ -148,8 +153,8 @@ export function Hero() {
         </CarouselContent>
 
         {/* Navigation arrows */}
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 h-12 w-12 border-none bg-white/10 hover:bg-white/25 text-white backdrop-blur-sm rounded-none" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 h-12 w-12 border-none bg-white/10 hover:bg-white/25 text-white backdrop-blur-sm rounded-none" />
+        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 h-12 w-12 border-none bg-white/60 hover:bg-white/90 text-gray-900 backdrop-blur-md rounded-full shadow-lg" />
+        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 h-12 w-12 border-none bg-white/60 hover:bg-white/90 text-gray-900 backdrop-blur-md rounded-full shadow-lg" />
       </Carousel>
     </section>
   );
