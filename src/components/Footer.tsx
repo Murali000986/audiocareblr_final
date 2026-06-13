@@ -7,9 +7,9 @@ const WHATSAPP_NUMBER = "919945966499";
 export function Footer() {
   return (
     <footer className="border-t border-border bg-section mt-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid md:grid-cols-2 lg:grid-cols-6 gap-8">
-        <div className="lg:col-span-2 pr-4 lg:pr-8">
-          <Logo />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="lg:col-span-1">
+          <Logo showText={false} />
           <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
             Your trusted audio partner.<br />Products, repair & expert service.
           </p>
