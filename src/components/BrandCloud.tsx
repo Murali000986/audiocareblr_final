@@ -110,7 +110,7 @@ export function BrandCloud() {
                         <img
                           src={brand.img}
                           alt={brand.name}
-                          className="h-16 sm:h-20 w-auto max-w-[180px] object-contain dark:brightness-200 dark:contrast-200 filter grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500 drop-shadow-sm"
+                          className="h-16 sm:h-20 w-auto max-w-[180px] object-contain dark:brightness-200 dark:contrast-200 transition-transform duration-300 drop-shadow-sm"
                           onError={(e) => {
                             e.currentTarget.style.display = "none";
                             const el = e.currentTarget.nextElementSibling as HTMLElement;
