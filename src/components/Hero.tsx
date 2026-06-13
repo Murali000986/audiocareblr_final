@@ -4,8 +4,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef, useState, useEffect } from "react";
@@ -57,14 +56,34 @@ const slides = [
 
 export function Hero() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+    if (!api) return;
+
+    setCurrent(api.selectedScrollSnap());
+    
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+    
+    api.on("select", onSelect);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        api.scrollPrev();
+      } else if (e.key === "ArrowRight") {
+        api.scrollNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      api.off("select", onSelect);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [api]);
 
   return (
     <section className="w-full relative overflow-hidden bg-gray-50">
@@ -72,10 +91,7 @@ export function Hero() {
         plugins={[plugin.current]}
         className="w-full"
         opts={{ loop: true }}
-        setApi={(api) => {
-          if (!api) return;
-          api.on("select", () => setCurrent(api.selectedScrollSnap()));
-        }}
+        setApi={setApi}
       >
         <CarouselContent className="-ml-0">
           {slides.map((slide) => (
@@ -142,9 +158,6 @@ export function Hero() {
           ))}
         </CarouselContent>
 
-        {/* Navigation arrows */}
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 h-12 w-12 border-none bg-white/60 hover:bg-white/90 text-gray-900 backdrop-blur-md rounded-full shadow-lg" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 h-12 w-12 border-none bg-white/60 hover:bg-white/90 text-gray-900 backdrop-blur-md rounded-full shadow-lg" />
       </Carousel>
     </section>
   );
