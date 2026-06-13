@@ -89,44 +89,41 @@ export function Hero() {
                     className="w-full h-full object-cover"
                   />
                   {/* Left-side light gradient overlay to boost text readability without darkening the image */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/20 to-transparent mix-blend-screen" />
                 </div>
 
                 {/* Content */}
                 <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 w-full">
-                  <div className="max-w-2xl">
+                  <div className="max-w-2xl bg-white/85 backdrop-blur-xl border border-white/50 p-8 sm:p-12 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] transform transition-all">
                     {/* Tag */}
                     <div
-                      className="inline-block text-white text-xs font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-sm mb-5 shadow-md"
+                      className="inline-block text-white text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full mb-6 shadow-md"
                       style={{ backgroundColor: slide.accent }}
                     >
                       {slide.tag}
                     </div>
                     {/* Title */}
-                    <div>
-                      <h1 
-                        className="font-display font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl uppercase leading-[1.05] inline-block px-4 py-3 backdrop-blur-md rounded-lg shadow-lg"
-                        style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', color: slide.accent }}
-                      >
-                        {slide.title}
-                      </h1>
-                    </div>
+                    <h1 
+                      className="font-display font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl uppercase leading-[1.05]"
+                      style={{ color: slide.accent }}
+                    >
+                      {slide.title}
+                    </h1>
                     {/* Subtitle */}
-                    <p className="mt-5 text-base sm:text-lg text-gray-800 bg-white/90 backdrop-blur-md p-5 rounded-xl shadow-lg max-w-xl font-medium leading-relaxed">
+                    <p className="mt-6 text-base sm:text-lg text-gray-800 max-w-xl font-medium leading-relaxed">
                       {slide.subtitle}
                     </p>
                     {/* CTA */}
-                    <div className="mt-8 flex flex-wrap gap-3">
+                    <div className="mt-8 flex flex-wrap gap-4">
                       <Link
                         to={slide.ctaLink as any}
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold uppercase tracking-wider transition-all hover:brightness-110 hover:-translate-y-0.5 rounded-md shadow-md"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold uppercase tracking-wider transition-all hover:brightness-110 hover:-translate-y-0.5 rounded-full shadow-lg"
                         style={{ backgroundColor: slide.accent }}
                       >
                         {slide.cta} <ArrowRight className="w-5 h-5" />
                       </Link>
                       <Link
                         to="/shop"
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-900 text-gray-900 font-bold uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-all bg-white/60 backdrop-blur-sm rounded-md shadow-md"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-900 text-gray-900 font-bold uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-all rounded-full"
                       >
                         View All Products
                       </Link>
