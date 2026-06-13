@@ -43,7 +43,7 @@ export function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 min-h-[80px] py-2 flex items-center justify-between gap-4">
+        <nav className="w-full px-4 sm:px-8 min-h-[80px] py-2 flex items-center justify-between gap-4">
           <Link to="/"><Logo /></Link>
 
           <ul className="hidden lg:flex items-center gap-7 text-sm font-medium">

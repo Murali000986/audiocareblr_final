@@ -11,7 +11,7 @@ export function Logo({ large = false, showText = true }: { large?: boolean; show
           className="text-[#c0392b] whitespace-nowrap"
           style={{
             fontFamily: "'Great Vibes', cursive",
-            fontSize: large ? '64px' : '56px',
+            fontSize: large ? '54px' : '46px',
             lineHeight: 1,
             userSelect: 'none',
             transform: 'translateY(4px)'
