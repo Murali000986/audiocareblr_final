@@ -1,26 +1,22 @@
 export function Logo({ large = false }: { large?: boolean }) {
   return (
-    <div className="flex flex-col items-center justify-center py-1 group" style={{ gap: '2px' }}>
+    <div className="flex items-center py-1 group gap-3 sm:gap-4">
       <img
         src="/audiocare_img/audiocare-logo.png"
         alt="AudioCare Logo"
-        className={`${large ? "h-[85px] sm:h-[105px]" : "h-[68px] sm:h-[82px]"} w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
+        className={`${large ? "h-[70px] sm:h-[85px]" : "h-[50px] sm:h-[60px]"} w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
       />
       <span
+        className="text-[#1e3a8a] dark:text-[#60a5fa] whitespace-nowrap"
         style={{
-          fontFamily: "'Black Ops One', cursive",
-          color: '#c0392b',
-          fontSize: large ? '13px' : '10px',
-          letterSpacing: '0.18em',
+          fontFamily: "'Great Vibes', cursive",
+          fontSize: large ? '48px' : '36px',
           lineHeight: 1,
-          display: 'block',
-          textAlign: 'center',
-          textTransform: 'uppercase',
           userSelect: 'none',
-          opacity: 0.92,
+          transform: 'translateY(4px)'
         }}
       >
-        LIFE FOR AUDIO
+        Life for Audio
       </span>
     </div>
   );
