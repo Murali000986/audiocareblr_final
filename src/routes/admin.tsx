@@ -27,7 +27,7 @@ function AdminPage() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const ADMIN_EMAILS = ["murali701081@gmail.com", "admin@audiocare.in", "info@audiocare.in"];
+  const ADMIN_EMAILS = ["murali701081@gmail.com", "admin@audiocare.in", "info@audiocare.in", "audiocareblr@gmail.com"];
 
   const checkAdmin = async () => {
     const { data: { session } } = await supabase.auth.getSession();

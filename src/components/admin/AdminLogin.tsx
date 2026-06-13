@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 import { Lock, Loader2, Shield } from "lucide-react";
 
-const ADMIN_EMAILS = ["murali701081@gmail.com", "admin@audiocare.in", "info@audiocare.in"];
+const ADMIN_EMAILS = ["murali701081@gmail.com", "admin@audiocare.in", "info@audiocare.in", "audiocareblr@gmail.com"];
 
 // Google "G" SVG icon
 function GoogleIcon() {

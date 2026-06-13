@@ -30,7 +30,7 @@ drop policy if exists "Anyone can view products" on public.products;
 create policy "Anyone can view products" on public.products for select using (true);
 drop policy if exists "Only admins can modify products" on public.products;
 create policy "Only admins can modify products" on public.products for all
-  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in') or auth.jwt()->>'email' like '%admin%');
+  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in','audiocareblr@gmail.com') or auth.jwt()->>'email' like '%admin%');
 
 -- ─── 2. PROFILES ────────────────────────────────────────────
 create table if not exists public.profiles (
@@ -65,7 +65,7 @@ drop policy if exists "Users can insert own orders" on public.orders;
 create policy "Users can insert own orders" on public.orders for insert with check (auth.uid() = user_id or user_id is null);
 drop policy if exists "Admins can view all orders" on public.orders;
 create policy "Admins can view all orders" on public.orders for all
-  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in') or auth.jwt()->>'email' like '%admin%');
+  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in','audiocareblr@gmail.com') or auth.jwt()->>'email' like '%admin%');
 
 -- ─── 4. REPAIR BOOKINGS ─────────────────────────────────────
 create table if not exists public.repair_bookings (
@@ -90,7 +90,7 @@ drop policy if exists "Users can view own bookings" on public.repair_bookings;
 create policy "Users can view own bookings" on public.repair_bookings for select using (auth.uid() = user_id);
 drop policy if exists "Admins can view all bookings" on public.repair_bookings;
 create policy "Admins can view all bookings" on public.repair_bookings for all
-  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in') or auth.jwt()->>'email' like '%admin%');
+  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in','audiocareblr@gmail.com') or auth.jwt()->>'email' like '%admin%');
 
 -- ─── 5. REVIEWS ─────────────────────────────────────────────
 create table if not exists public.reviews (
@@ -135,7 +135,7 @@ drop policy if exists "Anyone can view testimonials" on public.testimonials;
 create policy "Anyone can view testimonials" on public.testimonials for select using (true);
 drop policy if exists "Only admins can modify testimonials" on public.testimonials;
 create policy "Only admins can modify testimonials" on public.testimonials for all
-  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in') or auth.jwt()->>'email' like '%admin%');
+  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in','audiocareblr@gmail.com') or auth.jwt()->>'email' like '%admin%');
 
 -- ─── 8. PORTFOLIO ────────────────────────────────────────────
 create table if not exists public.portfolio (
@@ -151,7 +151,7 @@ drop policy if exists "Anyone can view portfolio" on public.portfolio;
 create policy "Anyone can view portfolio" on public.portfolio for select using (true);
 drop policy if exists "Only admins can modify portfolio" on public.portfolio;
 create policy "Only admins can modify portfolio" on public.portfolio for all
-  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in') or auth.jwt()->>'email' like '%admin%');
+  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in','audiocareblr@gmail.com') or auth.jwt()->>'email' like '%admin%');
 
 -- ─── 9. BLOGS ───────────────────────────────────────────────
 create table if not exists public.blogs (
@@ -168,10 +168,10 @@ create table if not exists public.blogs (
 alter table public.blogs enable row level security;
 drop policy if exists "Anyone can view published blogs" on public.blogs;
 create policy "Anyone can view published blogs" on public.blogs
-  for select using (published = true or auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in'));
+  for select using (published = true or auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in','audiocareblr@gmail.com'));
 drop policy if exists "Admins can manage blogs" on public.blogs;
 create policy "Admins can manage blogs" on public.blogs for all
-  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in') or auth.jwt()->>'email' like '%admin%');
+  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in','audiocareblr@gmail.com') or auth.jwt()->>'email' like '%admin%');
 
 -- ─── 10. STORAGE (Image Upload) ─────────────────────────────
 insert into storage.buckets (id, name, public)
@@ -226,7 +226,7 @@ create table if not exists public.backups (
 alter table public.backups enable row level security;
 drop policy if exists "Admins can manage backups" on public.backups;
 create policy "Admins can manage backups" on public.backups for all
-  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in') or auth.jwt()->>'email' like '%admin%');
+  using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in','audiocareblr@gmail.com') or auth.jwt()->>'email' like '%admin%');
 
 -- Final reload after backups table creation
 NOTIFY pgrst, 'reload schema';
