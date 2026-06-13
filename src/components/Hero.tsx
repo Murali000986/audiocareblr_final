@@ -93,7 +93,7 @@ export function Hero() {
 
                 {/* Content */}
                 <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 w-full">
-                  <div className="max-w-2xl bg-white/85 backdrop-blur-xl border border-white/50 p-8 sm:p-12 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] transform transition-all">
+                  <div className="max-w-2xl bg-black/60 backdrop-blur-2xl border border-white/10 p-8 sm:p-12 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] transform transition-all">
                     {/* Tag */}
                     <div
                       className="inline-block text-white text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full mb-6 shadow-md"
@@ -109,7 +109,7 @@ export function Hero() {
                       {slide.title}
                     </h1>
                     {/* Subtitle */}
-                    <p className="mt-6 text-base sm:text-lg text-gray-800 max-w-xl font-medium leading-relaxed">
+                    <p className="mt-6 text-base sm:text-lg text-gray-200 max-w-xl font-medium leading-relaxed">
                       {slide.subtitle}
                     </p>
                     {/* CTA */}
@@ -123,7 +123,7 @@ export function Hero() {
                       </Link>
                       <Link
                         to="/shop"
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-900 text-gray-900 font-bold uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-all rounded-full"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/40 text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all rounded-full"
                       >
                         View All Products
                       </Link>
