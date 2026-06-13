@@ -88,12 +88,12 @@ export function Hero() {
                     alt={slide.title}
                     className="w-full h-full object-cover"
                   />
-                  {/* Left-side light gradient overlay to boost text readability without darkening the image */}
-                </div>
+                {/* Left-side sweeping light gradient for text readability without a boxed card */}
+                <div className="absolute inset-0 z-0 bg-gradient-to-r from-white/95 via-white/60 to-transparent w-full md:w-[70%]" />
 
                 {/* Content */}
                 <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 w-full">
-                  <div className="max-w-2xl bg-black/60 backdrop-blur-2xl border border-white/10 p-8 sm:p-12 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] transform transition-all">
+                  <div className="max-w-2xl py-8 sm:py-12 transform transition-all">
                     {/* Tag */}
                     <div
                       className="inline-block text-white text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full mb-6 shadow-md"
@@ -103,13 +103,13 @@ export function Hero() {
                     </div>
                     {/* Title */}
                     <h1 
-                      className="font-display font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl uppercase leading-[1.05]"
+                      className="font-display font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-7xl uppercase leading-[1.05]"
                       style={{ color: slide.accent }}
                     >
                       {slide.title}
                     </h1>
                     {/* Subtitle */}
-                    <p className="mt-6 text-base sm:text-lg text-gray-200 max-w-xl font-medium leading-relaxed">
+                    <p className="mt-6 text-base sm:text-lg text-gray-800 max-w-xl font-medium leading-relaxed drop-shadow-sm">
                       {slide.subtitle}
                     </p>
                     {/* CTA */}
@@ -123,7 +123,7 @@ export function Hero() {
                       </Link>
                       <Link
                         to="/shop"
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/40 text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all rounded-full"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-900 text-gray-900 font-bold uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-all rounded-full"
                       >
                         View All Products
                       </Link>
