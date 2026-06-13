@@ -13,24 +13,24 @@ export function BrandCloud() {
       title: "Speakers & Subwoofers",
       icon: <Speaker className="w-5 h-5 mr-2 text-primary" />,
       brands: [
-        { name: "B&W",           text: "B&W",           textStyle: "font-serif font-bold text-3xl uppercase tracking-widest text-zinc-800 dark:text-zinc-200" },
+        { name: "B&W",           img: "/logos/bw.png" },
         { name: "Focal",         img: "/logos/focal.svg" },
         { name: "Kef",           img: "/logos/kef.svg" },
-        { name: "Monitor Audio", text: "MONITOR AUDIO", textStyle: "font-bold text-2xl tracking-tighter uppercase text-amber-600" },
+        { name: "Monitor Audio", img: "/logos/monitoraudio.png" },
         { name: "Klipsch",       img: "/logos/klipsch.svg" },
         { name: "Polk Audio",    img: "/logos/polkaudio.svg" },
         { name: "JBL",           img: "/logos/jbl.svg" },
         { name: "ELAC",          img: "/logos/elac.svg" },
-        { name: "Q Acoustics",   text: "Q Acoustics",   textStyle: "font-display font-bold text-2xl tracking-tight text-blue-600" },
-        { name: "Mission",       text: "MISSION",       textStyle: "font-bold text-xl tracking-[0.25em] border-2 border-current px-3 py-1 uppercase text-emerald-600" },
+        { name: "Q Acoustics",   img: "/logos/qacoustics.png" },
+        { name: "Mission",       img: "/logos/mission.png" },
         { name: "Jamo",          text: "jamo",          textStyle: "font-bold text-3xl tracking-tighter italic lowercase text-cyan-600" },
-        { name: "Dali",          text: "DALI",          textStyle: "font-bold text-3xl tracking-widest text-red-600 uppercase" },
-        { name: "Sonos",         text: "SONOS",         textStyle: "font-black text-2xl tracking-widest lowercase text-indigo-500" },
-        { name: "B&O",           text: "B&O",           textStyle: "font-light text-3xl tracking-widest uppercase text-stone-500" },
+        { name: "Dali",          img: "/logos/dali.png" },
+        { name: "Sonos",         img: "/logos/sonos.png" },
+        { name: "B&O",           img: "/logos/bangolufsen.png" },
         { name: "REL",           text: "REL",           textStyle: "font-serif font-black text-4xl tracking-widest text-blue-800 uppercase" },
-        { name: "Wharfedale",    text: "Wharfedale",    textStyle: "font-serif font-bold text-2xl tracking-wide text-green-700" },
-        { name: "Burmester",     text: "Burmester",     textStyle: "font-serif font-normal text-3xl tracking-wider text-rose-600" },
-        { name: "Tannoy",        text: "TANNOY",        textStyle: "font-bold text-3xl tracking-widest uppercase text-orange-600" },
+        { name: "Wharfedale",    img: "/logos/wharfedale.png" },
+        { name: "Burmester",     img: "/logos/burmester.png" },
+        { name: "Tannoy",        img: "/logos/tannoy.png" },
       ]
     },
     {
@@ -40,10 +40,10 @@ export function BrandCloud() {
       brands: [
         { name: "Marantz",         img: "/logos/marantz.svg" },
         { name: "DENON",           img: "/logos/denon.svg" },
-        { name: "NAD",             text: "NAD",             textStyle: "font-black text-3xl tracking-tighter uppercase text-red-700" },
-        { name: "CAMBRIDGE Audio", text: "CAMBRIDGE AUDIO", textStyle: "font-bold text-xl tracking-widest uppercase text-blue-700" },
+        { name: "NAD",             img: "/logos/nad.png" },
+        { name: "CAMBRIDGE Audio", img: "/logos/cambridgeaudio.png" },
         { name: "Arcam",           text: "ARCAM",           textStyle: "font-bold text-2xl tracking-widest uppercase text-slate-500" },
-        { name: "audiolab",        text: "audiolab",        textStyle: "font-normal text-3xl tracking-tighter lowercase text-teal-600" },
+        { name: "audiolab",        img: "/logos/audiolab.png" },
       ]
     },
     {
@@ -53,7 +53,7 @@ export function BrandCloud() {
       brands: [
         { name: "Sony",          img: "/logos/sony.svg" },
         { name: "JVC",           img: "/logos/jvc.svg" },
-        { name: "Optoma",        text: "Optoma",        textStyle: "font-bold text-3xl italic tracking-tight text-green-500" },
+        { name: "Optoma",        img: "/logos/optoma.png" },
         { name: "Epson",         img: "/logos/epson.svg" },
         { name: "BenQ",          img: "/logos/benq.svg" },
       ]
