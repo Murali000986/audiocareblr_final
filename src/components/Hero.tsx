@@ -80,7 +80,7 @@ export function Hero() {
         <CarouselContent className="-ml-0">
           {slides.map((slide) => (
             <CarouselItem key={slide.id} className="pl-0 min-w-0 basis-full">
-              <div className="relative w-full h-[560px] lg:h-[680px] flex items-center">
+              <div className="relative w-full h-[560px] lg:h-[680px] flex items-end pb-12 sm:pb-16 lg:pb-24">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                   <img
@@ -88,44 +88,37 @@ export function Hero() {
                     alt={slide.title}
                     className="w-full h-full object-cover"
                   />
-                {/* Left-side sweeping light gradient for text readability without a boxed card */}
-                <div className="absolute inset-0 z-0 bg-gradient-to-r from-white/95 via-white/60 to-transparent w-full md:w-[70%]" />
+                </div>
 
-                {/* Content */}
-                <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 w-full">
-                  <div className="max-w-2xl py-8 sm:py-12 transform transition-all">
+                {/* Content - Anchored bottom left */}
+                <div className="relative z-10 w-full max-w-[90%] md:max-w-2xl">
+                  <div className="bg-white/95 backdrop-blur-xl p-8 sm:p-10 lg:p-12 rounded-r-[2.5rem] shadow-[20px_20px_60px_-15px_rgba(0,0,0,0.3)] transform transition-all border-y border-r border-white/50">
                     {/* Tag */}
                     <div
-                      className="inline-block text-white text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full mb-6 shadow-md"
+                      className="inline-block text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-4 sm:mb-6 shadow-sm"
                       style={{ backgroundColor: slide.accent }}
                     >
                       {slide.tag}
                     </div>
                     {/* Title */}
                     <h1 
-                      className="font-display font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-7xl uppercase leading-[1.05]"
+                      className="font-display font-extrabold tracking-tight text-3xl sm:text-4xl lg:text-5xl uppercase leading-[1.05]"
                       style={{ color: slide.accent }}
                     >
                       {slide.title}
                     </h1>
                     {/* Subtitle */}
-                    <p className="mt-6 text-base sm:text-lg text-gray-800 max-w-xl font-medium leading-relaxed drop-shadow-sm">
+                    <p className="mt-4 sm:mt-6 text-sm sm:text-base text-gray-700 max-w-lg font-medium leading-relaxed">
                       {slide.subtitle}
                     </p>
                     {/* CTA */}
-                    <div className="mt-8 flex flex-wrap gap-4">
+                    <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
                       <Link
                         to={slide.ctaLink as any}
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold uppercase tracking-wider transition-all hover:brightness-110 hover:-translate-y-0.5 rounded-full shadow-lg"
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 text-white text-sm sm:text-base font-bold uppercase tracking-wider transition-all hover:brightness-110 hover:-translate-y-0.5 rounded-full shadow-md"
                         style={{ backgroundColor: slide.accent }}
                       >
-                        {slide.cta} <ArrowRight className="w-5 h-5" />
-                      </Link>
-                      <Link
-                        to="/shop"
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-900 text-gray-900 font-bold uppercase tracking-wider hover:bg-gray-900 hover:text-white transition-all rounded-full"
-                      >
-                        View All Products
+                        {slide.cta} <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                       </Link>
                     </div>
                   </div>
