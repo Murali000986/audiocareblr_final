@@ -92,7 +92,7 @@ export function Hero() {
 
                 {/* Content - Anchored bottom left */}
                 <div className="relative z-10 w-full max-w-[90%] md:max-w-2xl">
-                  <div className="bg-white/95 backdrop-blur-xl p-8 sm:p-10 lg:p-12 rounded-r-[2.5rem] shadow-[20px_20px_60px_-15px_rgba(0,0,0,0.3)] transform transition-all border-y border-r border-white/50">
+                  <div className="bg-orange-50/95 backdrop-blur-xl p-8 sm:p-10 lg:p-12 rounded-r-[2.5rem] shadow-[20px_20px_60px_-15px_rgba(0,0,0,0.3)] transform transition-all border-y border-r border-orange-200/50">
                     {/* Tag */}
                     <div
                       className="inline-block text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-4 sm:mb-6 shadow-sm"
