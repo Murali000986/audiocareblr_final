@@ -15,6 +15,7 @@ export function Logo({ large = false, showText = true }: { large?: boolean; show
             lineHeight: 1,
             userSelect: 'none',
             marginTop: large ? '-5px' : '-2px',
+            marginLeft: large ? '70px' : '50px',
           }}
         >
           Life for Audio
