@@ -4,14 +4,14 @@ export function Logo({ large = false, showText = true }: { large?: boolean; show
       <img
         src="/audiocare_img/audiocare-logo.png"
         alt="AudioCare Logo"
-        className={`${large ? "h-[100px] sm:h-[120px]" : "h-[85px] sm:h-[100px]"} w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
+        className={`${large ? "h-[120px] sm:h-[140px]" : "h-[100px] sm:h-[120px]"} w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
       />
       {showText && (
         <span
           className="text-[#c0392b] whitespace-nowrap"
           style={{
             fontFamily: "'Great Vibes', cursive",
-            fontSize: large ? '54px' : '44px',
+            fontSize: large ? '64px' : '56px',
             lineHeight: 1,
             userSelect: 'none',
             transform: 'translateY(4px)'
