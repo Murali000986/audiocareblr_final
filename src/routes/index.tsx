@@ -18,14 +18,14 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "AudioCare Bengaluru | Speaker Repair, Soundbar Repair & Home Theater Installation" },
-      { name: "description", content: "AudioCare Bengaluru offers speaker repair, soundbar repair, amplifier service, subwoofer repair and home theater installation with free pickup and delivery across Bangalore." },
+      { name: "description", content: "AudioCare Bengaluru offers speaker repair, soundbar repair, amplifier service, subwoofer repair and home theater installation with pickup and delivery across Bangalore." },
       { name: "keywords", content: "speaker repair bengaluru, amplifier repair bangalore, home theatre installation bangalore, JBL repair bengaluru, sony speaker repair bangalore, sound system setup bangalore, audio care blr, speaker service bengaluru" },
       { property: "og:title", content: "AudioCare Bengaluru | Speaker Repair, Soundbar Repair & Home Theater Installation" },
-      { property: "og:description", content: "AudioCare Bengaluru offers speaker repair, soundbar repair, amplifier service, subwoofer repair and home theater installation with free pickup and delivery across Bangalore." },
+      { property: "og:description", content: "AudioCare Bengaluru offers speaker repair, soundbar repair, amplifier service, subwoofer repair and home theater installation with pickup and delivery across Bangalore." },
       { property: "og:url", content: "https://www.audiocareblr.com/" },
       { property: "og:type", content: "website" },
       { name: "twitter:title", content: "AudioCare Bengaluru | Speaker Repair & Home Theater" },
-      { name: "twitter:description", content: "AudioCare Bengaluru offers speaker repair, soundbar repair, amplifier service and home theater installation with free pickup across Bangalore." },
+      { name: "twitter:description", content: "AudioCare Bengaluru offers speaker repair, soundbar repair, amplifier service and home theater installation with pickup across Bangalore." },
     ],
   }),
   component: Index,

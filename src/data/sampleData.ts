@@ -37,7 +37,7 @@ export const repairServices = [
   { title: "Speaker Repair", desc: "All types of speaker repairs & recone service.", icon: "speaker" },
   { title: "Amplifier Repair", desc: "Amplifier, receiver & subwoofer repairs.", icon: "cpu" },
   { title: "Soundbar Repair", desc: "Soundbar not working? We've got you covered.", icon: "audio-waveform" },
-  { title: "Pickup & Delivery", desc: "Free pickup & delivery at your doorstep.", icon: "truck" },
+  { title: "Pickup & Delivery", desc: "Pickup & delivery at your doorstep.", icon: "truck" },
 ];
 
 export const portfolio = [

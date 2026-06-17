@@ -247,7 +247,7 @@ function RepairsView() {
               <div className="grid grid-cols-2 gap-4 border-t border-border pt-4">
                 <div>
                   <span className="block text-xs text-muted-foreground mb-1">Service Mode</span>
-                  <span className="capitalize font-bold">{selectedRepair.pickup_mode === "pickup" ? "Free Doorstep Pickup" : "Drop at Store"}</span>
+                  <span className="capitalize font-bold">{selectedRepair.pickup_mode === "pickup" ? "Doorstep Pickup" : "Drop at Store"}</span>
                 </div>
                 <div>
                   <span className="block text-xs text-muted-foreground mb-1">Current Status</span>

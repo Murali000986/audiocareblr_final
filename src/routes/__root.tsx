@@ -157,7 +157,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "AudioCare Bengaluru — Speaker Repair, Home Theatre & Sound Systems" },
-      { name: "description", content: "AudioCare — Bengaluru's trusted audio expert since 2007. Speaker & amplifier repair, home theatre installation, sound system setup. Free doorstep pickup across Bangalore." },
+      { name: "description", content: "AudioCare — Bengaluru's trusted audio expert since 2007. Speaker & amplifier repair, home theatre installation, sound system setup. Doorstep pickup across Bangalore." },
       { name: "keywords", content: "speaker repair bangalore, amplifier repair bengaluru, home theatre installation bangalore, audio repair bengaluru, JBL repair bangalore, sound system setup bengaluru, audiocare blr" },
       { name: "author", content: "AudioCare Bengaluru" },
       { name: "robots", content: "index, follow" },

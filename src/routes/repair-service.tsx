@@ -30,7 +30,7 @@ const repairServiceSchema = {
     "url": "https://www.audiocareblr.com"
   },
   "areaServed": { "@type": "City", "name": "Bengaluru" },
-  "description": "Expert repair service for speakers, amplifiers, soundbars, and home theatre systems in Bengaluru. Free doorstep pickup and delivery.",
+  "description": "Expert repair service for speakers, amplifiers, soundbars, and home theatre systems in Bengaluru. Doorstep pickup and delivery.",
   "offers": {
     "@type": "Offer",
     "availability": "https://schema.org/InStock",
@@ -42,7 +42,7 @@ const repairServiceSchema = {
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Speaker Repair Bengaluru", "description": "Expert speaker repair for all brands — JBL, Sony, Bose, Polk Audio and more." } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Amplifier Repair Bengaluru", "description": "Amplifier servicing and repair with genuine parts and 3-month warranty." } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Home Theatre Repair Bangalore", "description": "Full home theatre system troubleshooting, repair and calibration." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Soundbar Repair Bangalore", "description": "Soundbar repair for all brands with free pickup across Bengaluru." } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Soundbar Repair Bangalore", "description": "Soundbar repair for all brands with pickup across Bengaluru." } }
     ]
   }
 };
@@ -58,8 +58,8 @@ const repairFaqSchema = {
     },
     {
       "@type": "Question",
-      "name": "Do you offer free pickup for speaker repair in Bangalore?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes! AudioCare offers free doorstep pickup and delivery across all areas of Bengaluru including Koramangala, Indiranagar, Whitefield, Marathahalli and more." }
+      "name": "Do you offer pickup for speaker repair in Bangalore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes! AudioCare offers doorstep pickup and delivery across all areas of Bengaluru including Koramangala, Indiranagar, Whitefield, Marathahalli and more." }
     },
     {
       "@type": "Question",
@@ -82,11 +82,11 @@ const repairFaqSchema = {
 export const Route = createFileRoute("/repair-service")({
   head: () => ({
     meta: [
-      { title: "Speaker & Amplifier Repair in Bengaluru — Free Pickup | AudioCare" },
-      { name: "description", content: "Book expert speaker, amplifier & soundbar repair in Bengaluru. Free doorstep pickup across Bangalore. JBL, Sony, Bose, Harman repairs. 3-month warranty. 48-hr turnaround." },
-      { name: "keywords", content: "speaker repair bengaluru, speaker repair bangalore, amplifier repair bengaluru, soundbar repair bangalore, JBL repair bengaluru, sony speaker repair bangalore, home theatre repair bangalore, free pickup speaker repair bangalore" },
-      { property: "og:title", content: "Speaker & Amplifier Repair in Bengaluru — Free Pickup | AudioCare" },
-      { property: "og:description", content: "Expert audio equipment repair in Bengaluru. Free doorstep pickup. JBL, Sony, Bose & all brands. 3-month warranty." },
+      { title: "Speaker & Amplifier Repair in Bengaluru — Pickup | AudioCare" },
+      { name: "description", content: "Book expert speaker, amplifier & soundbar repair in Bengaluru. Doorstep pickup across Bangalore. JBL, Sony, Bose, Harman repairs. 3-month warranty. 48-hr turnaround." },
+      { name: "keywords", content: "speaker repair bengaluru, speaker repair bangalore, amplifier repair bengaluru, soundbar repair bangalore, JBL repair bengaluru, sony speaker repair bangalore, home theatre repair bangalore, pickup speaker repair bangalore" },
+      { property: "og:title", content: "Speaker & Amplifier Repair in Bengaluru — Pickup | AudioCare" },
+      { property: "og:description", content: "Expert audio equipment repair in Bengaluru. Doorstep pickup. JBL, Sony, Bose & all brands. 3-month warranty." },
       { property: "og:url", content: "https://www.audiocareblr.com/repair-service" },
     ],
     scripts: [
@@ -158,7 +158,7 @@ function RepairPage() {
           Brand: form.brand,
           Device: form.device,
           Issue: form.issue,
-          Pickup_Mode: form.pickup === "pickup" ? "Free Doorstep Pickup" : "Drop at Store",
+          Pickup_Mode: form.pickup === "pickup" ? "Doorstep Pickup" : "Drop at Store",
           Preferred_Date: form.date,
           Booking_Reference: bookingRef,
           _template: "table"
@@ -198,7 +198,7 @@ function RepairPage() {
 
             <div className="mt-8 grid sm:grid-cols-3 gap-4 max-w-2xl">
               {[
-                { icon: Truck,       t: "Free Pickup",     s: "Doorstep service" },
+                { icon: Truck,       t: "Pickup",     s: "Doorstep service" },
                 { icon: ShieldCheck, t: "3-Month Warranty", s: "On all repairs" },
                 { icon: Clock,       t: "48-Hr Turnaround", s: "Fast & reliable" },
               ].map((b, i) => (
@@ -275,7 +275,7 @@ function RepairPage() {
                     <div>
                       <label className="block text-xs font-semibold text-muted-foreground mb-1.5">Service Mode</label>
                       <div className="grid grid-cols-2 gap-2">
-                        {[{ v: "pickup", l: "Free Pickup" }, { v: "drop", l: "Drop at Store" }].map((p) => (
+                        {[{ v: "pickup", l: "Pickup" }, { v: "drop", l: "Drop at Store" }].map((p) => (
                           <label
                             key={p.v}
                             className={`cursor-pointer text-center text-sm font-bold py-2.5 rounded-xl border-2 transition-all ${

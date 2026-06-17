@@ -26,7 +26,7 @@ const slides = [
     id: 2,
     tag: "Expert Repair Service",
     title: "WE REPAIR ALL AUDIO EQUIPMENT",
-    subtitle: "Expert audio repair service in Bangalore. From JBL speaker repair to amplifier and subwoofer repair in Bangalore, we fix it all. Speaker repair near me with free pickup.",
+    subtitle: "Expert audio repair service in Bangalore. From JBL speaker repair to amplifier and subwoofer repair in Bangalore, we fix it all. Speaker repair near me with pickup.",
     image: "https://images.unsplash.com/photo-1599669454699-248893623440?q=80&w=1920&auto=format&fit=crop",
     cta: "Book a Repair",
     ctaLink: "/repair-service",

@@ -65,7 +65,7 @@ export function PromoBanners() {
       {/* Bottom trust bar */}
       <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border border-t border-border bg-card">
         {[
-          { icon: "🚚", title: "Free Pickup & Delivery", sub: "For all repair orders across the city" },
+          { icon: "🚚", title: "Pickup & Delivery", sub: "For all repair orders across the city" },
           { icon: "🛡️", title: "100% Genuine Parts", sub: "Original brand components only" },
           { icon: "⚡", title: "Same-Day Service", sub: "Fast turnaround on most repairs" },
           { icon: "📞", title: "Expert Support", sub: "Call us anytime for audio advice" },

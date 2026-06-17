@@ -42,12 +42,12 @@ const services = [
     id: 4,
     title: "Audio Repair Service",
     description:
-      "Expert audio equipment repair in Bengaluru — speakers, amplifiers, subwoofers, and soundbars. Certified technicians, genuine parts, and free pickup & delivery for speaker repair in Bangalore.",
+      "Expert audio equipment repair in Bengaluru — speakers, amplifiers, subwoofers, and soundbars. Certified technicians, genuine parts, and pickup & delivery for speaker repair in Bangalore.",
     image:
       "/audiocare_img/services_repair.png",
     link: "/repair-service",
     tag: "Repair & Restore",
-    points: ["Speaker Cone Replacement", "Amplifier Repair", "Soundbar Servicing", "Free Doorstep Pickup"],
+    points: ["Speaker Cone Replacement", "Amplifier Repair", "Soundbar Servicing", "Doorstep Pickup"],
     accent: "#1f5c2e",
   },
 ];

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/about/services")({
       { name: "description", content: "AudioCare Bengaluru offers Home Audio setup, Commercial Audio systems, Speaker & Amplifier Repair, Home Theatre Installation, and Annual Maintenance Contracts (AMC). Serving Bangalore since 2007." },
       { name: "keywords", content: "home theater installation Bengaluru, audio repair bangalore, commercial audio Bengaluru, speaker installation bangalore, AMC audio bangalore, amplifier service bengaluru, soundbar repair bangalore, home theatre setup bangalore, PROFX service vendor, audio AMC bangalore" },
       { property: "og:title", content: "Audio Services in Bengaluru — Home Theatre, Repair & AMC | AudioCare" },
-      { property: "og:description", content: "Home theatre installation, speaker repair, commercial audio & AMC services in Bengaluru since 2007. Expert team, genuine parts, free pickup." },
+      { property: "og:description", content: "Home theatre installation, speaker repair, commercial audio & AMC services in Bengaluru since 2007. Expert team, genuine parts, pickup." },
       { property: "og:url", content: "https://www.audiocareblr.com/about/services" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "AudioCare Bengaluru" },
@@ -39,7 +39,7 @@ const mainServices = [
     icon: Wrench,
     title: "Repair & Service",
     desc: "Our certified technicians repair all major brands of audio equipment — speakers, amplifiers, subwoofers, soundbars and receivers — with genuine parts and a service warranty.",
-    features: ["Speaker Cone & Surround Repair", "Amplifier Board Repair", "Subwoofer Reconing", "Soundbar Motherboard Service", "AV Receiver Repair", "Free Doorstep Pickup & Drop"],
+    features: ["Speaker Cone & Surround Repair", "Amplifier Board Repair", "Subwoofer Reconing", "Soundbar Motherboard Service", "AV Receiver Repair", "Doorstep Pickup & Drop"],
     image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1000&auto=format&fit=crop",
   },
   {

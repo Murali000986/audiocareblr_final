@@ -69,7 +69,7 @@ export function RepairCTABanner() {
               },
               {
                 icon: MapPin,
-                title: "Free Doorstep Pickup",
+                title: "Doorstep Pickup",
                 desc: "We pick up and deliver your equipment anywhere in the city",
               },
             ].map((item) => (
