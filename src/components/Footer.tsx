@@ -54,7 +54,7 @@ export function Footer() {
             ))}
           </ul>
         </div>
-
+            
         <div>
           <h4 className="font-bold mb-3">Contact Us</h4>
           <ul className="space-y-2.5 text-sm text-muted-foreground">

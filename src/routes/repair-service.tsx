@@ -192,7 +192,7 @@ function RepairPage() {
                 Book a <span className="text-gradient-orange">Repair</span>
               </h1>
               <p className="text-muted-foreground mt-3 max-w-xl text-lg">
-                Specialized in Bose speaker repair, Sony soundbar repair, and amplifier repair in Bangalore. Expert technicians, genuine parts, and free pickup across Bengaluru.
+                Specialized in high-end audio equipment, speaker repair, and amplifier repair services in Bangalore. Expert technicians, genuine replacement parts, advanced diagnostics, and pickup & delivery can be arranged across Bengaluru for reliable and professional service.
               </p>
             </AnimatedSection>
 

@@ -228,5 +228,4 @@ drop policy if exists "Admins can manage backups" on public.backups;
 create policy "Admins can manage backups" on public.backups for all
   using (auth.jwt()->>'email' in ('admin@audiocare.in','murali701081@gmail.com','info@audiocare.in','audiocareblr@gmail.com') or auth.jwt()->>'email' like '%admin%');
 
--- Final reload after backups table creation
 NOTIFY pgrst, 'reload schema';
